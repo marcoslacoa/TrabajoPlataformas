@@ -32,18 +32,30 @@ namespace TrabajoPlataformas
             datos = new List<List<string>>();
         }
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    refreshData();
-        //}
+        private void label2_Click(object sender, EventArgs e)
+        {
 
-        //private void refreshData()
-        //{
-        //    //borro los datos
-        //    dataGridView1.Rows.Clear();
-        //    //agrego lo nuevo
-        //    foreach (Usuario user in miBanco.obtenerUsuarios())
-        //        dataGridView1.Rows.Add(user.toArray());
-        //}
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+      
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            refreshData();
+        }
+
+        private void refreshData()
+        {
+            //borro los datos
+            dataGridView1.Rows.Clear();
+            //agrego lo nuevo
+            foreach (Usuario user in miBanco.obtenerUsuarios())
+                dataGridView1.Rows.Add(user.toArray());
+        }
     }
 }

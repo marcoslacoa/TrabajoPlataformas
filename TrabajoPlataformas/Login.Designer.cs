@@ -111,6 +111,7 @@
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Form2_Load);

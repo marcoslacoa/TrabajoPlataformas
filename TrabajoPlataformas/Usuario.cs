@@ -50,6 +50,11 @@ namespace TrabajoPlataformas
             contra = Contra;
         }
 
+        public string[] toArray()
+        {
+            return new string[] { nombre, contra };
+        }
+
         //public bool bloqueado()
         //{
         //    if (intentosFallidos > 3)
