@@ -319,12 +319,9 @@ namespace TrabajoPlataformas
         public bool iniciarSesion(string usuario, string pass)
         {
             bool encontrar = false;
-
                     foreach (Usuario user in userList)
                     {
-                    
-
-                                if (user.nombre.Equals(usuario) && user.contra.Equals(pass))
+                                if (user.nombre.Equals(usuario) && user.contra.Equals(pass) && !user.bloqueado)
                                     encontrar = true;
                                 else if (user.nombre.Equals(usuario) && !user.contra.Equals(pass))
                                 {
