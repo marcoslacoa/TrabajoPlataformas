@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TrabajoPlataformas
 {
@@ -15,6 +18,8 @@ namespace TrabajoPlataformas
         public List<Movimiento> movimientos { get; }
         public List<TarjetaCredito> tarjetas { get; }
 
+        public Usuario usuarioActual;
+
         public Banco()
         {
             userList = new List<Usuario>();
@@ -24,6 +29,8 @@ namespace TrabajoPlataformas
             movimientos = new List<Movimiento>();
             tarjetas = new List<TarjetaCredito>();
         }
+
+        //CORREGIR LOS PARAMETROS DE LOS ABM, VER EN LA CONSIGA CUALES SON
 
         //ABM Usuario
         public bool altaUsuario(int dni, string nombre, string apellido, string mail, string contra, bool bloqueado)
@@ -196,7 +203,8 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool modificarPago(int id, Usuario usuario, float monto, bool pagado)
+        // NO implementar, no está permitido modificar un Plazo Fijo.
+        /*public bool modificarPago(int id, Usuario usuario, float monto, bool pagado)
         {
             Pago aModificar = pagos[id];
             try
@@ -210,7 +218,7 @@ namespace TrabajoPlataformas
                 pagos[id] = aModificar;
                 return false;
             }
-        }
+        }*/
 
         //ABM Movimientos
 
@@ -311,16 +319,69 @@ namespace TrabajoPlataformas
 
         public bool iniciarSesion(string usuario, string pass)
         {
+            // Implementar hasta 3 intentos fallidos, en ese caso el usuario bloqueado=false pasa a ser true.
+
             bool encontrar = false;
             foreach (Usuario user in userList)
             {
                 if (user.nombre.Equals(usuario) && user.contra.Equals(pass))
                     encontrar = true;
+                /*else
+                {
+                    intentosFallidos++;
+                    encontrar = false;
+                    if (intentosFallidos > 3)
+                    {
+                        bloqueado = true;
+                    }
+                }*/
             }
             return encontrar;
         }
 
-        //Getters
+        public bool cerrarSesion()
+        {
+           // usuarioActual; //Usuario actual pasa a ser nulo
+           return true;
+        }
+
+        public void crearCajaAhorro()
+        {
+            // Crea una nueva Caja de Ahorro con los datos ingresados.
+        }
+
+        public void depositar(CajaAhorro caja, float monto)
+        {
+            // Deposita el monto ingresado en la Caja de Ahorro seleccionada.
+        }
+
+        public void retirar(CajaAhorro caja, float monto)
+        {
+            // Retira el monto ingresado en la Caja de Ahorro seleccionada siempre que cuente
+            // con saldo suficiente, caso contrario devuelve un error.
+        }
+
+        public void transferir(CajaAhorro origen, CajaAhorro destino, float monto)
+        {
+            // Transfiere el monto indicado de la caja de ahorro seleccionada del usuario actual
+            // (origen) a otra caja de ahorro(destino, que puede ser del usuario actual o no), siempre
+            // que el saldo de origen sea suficiente para realizar la operación caso contrario genera un error.
+        }
+
+        public void buscarMovimiento(CajaAhorro caja, string detalle, DateTime fecha, float monto)
+        {
+            // Devuelve una lista de movimientos de la caja de ahorro filtrada por al menos uno de
+            // los parámetros(el usuario puede ingresar los 3 parámetros, 2 o 1) Detalle, Fecha y Monto.
+        }
+
+        public void pagarTarjeta(TarjetaCredito tarjeta, CajaAhorro caja)
+        {
+            // Descuenta el saldo total de consumos de la
+            // tarjeta del saldo de la caja de ahorro(generando el movimiento correspondiente)
+            // siempre que el saldo sea suficiente, caso contrario, no permite operar.
+        }
+
+        //Mostrar datos
 
         public List<Usuario> obtenerUsuarios()
         {
