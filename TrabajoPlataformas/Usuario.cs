@@ -50,5 +50,14 @@ namespace TrabajoPlataformas
             contra = Contra;
         }
 
+        public bool bloqueado()
+        {
+            if (intentosFallidos > 3)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
