@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // FormPadre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.IsMdiContainer = true;
-            this.Name = "Form1";
+            this.Name = "FormPadre";
             this.Text = "Form1";
             this.ResumeLayout(false);
 

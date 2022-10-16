@@ -60,8 +60,8 @@ namespace TrabajoPlataformas
             hijoRegister.Close();
             this.hijoLogin = new Login(this.banco);
             this.hijoLogin.MdiParent = this;
-            this.hijoLogin.loginEvento += loginDelegado;
             this.hijoLogin.regEvento += registerDelegado;
+            this.hijoLogin.loginEvento += loginDelegado;
             hijoLogin.Show();
         }
     }

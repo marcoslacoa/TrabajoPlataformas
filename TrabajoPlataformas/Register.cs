@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,11 +17,15 @@ namespace TrabajoPlataformas
     {
         public Banco banco;
         public int dni;
+        public string nombre;
+        public string apellido;
+        public string mail;
+        public string contra;
         public regBotonDelegado regBotonEvento;
 
         public Register(Banco b)
         {
-            banco = b;
+            this.banco = b;
             InitializeComponent();
         }
 
@@ -29,20 +34,27 @@ namespace TrabajoPlataformas
 
         }
 
-        public delegate void regBotonDelegado();
-
+   
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             bool tryDni = Int32.TryParse(txtDni.Text, out this.dni);
+            this.nombre = txtNombre.Text;
+            this.apellido = txtApellido.Text;
+            this.mail = txtMail.Text;
+            this.contra = txtContra.Text;
 
-            if (banco.altaUsuario(dni, txtNombre.Text, txtApellido.Text, txtMail.Text, txtContra.Text, false)) { 
+            if (contra != "" && nombre != "" && apellido != "" && mail != "" && tryDni) {
+                banco.altaUsuario(dni, nombre, apellido, mail, contra, false);
                 MessageBox.Show("Usuario Agregado con éxito");
                 this.regBotonEvento();
             }
             else { 
                 MessageBox.Show("No se pudo agregar el usuario");
             }
+            
         }
+
+        public delegate void regBotonDelegado();
 
     }
 }
