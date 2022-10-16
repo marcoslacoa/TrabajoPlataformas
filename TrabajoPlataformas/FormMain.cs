@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
@@ -17,11 +18,12 @@ namespace TrabajoPlataformas
         List<List<string>> datos;
         public string usuario;
         public Banco miBanco;
+        /*public Usuario usuarioActual = new Usuario();*/
 
         public FormMain(string usuario, Banco b)
         {
             this.miBanco = b;
-            this.usuario = usuario;
+            this.usuario = usuario;          
         }
 
         public FormMain(object[] args)
@@ -30,6 +32,8 @@ namespace TrabajoPlataformas
             miBanco = (Banco)args[1];
             argumentos = args;
             datos = new List<List<string>>();
+            Trace.WriteLine(miBanco.usuarioActual.contra);
+            
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -54,8 +58,18 @@ namespace TrabajoPlataformas
             //borro los datos
             dataGridView1.Rows.Clear();
             //agrego lo nuevo
-            foreach (Usuario user in miBanco.obtenerUsuarios())
-                dataGridView1.Rows.Add(user.toArray());
+            foreach (CajaAhorro caja in miBanco.usuarioActual.cajasList)
+                dataGridView1.Rows.Add(caja.toArray());
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // Acciona para crear un plazo fijo
         }
     }
 }

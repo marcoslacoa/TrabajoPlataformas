@@ -1,10 +1,12 @@
-﻿using Microsoft.VisualBasic.Logging;
+﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TrabajoPlataformas
@@ -349,38 +351,64 @@ namespace TrabajoPlataformas
 
         public void crearCajaAhorro()
         {
-            // Crea una nueva Caja de Ahorro con los datos ingresados.
+            int cbu=1;
+            int saldo=1;
+            CajaAhorro caja = new CajaAhorro(cbu, saldo);
         }
 
-        public void depositar(CajaAhorro caja, float monto)
+        public Movimiento depositar(CajaAhorro caja, float monto)
         {
-            // Deposita el monto ingresado en la Caja de Ahorro seleccionada.
+            if (monto <= 0)
+            {
+                throw new ApplicationException("Monto invalido");
+            }
+            caja.saldo += monto;
+            Movimiento mov = new Movimiento(caja, "Deposito", monto, DateTime.Now);
+            return mov;
         }
 
-        public void retirar(CajaAhorro caja, float monto)
+        public Movimiento retirar(CajaAhorro caja, float monto)
         {
-            // Retira el monto ingresado en la Caja de Ahorro seleccionada siempre que cuente
-            // con saldo suficiente, caso contrario devuelve un error.
+            if (monto >= caja.saldo)
+            {
+                throw new ApplicationException("Saldo insuficiente");
+            }
+            caja.saldo -= monto;
+            Movimiento mov = new Movimiento(caja, "Retiro", monto, DateTime.Now);
+            return mov;
         }
 
-        public void transferir(CajaAhorro origen, CajaAhorro destino, float monto)
+        public Movimiento transferir(CajaAhorro origen, CajaAhorro destino, float monto)
         {
-            // Transfiere el monto indicado de la caja de ahorro seleccionada del usuario actual
-            // (origen) a otra caja de ahorro(destino, que puede ser del usuario actual o no), siempre
-            // que el saldo de origen sea suficiente para realizar la operación caso contrario genera un error.
+            if (monto <= 0)
+            {
+                throw new ApplicationException("Monto invalido");
+            }          
+            origen.saldo -= monto;
+            destino.saldo += monto;
+            Movimiento movOrigen = new Movimiento(origen, "Transferencia", monto, DateTime.Now);
+            Movimiento movDestino = new Movimiento(destino, "Transferencia", monto, DateTime.Now);
+
+            return movOrigen;
         }
 
-        public void buscarMovimiento(CajaAhorro caja, string detalle, DateTime fecha, float monto)
+        /*public List<Movimiento> buscarMovimiento(CajaAhorro caja, string detalle, DateTime fecha, float monto)
         {
             // Devuelve una lista de movimientos de la caja de ahorro filtrada por al menos uno de
-            // los parámetros(el usuario puede ingresar los 3 parámetros, 2 o 1) Detalle, Fecha y Monto.
-        }
+            // los parámetros(el usuario puede ingresar los 3 parámetros, 2 o 1) Detalle, Fecha y Monto.           
+            List<Movimiento> filtrado = new List<Movimiento>();
+            
+        }*/
 
-        public void pagarTarjeta(TarjetaCredito tarjeta, CajaAhorro caja)
+        public Movimiento pagarTarjeta(TarjetaCredito tarjeta, CajaAhorro caja)
         {
-            // Descuenta el saldo total de consumos de la
-            // tarjeta del saldo de la caja de ahorro(generando el movimiento correspondiente)
-            // siempre que el saldo sea suficiente, caso contrario, no permite operar.
+            if(tarjeta.consumos > caja.saldo)
+            {               
+                  throw new ApplicationException("Saldo en caja insuficiente");               
+            }
+            caja.saldo -= tarjeta.consumos;
+            Movimiento mov = new Movimiento(caja, "Pago de tarjeta", tarjeta.consumos, DateTime.Now);
+            return mov;
         }
 
         //Mostrar datos
@@ -414,6 +442,7 @@ namespace TrabajoPlataformas
         {
             return tarjetas.ToList();
         }
-
+        
+        
     }
 }

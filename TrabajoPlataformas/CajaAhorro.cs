@@ -17,5 +17,11 @@ namespace TrabajoPlataformas
             cbu = Cbu;
             this.saldo = Saldo;
         }
+
+        internal object[] toArray()
+        {
+            throw new NotImplementedException();
+        }
+        
     }
 }
