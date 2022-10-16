@@ -52,7 +52,7 @@ namespace TrabajoPlataformas
             hijoLogin.Close();
             this.hijoRegister = new Register(banco);
             this.hijoRegister.MdiParent = this;
-            this.hijoRegister.regBotonEvento += registerDelegado;
+            this.hijoRegister.regBotonEvento += regBotonDelegado;
             hijoRegister.Show();
         }
         private void regBotonDelegado() // DAR DE ALTA UN USUARIO 
