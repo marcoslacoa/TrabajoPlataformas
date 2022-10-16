@@ -17,17 +17,24 @@ namespace TrabajoPlataformas
         List<List<string>> datos;
         public string usuario;
         public Banco miBanco;
-        public FormMain()
+
+        public FormMain(string usuario, Banco b)
+        {
+            this.miBanco = b;
+            this.usuario = usuario;
+        }
+
+        public FormMain(object[] args)
         {
             InitializeComponent();
+            miBanco = (Banco)args[1];
+            argumentos = args;
+            datos = new List<List<string>>();
         }
-        //public FormMain(string usuario, Banco b)
+
+        //private void button1_Click(object sender, EventArgs e)
         //{
-        //    InitializeComponent();
-        //    miBanco = (Banco)args[1];
-        //    argumentos = args;
-        //    label1.Text = (string)args[0];
-        //    datos = new List<List<string>>();
+        //    refreshData();
         //}
 
         //private void refreshData()

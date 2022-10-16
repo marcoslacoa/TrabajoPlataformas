@@ -5,6 +5,7 @@ namespace TrabajoPlataformas
         private Banco banco;
         Login hijoLogin;
         Register hijoRegister;
+        FormMain hijoMain;
         //FormMain hijoMain;
         internal string texto;
         string usuario;
@@ -40,10 +41,11 @@ namespace TrabajoPlataformas
             {
                 MessageBox.Show("Log in correcto, Usuario: " + usuario, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 hijoLogin.Close();
-                /* hijoMain = new FormMain(/*new object[] { usuario, banco });
+                hijoMain = new FormMain(new object[] { usuario, banco });
                 hijoMain.usuario = Usuario;
                 hijoMain.MdiParent = this;
-                hijoMain.Show();*/
+                // Transfevento para cerrar y volver al padre.
+                hijoMain.Show();
             }
             else // osea si dio false el metodo IniciarSesion
             {
