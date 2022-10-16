@@ -15,7 +15,7 @@ namespace TrabajoPlataformas
         public string mail { get; set; }
         public string contra { get; set; }
         public int intentosFallidos { get; set; }
-        public Boolean bloqueado { get; set; }
+        public bool bloqueado = false;
         public List<CajaAhorro> cajasList { get; }
         public List<PlazoFijo> plazoFijo { get; }
         public List<Pago> pagos { get; }
@@ -29,11 +29,11 @@ namespace TrabajoPlataformas
             mail = Mail;
             contra = Contra;
             this.intentosFallidos = IntentosFallidos;
-            this.bloqueado = Bloqueado;
             this.cajasList = CajasList;
             this.plazoFijo = PlazoFijo;
             this.pagos = Pagos;
             this.tarjetas = Tarjetas;
+            this.bloqueado = Bloqueado;
         }
 
         public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, bool Bloqueado) : this(Nombre, Apellido)
@@ -50,14 +50,14 @@ namespace TrabajoPlataformas
             contra = Contra;
         }
 
-        public bool bloqueado()
-        {
-            if (intentosFallidos > 3)
-            {
-                return true;
-            }
-            return false;
-        }
+        //public bool bloqueado()
+        //{
+        //    if (intentosFallidos > 3)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
     }
 }

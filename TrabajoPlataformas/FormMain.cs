@@ -17,23 +17,26 @@ namespace TrabajoPlataformas
         List<List<string>> datos;
         public string usuario;
         public Banco miBanco;
-
-        public FormMain(string usuario, Banco b)
+        public FormMain()
         {
             InitializeComponent();
-            miBanco = (Banco)args[1];
-            argumentos = args;
-            label1.Text = (string)args[0];
-            datos = new List<List<string>>();
         }
+        //public FormMain(string usuario, Banco b)
+        //{
+        //    InitializeComponent();
+        //    miBanco = (Banco)args[1];
+        //    argumentos = args;
+        //    label1.Text = (string)args[0];
+        //    datos = new List<List<string>>();
+        //}
 
-        private void refreshData()
-        {
-            //borro los datos
-            dataGridView1.Rows.Clear();
-            //agrego lo nuevo
-            foreach (Usuario user in miBanco.obtenerUsuarios())
-                dataGridView1.Rows.Add(user.toArray());
-        }
+        //private void refreshData()
+        //{
+        //    //borro los datos
+        //    dataGridView1.Rows.Clear();
+        //    //agrego lo nuevo
+        //    foreach (Usuario user in miBanco.obtenerUsuarios())
+        //        dataGridView1.Rows.Add(user.toArray());
+        //}
     }
 }

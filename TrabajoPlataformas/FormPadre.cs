@@ -5,15 +5,15 @@ namespace TrabajoPlataformas
         private Banco banco;
         Login hijoLogin;
         Register hijoRegister;
-        FormMain hijoMain;
+        //FormMain hijoMain;
         internal string texto;
         string usuario;
         string pass;
         bool logued;
         public bool touched;
-        public bool bloqueado = false;
+       
 
-        public int intentosFallidos;
+        public int intentosFallidos ;
 
         public FormPadre()
         {
@@ -33,9 +33,9 @@ namespace TrabajoPlataformas
         }
         private void loginDelegado(string Usuario, string Pass) // DELEGADO PARA INICIAR SESION 
         {
-            
             this.usuario = Usuario;
             this.pass = Pass;
+           
             if (banco.iniciarSesion(usuario, pass))
             {
                 MessageBox.Show("Log in correcto, Usuario: " + usuario, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -45,13 +45,19 @@ namespace TrabajoPlataformas
                 hijoMain.MdiParent = this;
                 hijoMain.Show();*/
             }
-            else
+            else // osea si dio false el metodo IniciarSesion
             {
+                //aca falta preguntar si esta bloqueado
+                foreach (Usuario user in banco.userList)
+                {
+                    if (user.nombre == this.usuario && user.bloqueado)
+                    {
+                        MessageBox.Show("Se ha bloqueado al usuario " + user.nombre, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
                 MessageBox.Show("Log in incorrecto", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
                 hijoLogin.Show();
             }
-
         }
         private void registerDelegado() // Delegado para ir al REGISTER 
         {

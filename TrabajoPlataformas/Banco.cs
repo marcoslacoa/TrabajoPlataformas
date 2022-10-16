@@ -314,28 +314,33 @@ namespace TrabajoPlataformas
             }
         }
 
-
         //Metodos
 
         public bool iniciarSesion(string usuario, string pass)
         {
-            // Implementar hasta 3 intentos fallidos, en ese caso el usuario bloqueado=false pasa a ser true.
-
             bool encontrar = false;
-            foreach (Usuario user in userList)
-            {
-                if (user.nombre.Equals(usuario) && user.contra.Equals(pass))
-                    encontrar = true;
-                /*else
-                {
-                    intentosFallidos++;
-                    encontrar = false;
-                    if (intentosFallidos > 3)
+
+                    foreach (Usuario user in userList)
                     {
-                        bloqueado = true;
+                    
+
+                                if (user.nombre.Equals(usuario) && user.contra.Equals(pass))
+                                    encontrar = true;
+                                else if (user.nombre.Equals(usuario) && !user.contra.Equals(pass))
+                                {
+                                    encontrar = false;
+                                    user.intentosFallidos++;
+                                    if (user.intentosFallidos > 3)
+                                    {
+                                        user.bloqueado = true;
+
+                                    }
+                                } else
+                                {
+                                    encontrar = false;
+                                }
+                                // ELSE DE SI EL USUARIO ESTÁ BLOQUEADO. QUE PASA ACA?
                     }
-                }*/
-            }
             return encontrar;
         }
 
