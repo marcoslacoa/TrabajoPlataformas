@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
@@ -20,6 +21,7 @@ namespace TrabajoPlataformas
 
         public FormMain(string usuario, Banco b)
         {
+            InitializeComponent();
             this.miBanco = b;
             this.usuario = usuario;
         }
@@ -54,8 +56,26 @@ namespace TrabajoPlataformas
             //borro los datos
             dataGridView1.Rows.Clear();
             //agrego lo nuevo
-            foreach (Usuario user in miBanco.obtenerUsuarios())
-                dataGridView1.Rows.Add(user.toArray());
+            //    foreach (Usuario user in miBanco.obtenerUsuarios())
+            //        //string[] arr = new string[] { user.nombre, user.contra };
+            //        //dataGridView1.Add(arr);
+            //        dataGridView1.Rows.Add(user.toArray());
+            //}
+
+           
+            foreach(CajaAhorro caja in miBanco.usuarioActual.cajasList)
+                {
+                    string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
+                    dataGridView1.Rows.Add(arr);
+                    dataGridView1.Rows.Add(caja.toArray());
+                }
+        
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
+
 }

@@ -18,7 +18,7 @@ namespace TrabajoPlataformas
         public List<Movimiento> movimientos { get; }
         public List<TarjetaCredito> tarjetas { get; }
 
-        public Usuario usuarioActual;
+        public Usuario usuarioActual { get; }
 
         public Banco()
         {
@@ -46,7 +46,7 @@ namespace TrabajoPlataformas
                 return false;
             }
         }
-
+        
         public bool bajaUsuario(int id)
         {
             Usuario aEliminar = userList[id];

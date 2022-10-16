@@ -16,7 +16,7 @@ namespace TrabajoPlataformas
         public string contra { get; set; }
         public int intentosFallidos { get; set; }
         public bool bloqueado = false;
-        public List<CajaAhorro> cajasList { get; }
+        public List<CajaAhorro> cajasList { get; set; }
         public List<PlazoFijo> plazoFijo { get; }
         public List<Pago> pagos { get; }
         public List<TarjetaCredito> tarjetas { get; }
@@ -50,11 +50,6 @@ namespace TrabajoPlataformas
             contra = Contra;
         }
 
-        public string[] toArray()
-        {
-            return new string[] { nombre, contra };
-        }
-
         //public bool bloqueado()
         //{
         //    if (intentosFallidos > 3)
@@ -63,6 +58,6 @@ namespace TrabajoPlataformas
         //    }
         //    return false;
         //}
-
+        
     }
 }
