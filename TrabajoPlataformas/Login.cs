@@ -18,18 +18,13 @@ namespace TrabajoPlataformas
         public string pass;
         public Banco elBanco;
 
-        public TransfDelegado TransfEvento;
+        public loginDelegado loginEvento;
         public registerDelegado regEvento;
         public Login(Banco b)
         {
             logued = false;
             InitializeComponent();
             elBanco = b;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -43,31 +38,21 @@ namespace TrabajoPlataformas
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonlogin_Click(object sender, EventArgs e)
         {
             usuario = txtUsuario.Text;
             pass = txtContra.Text;
             if (usuario != null && usuario != "")
             {
-                this.TransfEvento(usuario, pass);
+                this.loginEvento(usuario, pass);
             }
             else
                 MessageBox.Show("Debe ingresar un usuario!");
         }
-        public delegate void TransfDelegado(string usuario, string pass);
+        public delegate void loginDelegado(string usuario, string pass);
         public delegate void registerDelegado();
 
         private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
         {
 
         }

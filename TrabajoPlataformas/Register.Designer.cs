@@ -72,7 +72,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(329, 135);
+            this.label4.Location = new System.Drawing.Point(329, 132);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 15);
             this.label4.TabIndex = 3;
@@ -81,7 +81,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(332, 209);
+            this.label5.Location = new System.Drawing.Point(329, 209);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(27, 15);
             this.label5.TabIndex = 4;
@@ -96,7 +96,7 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(459, 127);
+            this.txtApellido.Location = new System.Drawing.Point(459, 124);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(100, 23);
             this.txtApellido.TabIndex = 6;

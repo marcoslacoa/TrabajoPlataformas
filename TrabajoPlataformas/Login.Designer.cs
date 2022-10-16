@@ -40,33 +40,31 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(331, 86);
+            this.label1.Location = new System.Drawing.Point(302, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuario";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(331, 133);
+            this.label2.Location = new System.Drawing.Point(302, 158);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Contraseña";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(454, 83);
+            this.txtUsuario.Location = new System.Drawing.Point(425, 108);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(100, 23);
             this.txtUsuario.TabIndex = 2;
             // 
             // txtContra
             // 
-            this.txtContra.Location = new System.Drawing.Point(454, 130);
+            this.txtContra.Location = new System.Drawing.Point(425, 155);
             this.txtContra.Name = "txtContra";
             this.txtContra.Size = new System.Drawing.Size(100, 23);
             this.txtContra.TabIndex = 3;
@@ -74,7 +72,7 @@
             // 
             // buttonlogin
             // 
-            this.buttonlogin.Location = new System.Drawing.Point(387, 175);
+            this.buttonlogin.Location = new System.Drawing.Point(358, 200);
             this.buttonlogin.Name = "buttonlogin";
             this.buttonlogin.Size = new System.Drawing.Size(75, 23);
             this.buttonlogin.TabIndex = 4;
@@ -84,7 +82,7 @@
             // 
             // buttonregister
             // 
-            this.buttonregister.Location = new System.Drawing.Point(387, 263);
+            this.buttonregister.Location = new System.Drawing.Point(358, 288);
             this.buttonregister.Name = "buttonregister";
             this.buttonregister.Size = new System.Drawing.Size(75, 23);
             this.buttonregister.TabIndex = 5;
@@ -95,12 +93,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(378, 232);
+            this.label3.Location = new System.Drawing.Point(349, 257);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 15);
             this.label3.TabIndex = 6;
             this.label3.Text = "No eres usuario?";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Login
             // 

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TrabajoPlataformas
 {
-    public partial class Form3 : Form
+    public partial class FormMain : Form
     {
-        public Form3()
+        public FormMain()
         {
             InitializeComponent();
         }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static TrabajoPlataformas.Login;
 
 namespace TrabajoPlataformas
@@ -14,11 +15,7 @@ namespace TrabajoPlataformas
     public partial class Register : Form
     {
         public Banco banco;
-        private string nombre;
-        private string apellido;
-        private int dni;
-        private string email;
-        private string password;
+        public int dni;
         public regBotonDelegado regBotonEvento;
 
         public Register(Banco b)
@@ -37,9 +34,20 @@ namespace TrabajoPlataformas
 
         }
 
+        public delegate void regBotonDelegado();
+
         private void buttonRegister_Click(object sender, EventArgs e)
         {
+            bool tryDni = Int32.TryParse(txtDni.Text, out this.dni);
 
+            if (banco.altaUsuario(dni, txtNombre.Text, txtApellido.Text, txtMail.Text, txtContra.Text, false)) { 
+                MessageBox.Show("Usuario Agregado con éxito");
+                this.regBotonEvento();
+            }
+            else { 
+                MessageBox.Show("No se pudo agregar el usuario");
+            }
         }
+
     }
 }
