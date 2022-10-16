@@ -16,15 +16,15 @@ namespace TrabajoPlataformas
         public bool logued;
         public string usuario;
         public string pass;
-        public Banco elBanco;
-
+        public Banco banco;
         public loginDelegado loginEvento;
         public registerDelegado regEvento;
+
         public Login(Banco b)
         {
             logued = false;
             InitializeComponent();
-            elBanco = b;
+            banco = b;  
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -34,9 +34,11 @@ namespace TrabajoPlataformas
 
         private void buttonregister_Click(object sender, EventArgs e)
         {
-            // LOGICA DE LLAMADO A PADRE. CLOSE DE LOGIN
-
+            this.regEvento();
         }
+
+        public delegate void loginDelegado(string usuario, string pass);
+        public delegate void registerDelegado();
 
         private void buttonlogin_Click(object sender, EventArgs e)
         {
@@ -49,8 +51,7 @@ namespace TrabajoPlataformas
             else
                 MessageBox.Show("Debe ingresar un usuario!");
         }
-        public delegate void loginDelegado(string usuario, string pass);
-        public delegate void registerDelegado();
+        
 
         private void Form2_Load(object sender, EventArgs e)
         {

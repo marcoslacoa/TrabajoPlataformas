@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrabajoPlataformas
 {
-    internal class Banco
+    public class Banco
     {
         public List<Usuario> userList { get; }
         public List<CajaAhorro> cajasList { get; }
@@ -18,16 +18,11 @@ namespace TrabajoPlataformas
         public Banco()
         {
             userList = new List<Usuario>();
-
-        }
-        public Banco(List<Usuario> UserList, List<CajaAhorro> CajasList, List<PlazoFijo> PlazosFijos, List<Pago> Pagos, List<Movimiento> Movimientos, List<TarjetaCredito> Tarjetas)
-        {
-            this.userList = UserList;
-            this.cajasList = CajasList;
-            this.plazosFijos = PlazosFijos;
-            this.pagos = Pagos;
-            this.movimientos = Movimientos;
-            this.tarjetas = Tarjetas;
+            cajasList = new List<CajaAhorro>();
+            plazosFijos = new List<PlazoFijo>();
+            pagos = new List<Pago>();
+            movimientos = new List<Movimiento>();
+            tarjetas = new List<TarjetaCredito>();
         }
 
         //ABM Usuario

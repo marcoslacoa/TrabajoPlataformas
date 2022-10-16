@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrabajoPlataformas
 {
-    internal class Movimiento
+    public class Movimiento
     {
         public int id { get; set; }
         public CajaAhorro caja;

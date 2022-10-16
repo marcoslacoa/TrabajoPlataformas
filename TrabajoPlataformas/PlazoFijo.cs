@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrabajoPlataformas
 {
-    internal class PlazoFijo
+    public class PlazoFijo
     {
         public int id { get; set; }
         public Usuario titular { get; set; }

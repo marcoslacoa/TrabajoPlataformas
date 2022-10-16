@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrabajoPlataformas
 {
-    internal class TarjetaCredito
+    public class TarjetaCredito
     {
         public int id { get; set; }
         public Usuario titular { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrabajoPlataformas
 {
-    internal class CajaAhorro
+    public class CajaAhorro
     {
         public int cbu;
         public List<Usuario> userList { get => userList.ToList(); }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrabajoPlataformas
 {
-    internal class Pago
+    public class Pago
     {
         public int id { get; set; }
         public Usuario usuario { get; set; }
