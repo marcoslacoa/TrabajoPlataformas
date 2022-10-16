@@ -34,8 +34,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -46,9 +44,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -83,9 +80,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
@@ -100,7 +94,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(407, 15);
+            this.button2.Location = new System.Drawing.Point(418, 22);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 38);
@@ -123,22 +117,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "CBU";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Saldo";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.button3);
@@ -154,19 +132,18 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(273, 4);
+            this.button3.Location = new System.Drawing.Point(292, 16);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(82, 22);
             this.button3.TabIndex = 1;
             this.button3.Text = "Crear";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 4);
+            this.dataGridView2.Location = new System.Drawing.Point(5, 4);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
@@ -220,7 +197,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(293, 26);
+            this.button1.Location = new System.Drawing.Point(296, 23);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 22);
@@ -232,11 +209,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(205, 30);
+            this.label2.Location = new System.Drawing.Point(233, 30);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 15);
+            this.label2.Size = new System.Drawing.Size(38, 15);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Nombre";
+            this.label2.Text = "label2";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -247,38 +225,21 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Bienvenido usuario: ";
             // 
-            // button4
+            // Column1
             // 
-            this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(407, 57);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 38);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Transferir";
-            this.button4.UseVisualStyleBackColor = true;
+            this.Column1.HeaderText = "CBU";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 125;
             // 
-            // button5
+            // Column2
             // 
-            this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(407, 99);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 38);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Depositar";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(407, 141);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 38);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "Retirar";
-            this.button6.UseVisualStyleBackColor = true;
+            this.Column2.HeaderText = "SALDO";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 125;
             // 
             // FormMain
             // 
@@ -329,8 +290,5 @@
         private Label label3;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
-        private Button button6;
-        private Button button5;
-        private Button button4;
     }
 }

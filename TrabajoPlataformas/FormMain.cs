@@ -18,12 +18,12 @@ namespace TrabajoPlataformas
         List<List<string>> datos;
         public string usuario;
         public Banco miBanco;
-        /*public Usuario usuarioActual = new Usuario();*/
 
         public FormMain(string usuario, Banco b)
         {
+            InitializeComponent();
             this.miBanco = b;
-            this.usuario = usuario;          
+            this.usuario = usuario;
         }
 
         public FormMain(object[] args)
@@ -32,8 +32,6 @@ namespace TrabajoPlataformas
             miBanco = (Banco)args[1];
             argumentos = args;
             datos = new List<List<string>>();
-            Trace.WriteLine(miBanco.usuarioActual.contra);
-            
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -58,18 +56,26 @@ namespace TrabajoPlataformas
             //borro los datos
             dataGridView1.Rows.Clear();
             //agrego lo nuevo
-            foreach (CajaAhorro caja in miBanco.usuarioActual.cajasList)
-                dataGridView1.Rows.Add(caja.toArray());
+            //    foreach (Usuario user in miBanco.obtenerUsuarios())
+            //        //string[] arr = new string[] { user.nombre, user.contra };
+            //        //dataGridView1.Add(arr);
+            //        dataGridView1.Rows.Add(user.toArray());
+            //}
+
+           
+            foreach(CajaAhorro caja in miBanco.usuarioActual.cajasList)
+                {
+                    string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
+                    dataGridView1.Rows.Add(arr);
+                    dataGridView1.Rows.Add(caja.toArray());
+                }
+        
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            // Acciona para crear un plazo fijo
-        }
     }
+
 }

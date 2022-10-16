@@ -14,14 +14,12 @@ namespace TrabajoPlataformas
 
         public CajaAhorro(int Cbu, float Saldo)
         {
-            cbu = Cbu;
+            this.cbu = Cbu;
             this.saldo = Saldo;
         }
-
-        internal object[] toArray()
+        public string[] toArray()
         {
-            throw new NotImplementedException();
+            return new string[] { cbu.ToString(), saldo.ToString() };
         }
-        
     }
 }

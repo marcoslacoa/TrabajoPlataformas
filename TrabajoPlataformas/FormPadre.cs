@@ -29,6 +29,7 @@ namespace TrabajoPlataformas
             this.hijoLogin.regEvento += registerDelegado;
             this.hijoRegister.MdiParent = this;
             this.hijoRegister.regBotonEvento += regBotonDelegado;
+            
             this.hijoLogin.Show();
             touched = false;
         }
