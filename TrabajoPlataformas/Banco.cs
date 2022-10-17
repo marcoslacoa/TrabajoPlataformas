@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -351,10 +352,10 @@ namespace TrabajoPlataformas
             }
             CajaAhorro cajaNueva = new CajaAhorro(cbu2, this.usuarioActual);
             cajaNueva.saldo = saldo;
-            cajaNueva.titulares.Add(usuarioActual);
             try
             {
                 this.altaCaja(cajaNueva);
+                Trace.WriteLine(cajaNueva);
                 return true;
             }
             catch (Exception)
