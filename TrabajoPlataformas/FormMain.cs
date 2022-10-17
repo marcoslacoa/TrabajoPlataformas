@@ -90,6 +90,21 @@ namespace TrabajoPlataformas
         {
             this.cerrarsesionEvento();
         }
+
+        private void retirar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void depositar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void transferir_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

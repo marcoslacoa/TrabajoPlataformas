@@ -47,6 +47,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.retirar = new System.Windows.Forms.Button();
+            this.depositar = new System.Windows.Forms.Button();
+            this.transferir = new System.Windows.Forms.Button();
+            this.crearcaja = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -76,18 +80,22 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(530, 242);
+            this.tabControl1.Size = new System.Drawing.Size(530, 357);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.crearcaja);
+            this.tabPage1.Controls.Add(this.transferir);
+            this.tabPage1.Controls.Add(this.depositar);
+            this.tabPage1.Controls.Add(this.retirar);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(522, 214);
+            this.tabPage1.Size = new System.Drawing.Size(522, 329);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Caja de Ahorro";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -95,10 +103,10 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(418, 22);
+            this.button2.Location = new System.Drawing.Point(397, 22);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 38);
+            this.button2.Size = new System.Drawing.Size(119, 26);
             this.button2.TabIndex = 1;
             this.button2.Text = "Ver Movimientos";
             this.button2.UseVisualStyleBackColor = true;
@@ -252,6 +260,45 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // retirar
+            // 
+            this.retirar.Location = new System.Drawing.Point(397, 63);
+            this.retirar.Name = "retirar";
+            this.retirar.Size = new System.Drawing.Size(119, 23);
+            this.retirar.TabIndex = 2;
+            this.retirar.Text = "Retirar";
+            this.retirar.UseVisualStyleBackColor = true;
+            this.retirar.Click += new System.EventHandler(this.retirar_Click);
+            // 
+            // depositar
+            // 
+            this.depositar.Location = new System.Drawing.Point(397, 101);
+            this.depositar.Name = "depositar";
+            this.depositar.Size = new System.Drawing.Size(119, 23);
+            this.depositar.TabIndex = 3;
+            this.depositar.Text = "Depositar";
+            this.depositar.UseVisualStyleBackColor = true;
+            this.depositar.Click += new System.EventHandler(this.depositar_Click);
+            // 
+            // transferir
+            // 
+            this.transferir.Location = new System.Drawing.Point(397, 141);
+            this.transferir.Name = "transferir";
+            this.transferir.Size = new System.Drawing.Size(119, 23);
+            this.transferir.TabIndex = 4;
+            this.transferir.Text = "Transferir";
+            this.transferir.UseVisualStyleBackColor = true;
+            this.transferir.Click += new System.EventHandler(this.transferir_Click);
+            // 
+            // crearcaja
+            // 
+            this.crearcaja.Location = new System.Drawing.Point(397, 175);
+            this.crearcaja.Name = "crearcaja";
+            this.crearcaja.Size = new System.Drawing.Size(119, 23);
+            this.crearcaja.TabIndex = 5;
+            this.crearcaja.Text = "Crear Caja";
+            this.crearcaja.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -304,5 +351,9 @@
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private Button button4;
+        private Button transferir;
+        private Button depositar;
+        private Button retirar;
+        private Button crearcaja;
     }
 }
