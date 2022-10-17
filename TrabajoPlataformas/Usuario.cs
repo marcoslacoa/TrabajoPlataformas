@@ -16,13 +16,14 @@ namespace TrabajoPlataformas
         public string contra { get; set; }
         public int intentosFallidos { get; set; }
         public bool bloqueado = false;
-        public List<CajaAhorro> cajasList { get; set; }
+        public List<CajaAhorro> listaCajas { get;  }
         public List<PlazoFijo> plazoFijo { get; }
         public List<Pago> pagos { get; }
         public List<TarjetaCredito> tarjetas { get; }
-        public List<CajaAhorro> cajasLista { get => cajasList.ToList(); }
+        //public List<CajaAhorro> cajasLista { get => cajasList.ToList(); }
        
-        public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, int IntentosFallidos, bool Bloqueado, List<CajaAhorro> CajasList, List<PlazoFijo> PlazoFijo, List<Pago>Pagos, List<TarjetaCredito> Tarjetas)
+        public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, int IntentosFallidos, bool Bloqueado,
+            List<CajaAhorro> CajasList, List<PlazoFijo> PlazoFijo, List<Pago>Pagos, List<TarjetaCredito> Tarjetas)
         {
              nombre = Nombre;
             apellido = Apellido;
@@ -30,7 +31,7 @@ namespace TrabajoPlataformas
             mail = Mail;
             contra = Contra;
             this.intentosFallidos = IntentosFallidos;
-            this.cajasList = CajasList;
+            this.listaCajas = CajasList;
             this.plazoFijo = PlazoFijo;
             this.pagos = Pagos;
             this.tarjetas = Tarjetas;

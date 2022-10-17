@@ -22,6 +22,7 @@ namespace TrabajoPlataformas
         public string mail;
         public string contra;
         public regBotonDelegado regBotonEvento;
+        
 
         public Register(Banco b)
         {
@@ -45,7 +46,7 @@ namespace TrabajoPlataformas
 
             if (contra != "" && nombre != "" && apellido != "" && mail != "" && tryDni) {
                 banco.altaUsuario(dni, nombre, apellido, mail, contra, false);
-                MessageBox.Show("Usuario Agregado con éxito");
+                MessageBox.Show("Usuario Agregado con éxito", "Registro");
                 this.regBotonEvento();
             }
             else { 
@@ -56,5 +57,9 @@ namespace TrabajoPlataformas
 
         public delegate void regBotonDelegado();
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.regBotonEvento();
+        }
     }
 }

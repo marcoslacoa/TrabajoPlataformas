@@ -10,9 +10,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TrabajoPlataformas
 {
-    public class Banco
+    public class Banco 
     {
-        private List<Usuario> userList;
+        public List<Usuario> userList;
         public List<CajaAhorro> cajasList;
         public List<PlazoFijo> plazosFijos { get; }
         public List<Pago> pagos { get; }
@@ -24,7 +24,8 @@ namespace TrabajoPlataformas
 
         public List <CajaAhorro> obtenerCajasDelUsuario()
         {
-                return usuarioActual.cajasList.ToList();
+
+            return this.usuarioActual.listaCajas.ToList();
         } 
         public Banco()
         {
@@ -95,9 +96,10 @@ namespace TrabajoPlataformas
         {
             if (this.cajasList.Any(caja => caja.cbu == cbu2))
             {
-                MessageBox.Show("El CBU ya existe");
+                MessageBox.Show("El CBU ya existe", "Ingreso");
             }
             CajaAhorro cajaNueva = new CajaAhorro(cbu2, this.usuarioActual);
+            //this.usuarioActual.listaCajas.Add(cajaNueva);
             cajaNueva.saldo = saldo;
             try
             {

@@ -26,7 +26,8 @@ namespace TrabajoPlataformas
             InitializeComponent();
             this.miBanco = b;
             this.usuario = usuario;
-            label2.Text = usuario;
+            label2.Text = miBanco.usuarioActual.nombre;
+            
         }
         //public FormMain(object[] args)
         //{
@@ -35,7 +36,11 @@ namespace TrabajoPlataformas
         //    argumentos = args;
         //    datos = new List<List<string>>();
         //}
-
+        //private void cerrarCajaDelegado()
+        //{
+        //    this.hijoCrearCaja.cerrarCajaEvento += cerrarCajaDelegado;
+        //    this.hijoCrearCaja.Close();
+        //}
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -55,7 +60,6 @@ namespace TrabajoPlataformas
         }
 
         public delegate void cerrarsesion();
-        public delegate void creaCajaDelegado(int cbu, int saldo);
         private void refreshData()
         {
             //borro los datos
@@ -72,11 +76,9 @@ namespace TrabajoPlataformas
                 {
                 //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
                 //dataGridView1.Rows.Add(arr);
-                try { 
+                
                     dataGridView1.Rows.Add(caja.toArray());
-                } catch {
-                    
-                }
+               
             }
         
         }

@@ -42,13 +42,13 @@ namespace TrabajoPlataformas
            
             if (banco.iniciarSesion(usuario, pass))
             {
-                MessageBox.Show("Log in correcto, Usuario: " + usuario, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Inicio de sesión correcto, Usuario: " + usuario, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 hijoMain = new FormMain(usuario, banco);
                 this.hijoMain.cerrarsesionEvento += cerrarsesion;
                 hijoMain.usuario = Usuario;
                 hijoMain.MdiParent = this;
                 // Transfevento para cerrar y volver al padre.
-                hijoLogin.Close();
+                hijoLogin.Hide();
                 hijoMain.Show();
             }
             else // osea si dio false el metodo IniciarSesion
@@ -94,7 +94,6 @@ namespace TrabajoPlataformas
             this.hijoLogin.regEvento += registerDelegado;
             this.hijoLogin.loginEvento += loginDelegado;
         }
-       
-        
+
     }
 }
