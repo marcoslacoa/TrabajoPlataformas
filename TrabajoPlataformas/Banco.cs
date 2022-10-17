@@ -85,20 +85,9 @@ namespace TrabajoPlataformas
 
         //ABM Caja de Ahorro
 
-        public bool altaCaja(int cbu, float saldo, Usuario usuario)
+        public void altaCaja(CajaAhorro caja)
         {
-
-            try
-            {
-                CajaAhorro nuevo = new CajaAhorro(cbu, saldo);
-                cajasList.Add(nuevo);
-                nuevo.titulares.Add(usuario);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            cajasList.Add(caja);
         }
 
         public bool bajaCaja(int id)
@@ -116,12 +105,12 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool modificarCaja(int id, int cbu, float saldo)
+       /* public bool modificarCaja(int cbu, Usuario usuario)
         {
             CajaAhorro aModificar = cajasList[id];
             try
             {
-                CajaAhorro nuevo = new CajaAhorro(cbu, saldo);
+                CajaAhorro nuevo = new CajaAhorro(cbu, this.usuarioActual);
                 cajasList[id] = nuevo;
                 return true;
             }
@@ -130,7 +119,7 @@ namespace TrabajoPlataformas
                 cajasList[id] = aModificar;
                 return false;
             }
-        }
+        }*/
 
         //ABM Plazo Fijo
 
@@ -354,9 +343,25 @@ namespace TrabajoPlataformas
             return true;
         }
 
-        public void crearCajaAhorro()
+        public bool crearCajaAhorro(int cbu2, float saldo)
         {
-            ;
+            if (this.cajasList.Any(caja => caja.cbu == cbu2))
+            {
+                MessageBox.Show("El CBU ya existe");
+            }
+            CajaAhorro cajaNueva = new CajaAhorro(cbu2, this.usuarioActual);
+            cajaNueva.saldo = saldo;
+            cajaNueva.titulares.Add(usuarioActual);
+            try
+            {
+                this.altaCaja(cajaNueva);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
         public Movimiento depositar(CajaAhorro caja, float monto)

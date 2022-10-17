@@ -12,11 +12,12 @@ namespace TrabajoPlataformas
         public List<Usuario> titulares { get; set; }
         public List <Movimiento> movimientos { get; set; }
         public float saldo;
+        public Usuario usuario;
 
-        public CajaAhorro(int Cbu, float Saldo)
+        public CajaAhorro(int Cbu, Usuario usuario)
         {
+            this.usuario = usuario;
             this.cbu = Cbu;
-            this.saldo = Saldo;
         }                                    
         public string[] toArray()
         {

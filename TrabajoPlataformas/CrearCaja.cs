@@ -33,7 +33,7 @@ namespace TrabajoPlataformas
         {
             cbuCaja = int.Parse(cbu.Text);
             saldoCaja = float.Parse(saldo.Text);
-            banco.altaCaja(cbuCaja, saldoCaja, usuario);
+            banco.crearCajaAhorro(cbuCaja, saldoCaja);
             this.Close();
         }
 
