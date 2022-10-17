@@ -54,8 +54,7 @@ namespace TrabajoPlataformas
             else // osea si dio false el metodo IniciarSesion
             {
                 
-                MessageBox.Show("Log in incorrecto", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                hijoLogin.Show();
+                
                 //aca falta preguntar si esta bloqueado
                 foreach (Usuario user in banco.obtenerUsuarios())
                 {
@@ -64,6 +63,8 @@ namespace TrabajoPlataformas
                         MessageBox.Show("Se ha bloqueado al usuario " + user.nombre, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                MessageBox.Show("Log in incorrecto", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                hijoLogin.Show();
             }
         }
         private void registerDelegado() // Delegado para ir al REGISTER 

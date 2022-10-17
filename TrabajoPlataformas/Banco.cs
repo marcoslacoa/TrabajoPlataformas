@@ -19,13 +19,22 @@ namespace TrabajoPlataformas
         public List<Movimiento> movimientos { get; }
         public List<TarjetaCredito> tarjetas { get; }
 
-        public Usuario usuarioActual { get; set; }
-
-
+        public Usuario usuarioActual;
+        public CajaAhorro caja;
+        
         public List <CajaAhorro> obtenerCajasDelUsuario()
         {
-
-            return this.usuarioActual.listaCajas.ToList();
+            //foreach (Usuario u in this.userList)
+            //{
+            //    if(u.dni == Dni)
+            //    {
+            //        return u.listaCajas.ToList();
+            //    }
+            //}
+            //return null
+            //return cajasList.Where(x => x.titulares.Contains(this.usuarioActual)).ToList(); 
+            return usuarioActual.listaCajas.ToList();
+            
         } 
         public Banco()
         {
@@ -90,6 +99,7 @@ namespace TrabajoPlataformas
         public void altaCaja(CajaAhorro caja)
         {
             cajasList.Add(caja);
+            //this.usuarioActual.listaCajas.Add(caja);
         }
 
         public bool crearCajaAhorro(int cbu2, float saldo)
@@ -344,6 +354,7 @@ namespace TrabajoPlataformas
                     {
                                 if (user.nombre.Equals(usuario) && user.contra.Equals(pass) && !user.bloqueado) { 
                                 this.usuarioActual = new Usuario(usuario, pass);
+                                //usuarioActual.listaCajas = new List<CajaAhorro>(cajasList) ; 
                                 encontrar = true;
                                 }
                                 else if (user.nombre.Equals(usuario) && !user.contra.Equals(pass))
@@ -448,9 +459,16 @@ namespace TrabajoPlataformas
             return pagos.ToList();
         }
 
-        public List<Movimiento> obtenerMovimiento()
+        public List<Movimiento> obtenerMovimiento(int Cbu)
         {
-            return movimientos.ToList();
+            foreach(CajaAhorro c in usuarioActual.listaCajas)
+            {
+                if(c.cbu == Cbu)
+                {
+                    return c.movimientos.ToList();
+                }
+            }
+            return null;
         }
 
         public List<TarjetaCredito> obtenerTarjeta()

@@ -20,7 +20,8 @@ namespace TrabajoPlataformas
         public Banco miBanco;
         CrearCaja hijoCrearCaja;
         public cerrarsesion cerrarsesionEvento;
-        
+        public List<CajaAhorro> cajas;
+       
         public FormMain(string usuario, Banco b)
         {
             InitializeComponent();
@@ -70,7 +71,6 @@ namespace TrabajoPlataformas
             //        //dataGridView1.Add(arr);
             //        dataGridView1.Rows.Add(user.toArray());
             //}
-            
            
             foreach(CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
                 {

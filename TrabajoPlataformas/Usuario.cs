@@ -15,13 +15,14 @@ namespace TrabajoPlataformas
         public string mail { get; set; }
         public string contra { get; set; }
         public int intentosFallidos { get; set; }
+
         public bool bloqueado = false;
-        public List<CajaAhorro> listaCajas { get;  }
+        public List<CajaAhorro> listaCajas { get; set; }
         public List<PlazoFijo> plazoFijo { get; }
         public List<Pago> pagos { get; }
         public List<TarjetaCredito> tarjetas { get; }
-        //public List<CajaAhorro> cajasLista { get => cajasList.ToList(); }
-       
+        //public List<CajaAhorro> cajasLista { get => listaCajas.ToList(); }
+        
         public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, int IntentosFallidos, bool Bloqueado,
             List<CajaAhorro> CajasList, List<PlazoFijo> PlazoFijo, List<Pago>Pagos, List<TarjetaCredito> Tarjetas)
         {
@@ -44,12 +45,14 @@ namespace TrabajoPlataformas
             mail = Mail;
             contra = Contra;
             this.bloqueado = Bloqueado;
+            //listaCajas = new List<CajaAhorro>();
         }
 
         public Usuario(string Nombre, string Contra)
         {
             nombre = Nombre;
             contra = Contra;
+            //
         }
 
         //public bool bloqueado()
@@ -60,6 +63,9 @@ namespace TrabajoPlataformas
         //    }
         //    return false;
         //}
-        
+        public string getNombre()
+        {
+            return this.nombre;
+        }
     }
 }
