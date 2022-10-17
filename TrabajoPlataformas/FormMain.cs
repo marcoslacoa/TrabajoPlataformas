@@ -9,6 +9,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static TrabajoPlataformas.Login;
 
 namespace TrabajoPlataformas
 {
@@ -17,21 +18,15 @@ namespace TrabajoPlataformas
         List<List<string>> datos;
         public string usuario;
         public Banco miBanco;
+        CrearCaja hijoCrearCaja;
         public cerrarsesion cerrarsesionEvento;
-        public crearCajaDelegado crearCajaEvento;
         
-
         public FormMain(Usuario usuario, Banco b)
         {
             InitializeComponent();
-
             this.miBanco = b;
             this.usuario = usuario.nombre;
             label2.Text = usuario.nombre;
-        }
-        private void crearCajaDelegado(int cbu, float saldo)
-        {
-            // banco.crearCaja()
         }
         //public FormMain(object[] args)
         //{
@@ -112,9 +107,9 @@ namespace TrabajoPlataformas
         }
 
         private void crearcaja_Click(object sender, EventArgs e)
-        {
-            // llamado a evento que haga show de crear caja
-            
+        {          
+            this.hijoCrearCaja = new CrearCaja(miBanco, miBanco.usuarioActual);
+            hijoCrearCaja.Show();
         }
        
     }

@@ -9,6 +9,7 @@ namespace TrabajoPlataformas
         Register hijoRegister;
         FormMain hijoMain;
         
+
         internal string texto;
         string usuario;
         string pass;

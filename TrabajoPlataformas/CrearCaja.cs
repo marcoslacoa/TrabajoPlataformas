@@ -13,14 +13,17 @@ namespace TrabajoPlataformas
     public partial class CrearCaja : Form
     {
         public Banco banco;
-        public crearCajaDelegado crearCajaEvento;
-        public CrearCaja(Banco banco)
+        public int cbuCaja;
+        public float saldoCaja;
+        public Usuario usuario;
+
+        public CrearCaja(Banco banco, Usuario usuario)
         {
             InitializeComponent();
             this.banco = banco;
-
+            this.usuario = usuario;
         }
-        public delegate void crearCajaDelegado(Banco banco);
+
         private void cbu_TextChanged(object sender, EventArgs e)
         {
 
@@ -28,7 +31,15 @@ namespace TrabajoPlataformas
 
         private void confirmar_Click(object sender, EventArgs e)
         {
-            // llamado a this.crearCajaEvento()
+            cbuCaja = int.Parse(cbu.Text);
+            saldoCaja = float.Parse(saldo.Text);
+            banco.altaCaja(cbuCaja, saldoCaja, usuario);
+            this.Close();
+        }
+
+        private void CrearCaja_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

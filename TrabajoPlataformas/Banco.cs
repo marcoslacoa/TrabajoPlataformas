@@ -85,12 +85,14 @@ namespace TrabajoPlataformas
 
         //ABM Caja de Ahorro
 
-        public bool altaCaja(int cbu, float saldo)
+        public bool altaCaja(int cbu, float saldo, Usuario usuario)
         {
+
             try
             {
                 CajaAhorro nuevo = new CajaAhorro(cbu, saldo);
                 cajasList.Add(nuevo);
+                nuevo.titulares.Add(usuario);
                 return true;
             }
             catch (Exception)
@@ -354,9 +356,7 @@ namespace TrabajoPlataformas
 
         public void crearCajaAhorro()
         {
-            int cbu = 1;
-            int saldo = 1;
-            CajaAhorro caja = new CajaAhorro(cbu, saldo);
+            ;
         }
 
         public Movimiento depositar(CajaAhorro caja, float monto)

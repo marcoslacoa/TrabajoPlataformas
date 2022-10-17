@@ -35,9 +35,10 @@
             // 
             // confirmar
             // 
-            this.confirmar.Location = new System.Drawing.Point(314, 236);
+            this.confirmar.Location = new System.Drawing.Point(359, 315);
+            this.confirmar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.confirmar.Name = "confirmar";
-            this.confirmar.Size = new System.Drawing.Size(218, 78);
+            this.confirmar.Size = new System.Drawing.Size(249, 104);
             this.confirmar.TabIndex = 0;
             this.confirmar.Text = "Confirmar";
             this.confirmar.UseVisualStyleBackColor = true;
@@ -45,31 +46,35 @@
             // 
             // cbu
             // 
-            this.cbu.Location = new System.Drawing.Point(314, 136);
+            this.cbu.Location = new System.Drawing.Point(359, 181);
+            this.cbu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbu.Name = "cbu";
-            this.cbu.Size = new System.Drawing.Size(218, 23);
+            this.cbu.Size = new System.Drawing.Size(249, 27);
             this.cbu.TabIndex = 1;
             this.cbu.Text = "CBU";
             this.cbu.TextChanged += new System.EventHandler(this.cbu_TextChanged);
             // 
             // saldo
             // 
-            this.saldo.Location = new System.Drawing.Point(314, 184);
+            this.saldo.Location = new System.Drawing.Point(359, 245);
+            this.saldo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saldo.Name = "saldo";
-            this.saldo.Size = new System.Drawing.Size(218, 23);
+            this.saldo.Size = new System.Drawing.Size(249, 27);
             this.saldo.TabIndex = 2;
             this.saldo.Text = "Saldo";
             // 
             // CrearCaja
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 600);
             this.Controls.Add(this.saldo);
             this.Controls.Add(this.cbu);
             this.Controls.Add(this.confirmar);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CrearCaja";
             this.Text = "CrearCaja";
+            this.Load += new System.EventHandler(this.CrearCaja_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
