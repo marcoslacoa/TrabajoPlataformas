@@ -8,7 +8,7 @@ namespace TrabajoPlataformas
         Login hijoLogin;
         Register hijoRegister;
         FormMain hijoMain;
-        //FormMain hijoMain;
+        
         internal string texto;
         string usuario;
         string pass;
@@ -94,6 +94,7 @@ namespace TrabajoPlataformas
             this.hijoLogin.regEvento += registerDelegado;
             this.hijoLogin.loginEvento += loginDelegado;
         }
+       
         
     }
 }

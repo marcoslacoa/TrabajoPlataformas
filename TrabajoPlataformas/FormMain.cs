@@ -18,7 +18,8 @@ namespace TrabajoPlataformas
         public string usuario;
         public Banco miBanco;
         public cerrarsesion cerrarsesionEvento;
-
+        public crearCajaDelegado crearCajaEvento;
+        
 
         public FormMain(Usuario usuario, Banco b)
         {
@@ -28,7 +29,10 @@ namespace TrabajoPlataformas
             this.usuario = usuario.nombre;
             label2.Text = usuario.nombre;
         }
-
+        private void crearCajaDelegado(int cbu, float saldo)
+        {
+            // banco.crearCaja()
+        }
         //public FormMain(object[] args)
         //{
         //    InitializeComponent();
@@ -46,8 +50,9 @@ namespace TrabajoPlataformas
         {
 
         }
+        
 
-      
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -55,7 +60,7 @@ namespace TrabajoPlataformas
         }
 
         public delegate void cerrarsesion();
-
+        public delegate void creaCajaDelegado(int cbu, int saldo);
         private void refreshData()
         {
             //borro los datos
@@ -105,6 +110,13 @@ namespace TrabajoPlataformas
         {
 
         }
+
+        private void crearcaja_Click(object sender, EventArgs e)
+        {
+            // llamado a evento que haga show de crear caja
+            
+        }
+       
     }
 
 }
