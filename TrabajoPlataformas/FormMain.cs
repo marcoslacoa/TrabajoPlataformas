@@ -14,25 +14,28 @@ namespace TrabajoPlataformas
 {
     public partial class FormMain : Form
     {
-        public object[] argumentos;
         List<List<string>> datos;
         public string usuario;
         public Banco miBanco;
+        public cerrarsesion cerrarsesionEvento;
 
-        public FormMain(string usuario, Banco b)
+
+        public FormMain(Usuario usuario, Banco b)
         {
             InitializeComponent();
+
             this.miBanco = b;
-            this.usuario = usuario;
+            this.usuario = usuario.nombre;
+            label2.Text = usuario.nombre;
         }
 
-        public FormMain(object[] args)
-        {
-            InitializeComponent();
-            miBanco = (Banco)args[1];
-            argumentos = args;
-            datos = new List<List<string>>();
-        }
+        //public FormMain(object[] args)
+        //{
+        //    InitializeComponent();
+        //    miBanco = (Banco)args[1];
+        //    argumentos = args;
+        //    datos = new List<List<string>>();
+        //}
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -51,6 +54,8 @@ namespace TrabajoPlataformas
             refreshData();
         }
 
+        public delegate void cerrarsesion();
+
         private void refreshData()
         {
             //borro los datos
@@ -61,20 +66,29 @@ namespace TrabajoPlataformas
             //        //dataGridView1.Add(arr);
             //        dataGridView1.Rows.Add(user.toArray());
             //}
-
+            
            
-            foreach(CajaAhorro caja in miBanco.usuarioActual.cajasList)
+            foreach(CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
                 {
-                    string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
-                    dataGridView1.Rows.Add(arr);
+                //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
+                //dataGridView1.Rows.Add(arr);
+                try { 
                     dataGridView1.Rows.Add(caja.toArray());
+                } catch {
+                    
                 }
+            }
         
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.cerrarsesionEvento();
         }
     }
 

@@ -1,3 +1,5 @@
+using static TrabajoPlataformas.Register;
+
 namespace TrabajoPlataformas
 {
     public partial class FormPadre : Form
@@ -29,7 +31,6 @@ namespace TrabajoPlataformas
             this.hijoLogin.regEvento += registerDelegado;
             this.hijoRegister.MdiParent = this;
             this.hijoRegister.regBotonEvento += regBotonDelegado;
-            
             this.hijoLogin.Show();
             touched = false;
         }
@@ -41,11 +42,13 @@ namespace TrabajoPlataformas
             if (banco.iniciarSesion(usuario, pass))
             {
                 MessageBox.Show("Log in correcto, Usuario: " + usuario, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                hijoLogin.Close();
-                hijoMain = new FormMain(new object[] { usuario, banco });
+                Usuario usuarioActual = new Usuario(usuario, pass);
+                hijoMain = new FormMain(usuarioActual, banco );
+                this.hijoMain.cerrarsesionEvento += cerrarsesion;
                 hijoMain.usuario = Usuario;
                 hijoMain.MdiParent = this;
                 // Transfevento para cerrar y volver al padre.
+                hijoLogin.Close();
                 hijoMain.Show();
             }
             else // osea si dio false el metodo IniciarSesion
@@ -74,11 +77,23 @@ namespace TrabajoPlataformas
         private void regBotonDelegado() // DAR DE ALTA UN USUARIO 
         {
             hijoRegister.Close();
+            traerLogin();
+            hijoLogin.Show();
+        }
+        private void cerrarsesion()
+        {
+            banco.cerrarSesion();
+            hijoMain.Close();
+            traerLogin();
+            hijoLogin.Show();
+        }
+        private void traerLogin()
+        {
             this.hijoLogin = new Login(this.banco);
             this.hijoLogin.MdiParent = this;
             this.hijoLogin.regEvento += registerDelegado;
             this.hijoLogin.loginEvento += loginDelegado;
-            hijoLogin.Show();
         }
+        
     }
 }

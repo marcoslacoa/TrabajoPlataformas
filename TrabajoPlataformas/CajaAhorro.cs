@@ -9,14 +9,15 @@ namespace TrabajoPlataformas
     public class CajaAhorro
     {
         public int cbu;
-        public List<Usuario> userList { get => userList.ToList(); }
+        public List<Usuario> titulares { get; set; }
+        public List <Movimiento> movimientos { get; set; }
         public float saldo;
 
         public CajaAhorro(int Cbu, float Saldo)
         {
             this.cbu = Cbu;
             this.saldo = Saldo;
-        }
+        }                                    
         public string[] toArray()
         {
             return new string[] { cbu.ToString(), saldo.ToString() };

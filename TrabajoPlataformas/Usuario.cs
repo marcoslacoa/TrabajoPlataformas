@@ -20,7 +20,8 @@ namespace TrabajoPlataformas
         public List<PlazoFijo> plazoFijo { get; }
         public List<Pago> pagos { get; }
         public List<TarjetaCredito> tarjetas { get; }
-
+        public List<CajaAhorro> cajasLista { get => cajasList.ToList(); }
+       
         public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, int IntentosFallidos, bool Bloqueado, List<CajaAhorro> CajasList, List<PlazoFijo> PlazoFijo, List<Pago>Pagos, List<TarjetaCredito> Tarjetas)
         {
              nombre = Nombre;

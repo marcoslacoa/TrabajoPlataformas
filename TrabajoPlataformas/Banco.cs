@@ -11,15 +11,20 @@ namespace TrabajoPlataformas
 {
     public class Banco
     {
-        public List<Usuario> userList { get; }
-        public List<CajaAhorro> cajasList { get; }
+        private List<Usuario> userList;
+        public List<CajaAhorro> cajasList;
         public List<PlazoFijo> plazosFijos { get; }
         public List<Pago> pagos { get; }
         public List<Movimiento> movimientos { get; }
         public List<TarjetaCredito> tarjetas { get; }
 
-        public Usuario usuarioActual { get; }
+        public Usuario usuarioActual { get; set; }
 
+
+        public List <CajaAhorro> obtenerCajasDelUsuario()
+        {
+            return usuarioActual.cajasList.ToList();
+        } 
         public Banco()
         {
             userList = new List<Usuario>();
@@ -343,44 +348,70 @@ namespace TrabajoPlataformas
 
         public bool cerrarSesion()
         {
-           // usuarioActual; //Usuario actual pasa a ser nulo
-           return true;
+            usuarioActual = null;
+            return true;
         }
 
         public void crearCajaAhorro()
         {
-            // Crea una nueva Caja de Ahorro con los datos ingresados.
+            int cbu = 1;
+            int saldo = 1;
+            CajaAhorro caja = new CajaAhorro(cbu, saldo);
         }
 
-        public void depositar(CajaAhorro caja, float monto)
+        public Movimiento depositar(CajaAhorro caja, float monto)
         {
-            // Deposita el monto ingresado en la Caja de Ahorro seleccionada.
+            if (monto <= 0)
+            {
+                throw new ApplicationException("Monto invalido");
+            }
+            caja.saldo += monto;
+            Movimiento mov = new Movimiento(caja, "Deposito", monto, DateTime.Now);
+            return mov;
         }
 
-        public void retirar(CajaAhorro caja, float monto)
+        public Movimiento retirar(CajaAhorro caja, float monto)
         {
-            // Retira el monto ingresado en la Caja de Ahorro seleccionada siempre que cuente
-            // con saldo suficiente, caso contrario devuelve un error.
+            if (monto >= caja.saldo)
+            {
+                throw new ApplicationException("Saldo insuficiente");
+            }
+            caja.saldo -= monto;
+            Movimiento mov = new Movimiento(caja, "Retiro", monto, DateTime.Now);
+            return mov;
         }
 
-        public void transferir(CajaAhorro origen, CajaAhorro destino, float monto)
+        public Movimiento transferir(CajaAhorro origen, CajaAhorro destino, float monto)
         {
-            // Transfiere el monto indicado de la caja de ahorro seleccionada del usuario actual
-            // (origen) a otra caja de ahorro(destino, que puede ser del usuario actual o no), siempre
-            // que el saldo de origen sea suficiente para realizar la operación caso contrario genera un error.
+            if (monto <= 0)
+            {
+                throw new ApplicationException("Monto invalido");
+            }
+            origen.saldo -= monto;
+            destino.saldo += monto;
+            Movimiento movOrigen = new Movimiento(origen, "Transferencia", monto, DateTime.Now);
+            Movimiento movDestino = new Movimiento(destino, "Transferencia", monto, DateTime.Now);
+
+            return movOrigen;
         }
 
-        public void buscarMovimiento(CajaAhorro caja, string detalle, DateTime fecha, float monto)
+        /*public List<Movimiento> buscarMovimiento(CajaAhorro caja, string detalle, DateTime fecha, float monto)
         {
             // Devuelve una lista de movimientos de la caja de ahorro filtrada por al menos uno de
-            // los parámetros(el usuario puede ingresar los 3 parámetros, 2 o 1) Detalle, Fecha y Monto.
-        }
+            // los parámetros(el usuario puede ingresar los 3 parámetros, 2 o 1) Detalle, Fecha y Monto.           
+            List<Movimiento> filtrado = new List<Movimiento>();
+            
+        }*/
 
-        public void pagarTarjeta(TarjetaCredito tarjeta, CajaAhorro caja)
+        public Movimiento pagarTarjeta(TarjetaCredito tarjeta, CajaAhorro caja)
         {
-            // Descuenta el saldo total de consumos de la
-            // tarjeta del saldo de la caja de ahorro(generando el movimiento correspondiente)
-            // siempre que el saldo sea suficiente, caso contrario, no permite operar.
+            if (tarjeta.consumos > caja.saldo)
+            {
+                throw new ApplicationException("Saldo en caja insuficiente");
+            }
+            caja.saldo -= tarjeta.consumos;
+            Movimiento mov = new Movimiento(caja, "Pago de tarjeta", tarjeta.consumos, DateTime.Now);
+            return mov;
         }
 
         //Mostrar datos
