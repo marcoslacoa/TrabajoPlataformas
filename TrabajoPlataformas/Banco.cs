@@ -24,7 +24,7 @@ namespace TrabajoPlataformas
 
         public List <CajaAhorro> obtenerCajasDelUsuario()
         {
-            return usuarioActual.cajasList.ToList();
+                return usuarioActual.cajasList.ToList();
         } 
         public Banco()
         {
@@ -90,6 +90,28 @@ namespace TrabajoPlataformas
         {
             cajasList.Add(caja);
         }
+
+        public bool crearCajaAhorro(int cbu2, float saldo)
+        {
+            if (this.cajasList.Any(caja => caja.cbu == cbu2))
+            {
+                MessageBox.Show("El CBU ya existe");
+            }
+            CajaAhorro cajaNueva = new CajaAhorro(cbu2, this.usuarioActual);
+            cajaNueva.saldo = saldo;
+            try
+            {
+                altaCaja(cajaNueva);
+                Trace.WriteLine(cajaNueva);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
 
         public bool bajaCaja(int id)
         {
@@ -318,8 +340,10 @@ namespace TrabajoPlataformas
             bool encontrar = false;
                     foreach (Usuario user in userList)
                     {
-                                if (user.nombre.Equals(usuario) && user.contra.Equals(pass) && !user.bloqueado)
-                                    encontrar = true;
+                                if (user.nombre.Equals(usuario) && user.contra.Equals(pass) && !user.bloqueado) { 
+                                this.usuarioActual = new Usuario(usuario, pass);
+                                encontrar = true;
+                                }
                                 else if (user.nombre.Equals(usuario) && !user.contra.Equals(pass))
                                 {
                                     encontrar = false;
@@ -344,27 +368,7 @@ namespace TrabajoPlataformas
             return true;
         }
 
-        public bool crearCajaAhorro(int cbu2, float saldo)
-        {
-            if (this.cajasList.Any(caja => caja.cbu == cbu2))
-            {
-                MessageBox.Show("El CBU ya existe");
-            }
-            CajaAhorro cajaNueva = new CajaAhorro(cbu2, this.usuarioActual);
-            cajaNueva.saldo = saldo;
-            try
-            {
-                this.altaCaja(cajaNueva);
-                Trace.WriteLine(cajaNueva);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-        }
-
+    
         public Movimiento depositar(CajaAhorro caja, float monto)
         {
             if (monto <= 0)

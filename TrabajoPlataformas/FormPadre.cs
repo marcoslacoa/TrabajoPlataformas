@@ -43,8 +43,7 @@ namespace TrabajoPlataformas
             if (banco.iniciarSesion(usuario, pass))
             {
                 MessageBox.Show("Log in correcto, Usuario: " + usuario, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Usuario usuarioActual = new Usuario(usuario, pass);
-                hijoMain = new FormMain(usuarioActual, banco );
+                hijoMain = new FormMain(usuario, banco);
                 this.hijoMain.cerrarsesionEvento += cerrarsesion;
                 hijoMain.usuario = Usuario;
                 hijoMain.MdiParent = this;

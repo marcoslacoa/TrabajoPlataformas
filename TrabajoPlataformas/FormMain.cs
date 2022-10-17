@@ -21,12 +21,12 @@ namespace TrabajoPlataformas
         CrearCaja hijoCrearCaja;
         public cerrarsesion cerrarsesionEvento;
         
-        public FormMain(Usuario usuario, Banco b)
+        public FormMain(string usuario, Banco b)
         {
             InitializeComponent();
             this.miBanco = b;
-            this.usuario = usuario.nombre;
-            label2.Text = usuario.nombre;
+            this.usuario = usuario;
+            label2.Text = usuario;
         }
         //public FormMain(object[] args)
         //{
