@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,14 +22,21 @@ namespace TrabajoPlataformas
         CrearCaja hijoCrearCaja;
         public cerrarsesion cerrarsesionEvento;
         public List<CajaAhorro> cajas;
-       
+        int numeroDeClick = 0;
+
         public FormMain(string usuario, Banco b)
         {
             InitializeComponent();
             this.miBanco = b;
             this.usuario = usuario;
             label2.Text = miBanco.usuarioActual.nombre;
-            
+            cbuDesitinoLabel.Visible = false;
+            cbuLabel.Visible = false;
+            textMonto .Visible = false;
+            montoLabel.Visible = false;
+            comboBoxCbu.Visible = false;
+            comboBoxCbuDestino.Visible = false;
+            buttonConfirmar.Visible = false;
         }
         //public FormMain(object[] args)
         //{
@@ -52,8 +60,6 @@ namespace TrabajoPlataformas
 
         }
         
-
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -88,17 +94,38 @@ namespace TrabajoPlataformas
 
         private void retirar_Click(object sender, EventArgs e)
         {
-
+            cbuLabel.Visible = true;
+            textMonto.Visible = true;
+            montoLabel.Visible = true;
+            comboBoxCbu.Visible = true;
+            buttonConfirmar.Visible = true;
+            numeroDeClick = 1;
+            foreach (CajaAhorro caja in miBanco.usuarioActual.listaCajas)
+            {
+                comboBoxCbu.Items.Add(caja.cbu);
+            }
         }
 
         private void depositar_Click(object sender, EventArgs e)
         {
-
+            cbuLabel.Visible = true;
+            textMonto.Visible = true;
+            montoLabel.Visible = true;
+            comboBoxCbu.Visible = true;
+            buttonConfirmar.Visible = true;
+            numeroDeClick = 2;
         }
 
         private void transferir_Click(object sender, EventArgs e)
         {
-
+            cbuLabel.Visible = true;
+            textMonto.Visible = true;
+            montoLabel.Visible = true;
+            comboBoxCbu.Visible = true;
+            buttonConfirmar.Visible = true;
+            comboBoxCbuDestino.Visible = true;
+            cbuDesitinoLabel.Visible = true;
+            numeroDeClick = 3;
         }
 
         private void crearcaja_Click(object sender, EventArgs e)
@@ -106,7 +133,36 @@ namespace TrabajoPlataformas
             this.hijoCrearCaja = new CrearCaja(miBanco, miBanco.usuarioActual);
             hijoCrearCaja.Show();
         }
-       
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonConfirmar_Click(object sender, EventArgs e)
+        {
+            switch (numeroDeClick)
+            {
+                case 1:
+                    CajaAhorro caja = miBanco.usuarioActual.listaCajas.Where(f => f.cbu.Equals(comboBoxCbu.SelectedValue)).FirstOrDefault();
+                    if (caja != null)
+                    {
+                        miBanco.retirar(caja, float.Parse(textMonto.Text));
+                    }
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    
+                    break;
+            }
+        }
     }
 
 }
