@@ -37,6 +37,7 @@ namespace TrabajoPlataformas
             this.pagos = Pagos;
             this.tarjetas = Tarjetas;
             this.bloqueado = Bloqueado;
+           
         }
 
         public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, bool Bloqueado) : this(Nombre, Apellido)
@@ -45,7 +46,7 @@ namespace TrabajoPlataformas
             mail = Mail;
             contra = Contra;
             this.bloqueado = Bloqueado;
-            //listaCajas = new List<CajaAhorro>();
+            listaCajas = new List<CajaAhorro>();
         }
 
         public Usuario(string Nombre, string Contra)

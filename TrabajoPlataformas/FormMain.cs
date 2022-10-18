@@ -65,20 +65,13 @@ namespace TrabajoPlataformas
         {
             //borro los datos
             dataGridView1.Rows.Clear();
-            //agrego lo nuevo
-            //    foreach (Usuario user in miBanco.obtenerUsuarios())
-            //        //string[] arr = new string[] { user.nombre, user.contra };
-            //        //dataGridView1.Add(arr);
-            //        dataGridView1.Rows.Add(user.toArray());
-            //}
+            
            
-            foreach(CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
+            foreach(CajaAhorro caja in miBanco.obtenerCajasDelUsuario()) 
                 {
                 //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
                 //dataGridView1.Rows.Add(arr);
-                
                     dataGridView1.Rows.Add(caja.toArray());
-               
             }
         
         }

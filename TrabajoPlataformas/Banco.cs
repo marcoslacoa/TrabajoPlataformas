@@ -33,8 +33,8 @@ namespace TrabajoPlataformas
             //}
             //return null
             //return cajasList.Where(x => x.titulares.Contains(this.usuarioActual)).ToList(); 
-            return usuarioActual.listaCajas.ToList();
-            
+            return this.usuarioActual.listaCajas.ToList(); 
+
         } 
         public Banco()
         {
@@ -109,7 +109,7 @@ namespace TrabajoPlataformas
                 MessageBox.Show("El CBU ya existe", "Ingreso");
             }
             CajaAhorro cajaNueva = new CajaAhorro(cbu2, this.usuarioActual);
-            //this.usuarioActual.listaCajas.Add(cajaNueva);
+            this.usuarioActual.listaCajas.Add(cajaNueva);
             cajaNueva.saldo = saldo;
             try
             {
@@ -353,7 +353,7 @@ namespace TrabajoPlataformas
                     foreach (Usuario user in userList)
                     {
                                 if (user.nombre.Equals(usuario) && user.contra.Equals(pass) && !user.bloqueado) { 
-                                this.usuarioActual = new Usuario(usuario, pass);
+                                this.usuarioActual = user;
                                 //usuarioActual.listaCajas = new List<CajaAhorro>(cajasList) ; 
                                 encontrar = true;
                                 }
