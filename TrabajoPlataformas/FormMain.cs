@@ -10,6 +10,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static TrabajoPlataformas.Login;
 
 namespace TrabajoPlataformas
@@ -57,7 +58,7 @@ namespace TrabajoPlataformas
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
+            
         }
         
 
@@ -78,8 +79,9 @@ namespace TrabajoPlataformas
                 //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
                 //dataGridView1.Rows.Add(arr);
                     dataGridView1.Rows.Add(caja.toArray());
+                    comboBoxCbu.Items.Add(caja.cbu);
             }
-        
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -99,11 +101,9 @@ namespace TrabajoPlataformas
             montoLabel.Visible = true;
             comboBoxCbu.Visible = true;
             buttonConfirmar.Visible = true;
-            numeroDeClick = 1;
-            foreach (CajaAhorro caja in miBanco.usuarioActual.listaCajas)
-            {
-                comboBoxCbu.Items.Add(caja.cbu);
-            }
+            comboBoxCbuDestino.Visible = false;
+            cbuDesitinoLabel.Visible = false;
+            numeroDeClick = 1;           
         }
 
         private void depositar_Click(object sender, EventArgs e)
@@ -113,6 +113,8 @@ namespace TrabajoPlataformas
             montoLabel.Visible = true;
             comboBoxCbu.Visible = true;
             buttonConfirmar.Visible = true;
+            comboBoxCbuDestino.Visible = false;
+            cbuDesitinoLabel.Visible = false;
             numeroDeClick = 2;
         }
 
@@ -149,17 +151,17 @@ namespace TrabajoPlataformas
             switch (numeroDeClick)
             {
                 case 1:
-                    CajaAhorro caja = miBanco.usuarioActual.listaCajas.Where(f => f.cbu.Equals(comboBoxCbu.SelectedValue)).FirstOrDefault();
+                    CajaAhorro caja = miBanco.obtenerCajasDelUsuario().Where(f => f.cbu.Equals(comboBoxCbu.SelectedValue)).FirstOrDefault();
                     if (caja != null)
                     {
                         miBanco.retirar(caja, float.Parse(textMonto.Text));
                     }
                     break;
                 case 2:
-                    
+                    //Logica para depositar
                     break;
                 case 3:
-                    
+                    //Logica para transferir
                     break;
             }
         }
