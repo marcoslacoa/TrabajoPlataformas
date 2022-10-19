@@ -151,10 +151,14 @@ namespace TrabajoPlataformas
             switch (numeroDeClick)
             {
                 case 1:
-                    CajaAhorro caja = miBanco.obtenerCajasDelUsuario().Where(f => f.cbu.Equals(comboBoxCbu.SelectedValue)).FirstOrDefault();
-                    if (caja != null)
+                    if (comboBoxCbu.SelectedItem != null)
                     {
-                        miBanco.retirar(caja, float.Parse(textMonto.Text));
+                        // take the combobox selected item and convert it to int
+                        int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
+                        CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
+                        float monto = float.Parse(textMonto.Text);
+                        miBanco.retirar(caja, monto);
+                        refreshData();
                     }
                     break;
                 case 2:
