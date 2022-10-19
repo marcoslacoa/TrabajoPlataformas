@@ -402,6 +402,7 @@ namespace TrabajoPlataformas
             caja.saldo -= monto;
             Movimiento mov = new Movimiento(caja, "Retiro", monto, DateTime.Now);
             return mov;
+            // Mensaje de respuesta con datos del objeto
         }
 
         public Movimiento transferir(CajaAhorro origen, CajaAhorro destino, float monto)
@@ -414,7 +415,7 @@ namespace TrabajoPlataformas
             destino.saldo += monto;
             Movimiento movOrigen = new Movimiento(origen, "Transferencia", monto, DateTime.Now);
             Movimiento movDestino = new Movimiento(destino, "Transferencia", monto, DateTime.Now);
-
+            
             return movOrigen;
         }
 

@@ -79,7 +79,13 @@ namespace TrabajoPlataformas
                 //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
                 //dataGridView1.Rows.Add(arr);
                     dataGridView1.Rows.Add(caja.toArray());
-                    comboBoxCbu.Items.Add(caja.cbu);
+                    comboBoxCbu.Items.Add(caja.cbu);                     
+            }
+            foreach (CajaAhorro caja in miBanco.cajasList)
+            {
+                if(caja.usuario != miBanco.usuarioActual) { 
+                 comboBoxCbuDestino.Items.Add(caja.cbu);
+                }
             }
 
         }
@@ -162,10 +168,29 @@ namespace TrabajoPlataformas
                     }
                     break;
                 case 2:
-                    //Logica para depositar
+                    if (comboBoxCbu.SelectedItem != null)
+                    {
+                        // take the combobox selected item and convert it to int
+                        int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
+                        CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
+                        float monto = float.Parse(textMonto.Text);
+                        miBanco.depositar(caja, monto);
+                        refreshData();
+                    }                  
                     break;
                 case 3:
-                    //Logica para transferir
+                    if (comboBoxCbu.SelectedItem != null)
+                    {
+                        // take the combobox selected item and convert it to int
+                        int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
+                        int cbuenIntDestino = Convert.ToInt32(comboBoxCbuDestino.SelectedItem);
+                        CajaAhorro origen = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
+                        CajaAhorro destino = miBanco.obtenerCajasDelUsuario().Find(x => x.cbu == cbuenIntDestino);
+                        float monto = float.Parse(textMonto.Text);
+                        miBanco.transferir(origen, destino, monto);
+                        refreshData();
+                    }
+
                     break;
             }
         }
