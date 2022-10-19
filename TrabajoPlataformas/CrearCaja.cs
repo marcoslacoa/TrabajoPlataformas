@@ -22,8 +22,9 @@ namespace TrabajoPlataformas
             InitializeComponent();
             this.banco = banco;
             this.usuario = usuario;
-            
-            this.cbuCaja = usuario.dni + new Random().Next(10000, 99999);
+            int a = usuario.dni;
+            int b = new Random().Next(100000, 999999);
+            this.cbuCaja = a + b;
         }
 
         private void cbu_TextChanged(object sender, EventArgs e)
@@ -40,7 +41,10 @@ namespace TrabajoPlataformas
 
         private void CrearCaja_Load(object sender, EventArgs e)
         {
-
+            cbu.Text = "" + cbuCaja;
+            cbu.ReadOnly = true;
+            saldo.Text = "0";
+            saldo.ReadOnly = true;
         }
 
         private void saldo_TextChanged(object sender, EventArgs e)
@@ -51,15 +55,13 @@ namespace TrabajoPlataformas
         {
 
             // show this.cbuCaja and make it readonly
-            cbu.Text = cbuCaja.ToString();
-            cbu.ReadOnly = true;
+            
 
 
         }
         private void saldo_load_1(object sender, EventArgs e)
         {
-            saldo.Text = "0";
-            saldo.ReadOnly = true;
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
