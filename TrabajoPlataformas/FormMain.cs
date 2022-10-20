@@ -164,7 +164,9 @@ namespace TrabajoPlataformas
                         CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
                         float monto = float.Parse(textMonto.Text);
                         miBanco.retirar(caja, monto);
+                        
                         refreshData();
+                        MessageBox.Show("Se ha retirado " + monto);
                     }
                     break;
                 case 2:
@@ -175,7 +177,9 @@ namespace TrabajoPlataformas
                         CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
                         float monto = float.Parse(textMonto.Text);
                         miBanco.depositar(caja, monto);
+                        
                         refreshData();
+                        MessageBox.Show("Se ha depositados " + monto);
                     }                  
                     break;
                 case 3:
@@ -188,7 +192,10 @@ namespace TrabajoPlataformas
                         CajaAhorro destino = miBanco.obtenerCajasDelUsuario().Find(x => x.cbu == cbuenIntDestino);
                         float monto = float.Parse(textMonto.Text);
                         miBanco.transferir(origen, destino, monto);
+                       
                         refreshData();
+                        MessageBox.Show("Se ha transferido " + monto);
+
                     }
 
                     break;
