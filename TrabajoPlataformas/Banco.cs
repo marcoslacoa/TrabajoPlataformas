@@ -408,8 +408,9 @@ namespace TrabajoPlataformas
             }
             caja.saldo += monto;
             Movimiento mov = new Movimiento(caja, "Deposito", monto, DateTime.Now);
-            return mov;
             MessageBox.Show("Se ha depositado " + monto);
+            
+            return mov;
         }
 
         public Movimiento retirar(CajaAhorro caja, float monto)
@@ -420,8 +421,9 @@ namespace TrabajoPlataformas
             }
             caja.saldo -= monto;
             Movimiento mov = new Movimiento(caja, "Retiro", monto, DateTime.Now);
+            MessageBox.Show("Se ha retirado " + monto);
+            
             return mov;
-             MessageBox.Show("Se ha retirado " + monto);
             // Mensaje de respuesta con datos del objeto
         }
 
@@ -435,10 +437,9 @@ namespace TrabajoPlataformas
             destino.saldo += monto;
             Movimiento movOrigen = new Movimiento(origen, "Transferencia", monto, DateTime.Now);
             Movimiento movDestino = new Movimiento(destino, "Transferencia", monto, DateTime.Now);
-            
-            return movOrigen;
-            return movDestino;
             MessageBox.Show("Se ha transferido " + monto);
+
+            return movOrigen;
         }
 
         /*public List<Movimiento> buscarMovimiento(CajaAhorro caja, string detalle, DateTime fecha, float monto)
