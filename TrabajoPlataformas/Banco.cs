@@ -426,6 +426,7 @@ namespace TrabajoPlataformas
             Movimiento movDestino = new Movimiento(destino, "Transferencia", monto, DateTime.Now);
             
             return movOrigen;
+            return movDestino;
             MessageBox.Show("Se ha transferido " + monto);
         }
 
