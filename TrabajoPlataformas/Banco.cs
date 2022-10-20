@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -63,18 +64,21 @@ namespace TrabajoPlataformas
             }
         }
         
-        public bool bajaUsuario(int id)
+        public bool bajaUsuario(int dni)
         {
-            Usuario aEliminar = userList[id];
-            try
             {
-                userList[id] = null;
-                return true;
-            }
-            catch (Exception)
-            {
-                userList[id] = aEliminar;
-                return false;
+                bool elimine = false;
+                int i = 0;
+                while (!elimine && i < userList.Count)
+                {
+                    if (userList[i].dni == dni)
+                    {
+                        userList.RemoveAt(i);
+                        elimine = true;
+                    }
+                    i++;
+                }
+                return elimine;
             }
         }
 
@@ -127,33 +131,37 @@ namespace TrabajoPlataformas
 
         public bool bajaCaja(int cbu)
         {
-            CajaAhorro caja = cajasList[cbu];
-            try
             {
-                caja = null;
-                return true;
-            }
-            catch (Exception)
-            {             
-                return false;
+                bool elimine = false;
+                int i = 0;
+                while (!elimine && i < cajasList.Count)
+                {
+                    if (cajasList[i].cbu == cbu)
+                    {
+                        userList.RemoveAt(i);
+                        elimine = true;
+                    }
+                    i++;
+                }
+                return elimine;
             }
         }
 
-        public bool modificarCaja(int cbu, Usuario usuario)
+       /* public bool modificarCaja(int cbu, Usuario usuario)
         {
-            CajaAhorro aModificar = cajasList[cbu];
+            CajaAhorro aModificar = cajasList[id];
             try
             {
                 CajaAhorro nuevo = new CajaAhorro(cbu, this.usuarioActual);
-                cajasList[cbu] = nuevo;
+                cajasList[id] = nuevo;
                 return true;
             }
             catch (Exception)
             {
-                cajasList[cbu] = aModificar;
+                cajasList[id] = aModificar;
                 return false;
             }
-        }
+        }*/
 
         //ABM Plazo Fijo
 
