@@ -26,18 +26,14 @@ namespace TrabajoPlataformas
         
         public List <CajaAhorro> obtenerCajasDelUsuario()
         {
-            //foreach (Usuario u in this.userList)
-            //{
-            //    if(u.dni == Dni)
-            //    {
-            //        return u.listaCajas.ToList();
-            //    }
-            //}
-            //return null
-            //return cajasList.Where(x => x.titulares.Contains(this.usuarioActual)).ToList(); 
+
             return this.usuarioActual.listaCajas.ToList(); 
 
-        } 
+        }
+        public List<PlazoFijo> obtenerPlazosDelUsuario()
+        {
+            return this.usuarioActual.plazoFijo.ToList();
+        }
         public Banco()
         {
             userList = new List<Usuario>();
@@ -164,11 +160,11 @@ namespace TrabajoPlataformas
 
         //ABM Plazo Fijo
 
-        public bool altaPlazo(Usuario titular, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado)
+        public bool altaPlazo(Usuario titular, CajaAhorro caja , float monto, DateTime fechaIni, DateTimePicker fechaFin, float tasa, bool pagado)
         {
             try
             {
-                PlazoFijo nuevo = new PlazoFijo(titular, monto, fechaIni, fechaFin, tasa, pagado);
+                PlazoFijo nuevo = new PlazoFijo(titular, caja ,monto, fechaIni, fechaFin, tasa, pagado);
                 plazosFijos.Add(nuevo);
                 return true;
             }

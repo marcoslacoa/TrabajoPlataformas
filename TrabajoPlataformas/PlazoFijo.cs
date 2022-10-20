@@ -12,11 +12,12 @@ namespace TrabajoPlataformas
         public Usuario titular { get; set; }
         public float monto { get; set; }
         public DateTime fechaIni { get; set; }
-        public DateTime FechaFin { get; set; }
+        public DateTimePicker FechaFin { get; set; }
         public float tasa { get; set; }
+        public CajaAhorro caja { get; set; }
         public Boolean pagado { get; set; }
 
-        public PlazoFijo(Usuario Titular, float Monto, DateTime FechaIni, DateTime FechaFin, float Tasa, bool Pagado)
+        public PlazoFijo(Usuario Titular, CajaAhorro Caja , float Monto,DateTime FechaIni, DateTimePicker FechaFin, float Tasa, bool Pagado)
         {
             this.titular = Titular;
             this.monto = Monto;
@@ -24,6 +25,12 @@ namespace TrabajoPlataformas
             this.FechaFin = FechaFin;
             this.tasa = Tasa;
             this.pagado = Pagado;
+            this.caja = Caja;
+        }
+
+        public string[] toArray()
+        {
+            return new string[] { monto.ToString(), fechaIni.ToString(), fechaIni.ToString(), tasa.ToString() };
         }
     }
 }

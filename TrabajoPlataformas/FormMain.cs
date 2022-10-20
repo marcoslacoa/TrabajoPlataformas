@@ -80,6 +80,7 @@ namespace TrabajoPlataformas
         {
             //borro los datos
             dataGridView1.Rows.Clear();
+            dataGridView2.Columns.Clear();
 
             foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
             {
@@ -91,23 +92,11 @@ namespace TrabajoPlataformas
                 if (!comboBoxCbu.Items.Contains(caja.cbu))
                 {
                     comboBoxCbu.Items.Add(caja.cbu);
-                    //comboBoxCbuDestino.Items.Add(caja.cbu);
                 }
 
             }
             foreach (CajaAhorro caja in miBanco.cajasList)
             {
-                //if(caja.usuario != miBanco.usuarioActual) {                   
-                //    if (comboBoxCbuDestino.Items.Contains(caja.cbu))
-                //    {
-                //       return;
-                //    }
-                //    else
-                //    {
-                //       comboBoxCbuDestino.Items.Add(caja.cbu);
-                //    }
-                //}
-                // check if every caja.usuario is different from miBanco.usuarioActual and add only the different ones
                 if (caja.usuario != miBanco.usuarioActual)
                 {
                     if (!comboBoxCbuDestino.Items.Contains(caja.cbu))
@@ -115,6 +104,16 @@ namespace TrabajoPlataformas
                         comboBoxCbuDestino.Items.Add(caja.cbu);
                     }
                 }
+            }
+            foreach (PlazoFijo plazo in miBanco.obtenerPlazosDelUsuario())
+            {
+                if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
+                    dataGridView1.Rows.Add(plazo.toArray());
+
+                if (!comboBoxCbuPlazo.Items.Contains(plazo.titular.nombre))
+                 {
+                    comboBoxCbuDestino.Items.Add(plazo.titular.nombre);
+                 }
             }
 
         }
@@ -262,6 +261,29 @@ namespace TrabajoPlataformas
         private void comboBoxCbu_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CrearPlazo_Click(object sender, EventArgs e)
+        {
+            if(comboBoxCbuPlazo.SelectedItem != null)
+            {
+                int cbuenInt = Convert.ToInt32(comboBoxCbuPlazo.SelectedItem);
+                CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
+                float monto = float.Parse(MontoInsertPlazo.Text);
+                DateTime fechaIni = DateTime.Now;
+                int tasa = 0;
+                miBanco.altaPlazo(miBanco.usuarioActual, caja, monto, fechaIni, dateTimePicker1, tasa, false);
+            }
+        }
+
+        private void BorrarPlazo_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 
