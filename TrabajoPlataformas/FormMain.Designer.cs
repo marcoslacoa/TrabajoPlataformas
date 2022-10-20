@@ -177,18 +177,18 @@
             // 
             // crearcaja
             // 
-            this.crearcaja.Location = new System.Drawing.Point(454, 233);
+            this.crearcaja.Location = new System.Drawing.Point(465, 226);
             this.crearcaja.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.crearcaja.Name = "crearcaja";
             this.crearcaja.Size = new System.Drawing.Size(136, 31);
             this.crearcaja.TabIndex = 5;
-            this.crearcaja.Text = "Crear Caja";
+            this.crearcaja.Text = "Administrar Cajas";
             this.crearcaja.UseVisualStyleBackColor = true;
             this.crearcaja.Click += new System.EventHandler(this.crearcaja_Click);
             // 
             // transferir
             // 
-            this.transferir.Location = new System.Drawing.Point(453, 184);
+            this.transferir.Location = new System.Drawing.Point(465, 177);
             this.transferir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.transferir.Name = "transferir";
             this.transferir.Size = new System.Drawing.Size(136, 31);
@@ -199,7 +199,7 @@
             // 
             // depositar
             // 
-            this.depositar.Location = new System.Drawing.Point(454, 135);
+            this.depositar.Location = new System.Drawing.Point(466, 128);
             this.depositar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.depositar.Name = "depositar";
             this.depositar.Size = new System.Drawing.Size(136, 31);
@@ -210,7 +210,7 @@
             // 
             // retirar
             // 
-            this.retirar.Location = new System.Drawing.Point(454, 84);
+            this.retirar.Location = new System.Drawing.Point(466, 77);
             this.retirar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.retirar.Name = "retirar";
             this.retirar.Size = new System.Drawing.Size(136, 31);
@@ -222,7 +222,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(454, 29);
+            this.button2.Location = new System.Drawing.Point(466, 22);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 35);
             this.button2.TabIndex = 1;
@@ -266,7 +266,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(778, 443);
+            this.tabPage2.Size = new System.Drawing.Size(613, 443);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Plazo Fijo";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -296,7 +296,7 @@
             this.tabPage3.Controls.Add(this.dataGridView3);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(778, 443);
+            this.tabPage3.Size = new System.Drawing.Size(613, 443);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Pagos";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -325,7 +325,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(778, 443);
+            this.tabPage4.Size = new System.Drawing.Size(613, 443);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Tarjetas";
             this.tabPage4.UseVisualStyleBackColor = true;

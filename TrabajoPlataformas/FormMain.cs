@@ -64,6 +64,7 @@ namespace TrabajoPlataformas
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Boton mostrar datos
             refreshData();
         }
 
@@ -80,26 +81,24 @@ namespace TrabajoPlataformas
                 //dataGridView1.Rows.Add(arr);
                     dataGridView1.Rows.Add(caja.toArray());
                 // Mostrar solo 1 dato con el refresh
-                comboBoxCbu.Items.Add(caja.cbu);
-                /*if (comboBoxCbu.Items.Contains(caja.cbu)) {
+                if(comboBoxCbu.Items.Contains(caja.cbu)) {
                     return;
                 } else
                 {
-                   
-                }*/
+                    comboBoxCbuDestino.Items.Add(caja.cbu);
+                }
             }
             foreach (CajaAhorro caja in miBanco.cajasList)
             {
-                if(caja.usuario != miBanco.usuarioActual) {
-                    comboBoxCbuDestino.Items.Add(caja.cbu);
-                    /*if (comboBoxCbuDestino.Items.Contains(caja.cbu))
+                if(caja.usuario != miBanco.usuarioActual) {                   
+                    if (comboBoxCbuDestino.Items.Contains(caja.cbu))
                     {
                        return;
                     }
                     else
                     {
-                       
-                    }*/
+                        comboBoxCbuDestino.Items.Add(caja.cbu);
+                    }
                 }
             }
 
@@ -107,7 +106,7 @@ namespace TrabajoPlataformas
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+                
         }
 
         private void button4_Click(object sender, EventArgs e)

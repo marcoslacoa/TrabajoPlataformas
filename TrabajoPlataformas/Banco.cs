@@ -125,36 +125,35 @@ namespace TrabajoPlataformas
         }
 
 
-        public bool bajaCaja(int id)
+        public bool bajaCaja(int cbu)
         {
-            CajaAhorro aEliminar = cajasList[id];
+            CajaAhorro caja = cajasList[cbu];
             try
             {
-                userList[id] = null;
+                caja = null;
                 return true;
             }
             catch (Exception)
-            {
-                cajasList[id] = aEliminar;
+            {             
                 return false;
             }
         }
 
-       /* public bool modificarCaja(int cbu, Usuario usuario)
+        public bool modificarCaja(int cbu, Usuario usuario)
         {
-            CajaAhorro aModificar = cajasList[id];
+            CajaAhorro aModificar = cajasList[cbu];
             try
             {
                 CajaAhorro nuevo = new CajaAhorro(cbu, this.usuarioActual);
-                cajasList[id] = nuevo;
+                cajasList[cbu] = nuevo;
                 return true;
             }
             catch (Exception)
             {
-                cajasList[id] = aModificar;
+                cajasList[cbu] = aModificar;
                 return false;
             }
-        }*/
+        }
 
         //ABM Plazo Fijo
 
