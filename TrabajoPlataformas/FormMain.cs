@@ -79,12 +79,27 @@ namespace TrabajoPlataformas
                 //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
                 //dataGridView1.Rows.Add(arr);
                     dataGridView1.Rows.Add(caja.toArray());
-                    comboBoxCbu.Items.Add(caja.cbu);                     
+                // Mostrar solo 1 dato con el refresh
+                comboBoxCbu.Items.Add(caja.cbu);
+                /*if (comboBoxCbu.Items.Contains(caja.cbu)) {
+                    return;
+                } else
+                {
+                   
+                }*/
             }
             foreach (CajaAhorro caja in miBanco.cajasList)
             {
-                if(caja.usuario != miBanco.usuarioActual) { 
-                 comboBoxCbuDestino.Items.Add(caja.cbu);
+                if(caja.usuario != miBanco.usuarioActual) {
+                    comboBoxCbuDestino.Items.Add(caja.cbu);
+                    /*if (comboBoxCbuDestino.Items.Contains(caja.cbu))
+                    {
+                       return;
+                    }
+                    else
+                    {
+                       
+                    }*/
                 }
             }
 
@@ -185,7 +200,7 @@ namespace TrabajoPlataformas
                         int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
                         int cbuenIntDestino = Convert.ToInt32(comboBoxCbuDestino.SelectedItem);
                         CajaAhorro origen = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
-                        CajaAhorro destino = miBanco.obtenerCajasDelUsuario().Find(x => x.cbu == cbuenIntDestino);
+                        CajaAhorro destino = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenIntDestino);
                         float monto = float.Parse(textMonto.Text);
                         miBanco.transferir(origen, destino, monto);
                         refreshData();
