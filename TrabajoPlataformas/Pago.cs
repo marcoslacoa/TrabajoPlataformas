@@ -13,11 +13,14 @@ namespace TrabajoPlataformas
         public float monto { get; set; }
         public Boolean pagado { get; set; }
 
-        public Pago(Usuario Usuario, float Monto, bool Pagado)
+        public string detalle { get; set; }
+
+        public Pago(Usuario Usuario, float Monto, bool Pagado, string detalle)
         {
             this.usuario = Usuario;
             this.monto = Monto;
             this.pagado = Pagado;
+            this.detalle = detalle;
         }
     }
 }

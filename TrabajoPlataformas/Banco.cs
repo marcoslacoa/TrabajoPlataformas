@@ -223,11 +223,11 @@ namespace TrabajoPlataformas
 
         //ABM Pagos
 
-        public bool altaPago(Usuario usuario, float monto, bool pagado)
+        public bool altaPago(Usuario usuario, float monto, bool pagado, string detalle)
         {
             try
             {
-                Pago nuevo = new Pago(usuario, monto, pagado);
+                Pago nuevo = new Pago(usuario, monto, pagado, detalle);
                 pagos.Add(nuevo);
                 return true;
             }

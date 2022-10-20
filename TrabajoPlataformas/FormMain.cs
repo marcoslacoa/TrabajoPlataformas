@@ -38,6 +38,11 @@ namespace TrabajoPlataformas
             comboBoxCbu.Visible = false;
             comboBoxCbuDestino.Visible = false;
             buttonConfirmar.Visible = false;
+            comboBoxCbuPagos.Visible = false;
+            comboBoxTarjetaPagos.Visible = false;
+            comboBoxPagos.Visible = false;
+            labelMontoPagos.Visible = false;
+            labelNumeroPagos.Visible = false;
         }
         //public FormMain(object[] args)
         //{
@@ -80,13 +85,16 @@ namespace TrabajoPlataformas
                 //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
                 //dataGridView1.Rows.Add(arr);
                     dataGridView1.Rows.Add(caja.toArray());
+
                 // Mostrar solo 1 dato con el refresh
-                if(comboBoxCbu.Items.Contains(caja.cbu)) {
+                comboBoxCbu.Items.Add(caja.cbu);
+                /*if (comboBoxCbu.Items.Contains(caja.cbu)) {
                     return;
                 } else
                 {
-                   comboBoxCbuDestino.Items.Add(caja.cbu);
-                }
+                   
+                }*/
+
             }
             foreach (CajaAhorro caja in miBanco.cajasList)
             {
@@ -214,6 +222,36 @@ namespace TrabajoPlataformas
 
                     break;
             }
+        }
+
+        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+           comboBoxCbuPagos.Visible = true;
+           comboBoxTarjetaPagos.Visible = true;
+           comboBoxPagos.Visible = true;
+           labelMontoPagos.Visible = true;
+           labelNumeroPagos.Visible = true;
+           buttonConfirmarPago.Visible = true;              
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxCbu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

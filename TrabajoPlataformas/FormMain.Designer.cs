@@ -51,9 +51,29 @@
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.comboBoxPagos = new System.Windows.Forms.ComboBox();
+            this.comboBoxCbuPagos = new System.Windows.Forms.ComboBox();
+            this.comboBoxTarjetaPagos = new System.Windows.Forms.ComboBox();
+            this.buttonConfirmarPago = new System.Windows.Forms.Button();
+            this.labelNumeroPagos = new System.Windows.Forms.Label();
+            this.labelMontoPagos = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LIMITE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONSUMOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,8 +84,10 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -174,6 +196,7 @@
             this.comboBoxCbu.Name = "comboBoxCbu";
             this.comboBoxCbu.Size = new System.Drawing.Size(151, 28);
             this.comboBoxCbu.TabIndex = 6;
+            this.comboBoxCbu.SelectedIndexChanged += new System.EventHandler(this.comboBoxCbu_SelectedIndexChanged);
             // 
             // crearcaja
             // 
@@ -235,7 +258,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 5);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
@@ -270,10 +293,11 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Plazo Fijo";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(334, 21);
+            this.button3.Location = new System.Drawing.Point(508, 6);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 29);
             this.button3.TabIndex = 1;
@@ -283,7 +307,7 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 5);
+            this.dataGridView2.Location = new System.Drawing.Point(6, 6);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 29;
@@ -292,8 +316,18 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.dataGridView4);
+            this.tabPage3.Controls.Add(this.comboBoxPagos);
+            this.tabPage3.Controls.Add(this.comboBoxCbuPagos);
+            this.tabPage3.Controls.Add(this.comboBoxTarjetaPagos);
+            this.tabPage3.Controls.Add(this.buttonConfirmarPago);
+            this.tabPage3.Controls.Add(this.labelNumeroPagos);
+            this.tabPage3.Controls.Add(this.labelMontoPagos);
             this.tabPage3.Controls.Add(this.dataGridView3);
+            this.tabPage3.Controls.Add(this.dataGridView4);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.button7);
+            this.tabPage3.Controls.Add(this.button6);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(613, 443);
@@ -301,34 +335,226 @@
             this.tabPage3.Text = "Pagos";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // dataGridView4
+            // comboBoxPagos
             // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(325, 35);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.RowTemplate.Height = 29;
-            this.dataGridView4.Size = new System.Drawing.Size(250, 188);
-            this.dataGridView4.TabIndex = 1;
+            this.comboBoxPagos.FormattingEnabled = true;
+            this.comboBoxPagos.Location = new System.Drawing.Point(218, 356);
+            this.comboBoxPagos.Name = "comboBoxPagos";
+            this.comboBoxPagos.Size = new System.Drawing.Size(184, 28);
+            this.comboBoxPagos.TabIndex = 15;
+            this.comboBoxPagos.Tag = "";
+            this.comboBoxPagos.Text = "PAGO";
+            // 
+            // comboBoxCbuPagos
+            // 
+            this.comboBoxCbuPagos.FormattingEnabled = true;
+            this.comboBoxCbuPagos.Location = new System.Drawing.Point(218, 292);
+            this.comboBoxCbuPagos.Name = "comboBoxCbuPagos";
+            this.comboBoxCbuPagos.Size = new System.Drawing.Size(184, 28);
+            this.comboBoxCbuPagos.TabIndex = 14;
+            this.comboBoxCbuPagos.Tag = "";
+            this.comboBoxCbuPagos.Text = "CAJA";
+            this.comboBoxCbuPagos.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // comboBoxTarjetaPagos
+            // 
+            this.comboBoxTarjetaPagos.FormattingEnabled = true;
+            this.comboBoxTarjetaPagos.Location = new System.Drawing.Point(418, 292);
+            this.comboBoxTarjetaPagos.Name = "comboBoxTarjetaPagos";
+            this.comboBoxTarjetaPagos.Size = new System.Drawing.Size(184, 28);
+            this.comboBoxTarjetaPagos.TabIndex = 13;
+            this.comboBoxTarjetaPagos.Tag = "";
+            this.comboBoxTarjetaPagos.Text = "TARJETA";
+            // 
+            // buttonConfirmarPago
+            // 
+            this.buttonConfirmarPago.Location = new System.Drawing.Point(418, 356);
+            this.buttonConfirmarPago.Name = "buttonConfirmarPago";
+            this.buttonConfirmarPago.Size = new System.Drawing.Size(184, 58);
+            this.buttonConfirmarPago.TabIndex = 12;
+            this.buttonConfirmarPago.Text = "CONFIMAR PAGO";
+            this.buttonConfirmarPago.UseVisualStyleBackColor = true;
+            // 
+            // labelNumeroPagos
+            // 
+            this.labelNumeroPagos.AutoSize = true;
+            this.labelNumeroPagos.Location = new System.Drawing.Point(294, 394);
+            this.labelNumeroPagos.Name = "labelNumeroPagos";
+            this.labelNumeroPagos.Size = new System.Drawing.Size(33, 20);
+            this.labelNumeroPagos.TabIndex = 11;
+            this.labelNumeroPagos.Text = "000";
+            // 
+            // labelMontoPagos
+            // 
+            this.labelMontoPagos.AutoSize = true;
+            this.labelMontoPagos.Location = new System.Drawing.Point(218, 394);
+            this.labelMontoPagos.Name = "labelMontoPagos";
+            this.labelMontoPagos.Size = new System.Drawing.Size(56, 20);
+            this.labelMontoPagos.TabIndex = 10;
+            this.labelMontoPagos.Text = "Monto:";
             // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(15, 35);
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dataGridView3.Location = new System.Drawing.Point(3, 44);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 29;
-            this.dataGridView3.Size = new System.Drawing.Size(251, 188);
-            this.dataGridView3.TabIndex = 0;
+            this.dataGridView3.Size = new System.Drawing.Size(294, 227);
+            this.dataGridView3.TabIndex = 6;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "MONTO";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "DETALLE";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.dataGridView4.Location = new System.Drawing.Point(311, 44);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowHeadersWidth = 51;
+            this.dataGridView4.RowTemplate.Height = 29;
+            this.dataGridView4.Size = new System.Drawing.Size(299, 227);
+            this.dataGridView4.TabIndex = 5;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "MONTO";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "DETALLE";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(389, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(146, 20);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "PAGOS REALIZADOS";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(84, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(144, 20);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "PAGOS PENDIENTES";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(12, 356);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(185, 58);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Realizar pago";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(12, 290);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(185, 58);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "ADMINISTRAR PAGOS";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button5);
+            this.tabPage4.Controls.Add(this.dataGridView5);
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(613, 443);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Tarjetas";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(3, 268);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(174, 58);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "ADMINISTRAR TARJETAS";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.LIMITE,
+            this.CONSUMOS});
+            this.dataGridView5.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.RowHeadersWidth = 51;
+            this.dataGridView5.RowTemplate.Height = 29;
+            this.dataGridView5.Size = new System.Drawing.Size(551, 259);
+            this.dataGridView5.TabIndex = 1;
+            this.dataGridView5.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "NUMERO";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "CVC";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // LIMITE
+            // 
+            this.LIMITE.HeaderText = "LIMITE";
+            this.LIMITE.MinimumWidth = 6;
+            this.LIMITE.Name = "LIMITE";
+            this.LIMITE.ReadOnly = true;
+            this.LIMITE.Width = 125;
+            // 
+            // CONSUMOS
+            // 
+            this.CONSUMOS.HeaderText = "CONSUMOS";
+            this.CONSUMOS.MinimumWidth = 6;
+            this.CONSUMOS.Name = "CONSUMOS";
+            this.CONSUMOS.ReadOnly = true;
+            this.CONSUMOS.Width = 125;
             // 
             // button1
             // 
@@ -394,8 +620,11 @@
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,8 +646,6 @@
         private DataGridView dataGridView2;
         private TabPage tabPage3;
         private TabPage tabPage4;
-        private DataGridView dataGridView4;
-        private DataGridView dataGridView3;
         private Label label3;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
@@ -434,5 +661,27 @@
         private TextBox textMonto;
         private ComboBox comboBoxCbu;
         private Button buttonConfirmar;
+        private DataGridView dataGridView5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn LIMITE;
+        private DataGridViewTextBoxColumn CONSUMOS;
+        private Button button5;
+        private Label label5;
+        private Label label4;
+        private Button button7;
+        private Button button6;
+        private ComboBox comboBoxPagos;
+        private ComboBox comboBoxCbuPagos;
+        private ComboBox comboBoxTarjetaPagos;
+        private Button buttonConfirmarPago;
+        private Label labelNumeroPagos;
+        private Label labelMontoPagos;
+        private DataGridView dataGridView3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridView dataGridView4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }
