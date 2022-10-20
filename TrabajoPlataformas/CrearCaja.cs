@@ -41,6 +41,7 @@ namespace TrabajoPlataformas
 
         private void CrearCaja_Load(object sender, EventArgs e)
         {
+            
             cbu.Text = "" + cbuCaja;
             cbu.ReadOnly = true;
             saldo.Text = "0";

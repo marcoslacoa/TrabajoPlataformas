@@ -38,6 +38,7 @@ namespace TrabajoPlataformas
             comboBoxCbu.Visible = false;
             comboBoxCbuDestino.Visible = false;
             buttonConfirmar.Visible = false;
+            this.cajas = new List<CajaAhorro>();
         }
         //public FormMain(object[] args)
         //{
@@ -64,7 +65,9 @@ namespace TrabajoPlataformas
 
         private void button1_Click(object sender, EventArgs e)
         {
+               
             refreshData();
+
         }
 
         public delegate void cerrarsesion();
@@ -76,11 +79,13 @@ namespace TrabajoPlataformas
            
             foreach(CajaAhorro caja in miBanco.obtenerCajasDelUsuario()) 
                 {
+                
                 //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
                 //dataGridView1.Rows.Add(arr);
                     dataGridView1.Rows.Add(caja.toArray());
                 // Mostrar solo 1 dato con el refresh
                 comboBoxCbu.Items.Add(caja.cbu);
+
                 /*if (comboBoxCbu.Items.Contains(caja.cbu)) {
                     return;
                 } else
