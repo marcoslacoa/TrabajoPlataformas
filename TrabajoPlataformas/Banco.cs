@@ -391,17 +391,19 @@ namespace TrabajoPlataformas
             caja.saldo += monto;
             Movimiento mov = new Movimiento(caja, "Deposito", monto, DateTime.Now);
             return mov;
+            MessageBox.Show("Se ha depositado " + monto);
         }
 
         public Movimiento retirar(CajaAhorro caja, float monto)
         {
-            if (monto >= caja.saldo)
+            if (monto > caja.saldo)
             {
                 throw new ApplicationException("Saldo insuficiente");
             }
             caja.saldo -= monto;
             Movimiento mov = new Movimiento(caja, "Retiro", monto, DateTime.Now);
             return mov;
+             MessageBox.Show("Se ha retirado " + monto);
             // Mensaje de respuesta con datos del objeto
         }
 
@@ -417,6 +419,7 @@ namespace TrabajoPlataformas
             Movimiento movDestino = new Movimiento(destino, "Transferencia", monto, DateTime.Now);
             
             return movOrigen;
+            MessageBox.Show("Se ha transferido " + monto);
         }
 
         /*public List<Movimiento> buscarMovimiento(CajaAhorro caja, string detalle, DateTime fecha, float monto)
