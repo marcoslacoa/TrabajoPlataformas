@@ -129,7 +129,7 @@ namespace TrabajoPlataformas
         }
 
 
-        public bool bajaCaja(int cbu)
+        public bool bajaCaja(CajaAhorro caja)
         {
             {
                 bool elimine = false;
@@ -194,7 +194,7 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool modificarPlazo(int id, Usuario titular, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado)
+        /*public bool modificarPlazo(int id, Usuario titular, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado)
         {
             PlazoFijo aModificar = plazosFijos[id];
             try
@@ -208,7 +208,7 @@ namespace TrabajoPlataformas
                 plazosFijos[id] = aModificar;
                 return false;
             }
-        }
+        }*/
 
         //ABM Pagos
 
