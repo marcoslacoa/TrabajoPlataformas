@@ -26,12 +26,6 @@ namespace TrabajoPlataformas
             int a = usuario.dni;
             int b = new Random().Next(100000, 999999);
             this.cbuCaja = a + b;
-            comboBoxCaja.Visible = false;
-            labelTitular.Visible = false;
-            comboBoxTitular.Visible = false;
-            buttonAgregar.Visible = false;
-            buttonBorrar.Visible = false;
-
         }
 
         private void cbu_TextChanged(object sender, EventArgs e)
@@ -60,7 +54,11 @@ namespace TrabajoPlataformas
 
         private void CrearCaja_Load(object sender, EventArgs e)
         {
-            
+            comboBoxCaja.Visible = false;
+            labelTitular.Visible = false;
+            comboBoxTitular.Visible = false;
+            buttonAgregar.Visible = false;
+            buttonBorrar.Visible = false;
             cbu.Text = "" + cbuCaja;
             cbu.ReadOnly = true;
             saldo.Text = "0";

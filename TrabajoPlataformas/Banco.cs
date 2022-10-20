@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TrabajoPlataformas
@@ -131,19 +132,29 @@ namespace TrabajoPlataformas
 
         public bool bajaCaja(CajaAhorro caja)
         {
+            /*CajaAhorro aEliminar = cajasList[cbu];
+            try
+            { 
+                cajasList[cbu] = null;
+                return true;
+            }
+            catch (Exception)
             {
-                bool elimine = false;
-                int i = 0;
-                while (!elimine && i < cajasList.Count)
-                {
-                    if (cajasList[i].cbu == cbu)
-                    {
-                        userList.RemoveAt(i);
-                        elimine = true;
-                    }
-                    i++;
-                }
-                return elimine;
+                cajasList[cbu] = aEliminar;
+                return false;
+            }*/
+
+
+            CajaAhorro aEliminar = cajasList.SingleOrDefault(x => x.cbu == caja.cbu);
+            try
+            {
+                if (caja != null)
+                    cajasList.Remove(caja);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 

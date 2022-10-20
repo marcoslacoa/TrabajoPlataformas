@@ -85,7 +85,7 @@ namespace TrabajoPlataformas
                     return;
                 } else
                 {
-                    comboBoxCbuDestino.Items.Add(caja.cbu);
+                   comboBoxCbuDestino.Items.Add(caja.cbu);
                 }
             }
             foreach (CajaAhorro caja in miBanco.cajasList)
@@ -97,7 +97,7 @@ namespace TrabajoPlataformas
                     }
                     else
                     {
-                        comboBoxCbuDestino.Items.Add(caja.cbu);
+                       comboBoxCbuDestino.Items.Add(caja.cbu);
                     }
                 }
             }
