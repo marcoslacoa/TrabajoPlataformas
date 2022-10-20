@@ -96,14 +96,22 @@ namespace TrabajoPlataformas
             }
             foreach (CajaAhorro caja in miBanco.cajasList)
             {
-                if(caja.usuario != miBanco.usuarioActual) {                   
-                    if (comboBoxCbuDestino.Items.Contains(caja.cbu))
+                //if(caja.usuario != miBanco.usuarioActual) {                   
+                //    if (comboBoxCbuDestino.Items.Contains(caja.cbu))
+                //    {
+                //       return;
+                //    }
+                //    else
+                //    {
+                //       comboBoxCbuDestino.Items.Add(caja.cbu);
+                //    }
+                //}
+                // check if every caja.usuario is different from miBanco.usuarioActual and add only the different ones
+                if (caja.usuario != miBanco.usuarioActual)
+                {
+                    if (!comboBoxCbuDestino.Items.Contains(caja.cbu))
                     {
-                       return;
-                    }
-                    else
-                    {
-                       comboBoxCbuDestino.Items.Add(caja.cbu);
+                        comboBoxCbuDestino.Items.Add(caja.cbu);
                     }
                 }
             }
@@ -186,7 +194,6 @@ namespace TrabajoPlataformas
                         miBanco.retirar(caja, monto);
                         
                         refreshData();
-                        MessageBox.Show("Se ha retirado " + monto);
                     }
                     break;
                 case 2:
@@ -199,7 +206,6 @@ namespace TrabajoPlataformas
                         miBanco.depositar(caja, monto);
                         
                         refreshData();
-                        MessageBox.Show("Se ha depositados " + monto);
                     }                  
                     break;
                 case 3:
@@ -209,12 +215,11 @@ namespace TrabajoPlataformas
                         int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
                         int cbuenIntDestino = Convert.ToInt32(comboBoxCbuDestino.SelectedItem);
                         CajaAhorro origen = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
-                        CajaAhorro destino = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenIntDestino);
+                        CajaAhorro destino = miBanco.cajasList.First(x => x.cbu == cbuenIntDestino);
                         float monto = float.Parse(textMonto.Text);
                         miBanco.transferir(origen, destino, monto);
                        
                         refreshData();
-                        MessageBox.Show("Se ha transferido " + monto);
 
                     }
 

@@ -395,7 +395,7 @@ namespace TrabajoPlataformas
 
         public bool cerrarSesion()
         {
-            usuarioActual = null;
+            this.usuarioActual = null;
             return true;
         }
 
