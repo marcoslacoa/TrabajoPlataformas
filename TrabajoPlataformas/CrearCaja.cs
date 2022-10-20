@@ -17,6 +17,7 @@ namespace TrabajoPlataformas
         public float saldoCaja;
         public Usuario usuario;
         public int numeroDeClick;
+        public cofirmoBorrarDelegate confirmBorrarEvento;
 
         public CrearCaja(Banco banco, Usuario usuario)
         {
@@ -41,16 +42,24 @@ namespace TrabajoPlataformas
                     saldoCaja = float.Parse(saldo.Text);
                     banco.crearCajaAhorro(cbuCaja, saldoCaja);
                     break;
-                case 3:
+                case 3:                   
                     int cbuenInt = Convert.ToInt32(comboBoxCaja.SelectedItem);
                     CajaAhorro caja = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
-                    banco.bajaCaja(caja);
+                    if (caja.saldo != 0)
+                        MessageBox.Show("Porfavor retire todo su dinero ante de eliminar la caja.");
+                    else
+                    {
+                        banco.bajaCaja(caja.cbu);
+                        this.confirmBorrarEvento();
+                    }
                     //Logica para borrar la caja
                     break;
 
             }          
             this.Close();
         }
+
+        public delegate void cofirmoBorrarDelegate();
 
         private void CrearCaja_Load(object sender, EventArgs e)
         {

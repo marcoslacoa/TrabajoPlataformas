@@ -130,26 +130,14 @@ namespace TrabajoPlataformas
         }
 
 
-        public bool bajaCaja(CajaAhorro caja)
+        public bool bajaCaja(int cajacbu)
         {
-            /*CajaAhorro aEliminar = cajasList[cbu];
-            try
-            { 
-                cajasList[cbu] = null;
-                return true;
-            }
-            catch (Exception)
-            {
-                cajasList[cbu] = aEliminar;
-                return false;
-            }*/
-
-
-            CajaAhorro aEliminar = cajasList.SingleOrDefault(x => x.cbu == caja.cbu);
+ 
+            CajaAhorro cajaToRemove = this.cajasList.First(x => x.cbu == cajacbu);
             try
             {
-                if (caja != null)
-                    cajasList.Remove(caja);
+                if (cajaToRemove != null)
+                    cajasList.Remove(cajaToRemove);
                 return true;
             }
             catch

@@ -21,6 +21,7 @@ namespace TrabajoPlataformas
         public string usuario;
         public Banco miBanco;
         CrearCaja hijoCrearCaja;
+        
         public cerrarsesion cerrarsesionEvento;
         public List<CajaAhorro> cajas;
         int numeroDeClick = 0;
@@ -43,6 +44,7 @@ namespace TrabajoPlataformas
             comboBoxPagos.Visible = false;
             labelMontoPagos.Visible = false;
             labelNumeroPagos.Visible = false;
+            
         }
         //public FormMain(object[] args)
         //{
@@ -79,18 +81,17 @@ namespace TrabajoPlataformas
             //borro los datos
             dataGridView1.Rows.Clear();
 
-
             foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
             {
                 //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
                 //dataGridView1.Rows.Add(arr);
-                dataGridView1.Rows.Add(caja.toArray());
-
+                if (miBanco.obtenerCajasDelUsuario().Contains(caja))
+                    dataGridView1.Rows.Add(caja.toArray());
 
                 if (!comboBoxCbu.Items.Contains(caja.cbu))
                 {
                     comboBoxCbu.Items.Add(caja.cbu);
-                    comboBoxCbuDestino.Items.Add(caja.cbu);
+                    //comboBoxCbuDestino.Items.Add(caja.cbu);
                 }
 
             }
@@ -116,6 +117,11 @@ namespace TrabajoPlataformas
                 }
             }
 
+        }
+
+        private void confirmoBorrarDelegado()
+        {
+            refreshData();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -167,6 +173,7 @@ namespace TrabajoPlataformas
         private void crearcaja_Click(object sender, EventArgs e)
         {          
             this.hijoCrearCaja = new CrearCaja(miBanco, miBanco.usuarioActual);
+            this.hijoCrearCaja.confirmBorrarEvento += confirmoBorrarDelegado;
             hijoCrearCaja.Show();
         }
 
