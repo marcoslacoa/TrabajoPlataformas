@@ -78,22 +78,20 @@ namespace TrabajoPlataformas
         {
             //borro los datos
             dataGridView1.Rows.Clear();
-            
-           
-            foreach(CajaAhorro caja in miBanco.obtenerCajasDelUsuario()) 
-                {
+
+
+            foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
+            {
                 //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
                 //dataGridView1.Rows.Add(arr);
-                    dataGridView1.Rows.Add(caja.toArray());
+                dataGridView1.Rows.Add(caja.toArray());
 
-                // Mostrar solo 1 dato con el refresh
-                comboBoxCbu.Items.Add(caja.cbu);
-                /*if (comboBoxCbu.Items.Contains(caja.cbu)) {
-                    return;
-                } else
+
+                if (!comboBoxCbu.Items.Contains(caja.cbu))
                 {
-                   
-                }*/
+                    comboBoxCbu.Items.Add(caja.cbu);
+                    comboBoxCbuDestino.Items.Add(caja.cbu);
+                }
 
             }
             foreach (CajaAhorro caja in miBanco.cajasList)
