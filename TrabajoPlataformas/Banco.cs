@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
@@ -26,13 +27,15 @@ namespace TrabajoPlataformas
         
         public List <CajaAhorro> obtenerCajasDelUsuario()
         {
-
             return this.usuarioActual.listaCajas.ToList(); 
-
         }
         public List<PlazoFijo> obtenerPlazosDelUsuario()
         {
             return this.usuarioActual.plazoFijo.ToList();
+        }
+        public List<TarjetaCredito> obtenerTarjetasDelUsuario()
+        {
+            return this.usuarioActual.tarjetas.ToList();
         }
         public Banco()
         {
@@ -174,17 +177,17 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool bajaPlazo(int id)
+        public bool bajaPlazo(PlazoFijo plazo)
         {
-            PlazoFijo aEliminar = plazosFijos[id];
+            PlazoFijo plazaToRemove = this.plazosFijos.First(x => x.titular == plazo.titular);
             try
             {
-                plazosFijos[id] = null;
+                if (plazaToRemove != null)
+                    usuarioActual.plazoFijo.Remove(plazaToRemove);
                 return true;
             }
-            catch (Exception)
+            catch
             {
-                plazosFijos[id] = aEliminar;
                 return false;
             }
         }
@@ -269,20 +272,20 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool bajaMovimiento(int id)
+        /*public bool bajaMovimiento(Movimiento mov)
         {
-            Movimiento aEliminar = movimientos[id];
+            Movimiento movToRemove = this.movimientos.First(x => x.detalle == mov.detalle);
             try
             {
-                movimientos[id] = null;
+                if (movToRemove != null)
+                    usuarioActual.movimientos.Remove(movToRemove);
                 return true;
             }
-            catch (Exception)
+            catch
             {
-                movimientos[id] = aEliminar;
                 return false;
             }
-        }
+        }*/
 
         public bool modificarMovimiento(int id, CajaAhorro caja, string detalle, float monto, DateTime fecha)
         {
@@ -316,17 +319,17 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool bajaTarjeta(int id)
+        public bool bajaTarjeta(TarjetaCredito tarjeta)
         {
-            TarjetaCredito aEliminar = tarjetas[id];
+            TarjetaCredito tarjetaToRemove = this.tarjetas.First(x => x.numero == tarjeta.numero);
             try
             {
-                tarjetas[id] = null;
+                if (tarjetaToRemove != null)
+                    usuarioActual.tarjetas.Remove(tarjetaToRemove);
                 return true;
             }
-            catch (Exception)
+            catch
             {
-                tarjetas[id] = aEliminar;
                 return false;
             }
         }
@@ -354,6 +357,7 @@ namespace TrabajoPlataformas
             bool encontrar = false;
                     foreach (Usuario user in userList)
                     {
+                     MessageBox.Show(user.getNombre());
                                 if (user.nombre.Equals(usuario) && user.contra.Equals(pass) && !user.bloqueado) { 
                                 this.usuarioActual = user;
                                 //usuarioActual.listaCajas = new List<CajaAhorro>(cajasList) ; 
