@@ -88,6 +88,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -125,6 +126,7 @@
             // 
             this.tabPage1.Controls.Add(this.buttonConfirmar);
             this.tabPage1.Controls.Add(this.cbuDesitinoLabel);
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.comboBoxCbuDestino);
             this.tabPage1.Controls.Add(this.cbuLabel);
             this.tabPage1.Controls.Add(this.montoLabel);
@@ -210,7 +212,7 @@
             // 
             // crearcaja
             // 
-            this.crearcaja.Location = new System.Drawing.Point(465, 227);
+            this.crearcaja.Location = new System.Drawing.Point(465, 180);
             this.crearcaja.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.crearcaja.Name = "crearcaja";
             this.crearcaja.Size = new System.Drawing.Size(136, 31);
@@ -221,7 +223,7 @@
             // 
             // transferir
             // 
-            this.transferir.Location = new System.Drawing.Point(465, 177);
+            this.transferir.Location = new System.Drawing.Point(466, 141);
             this.transferir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.transferir.Name = "transferir";
             this.transferir.Size = new System.Drawing.Size(136, 31);
@@ -232,7 +234,7 @@
             // 
             // depositar
             // 
-            this.depositar.Location = new System.Drawing.Point(466, 128);
+            this.depositar.Location = new System.Drawing.Point(466, 102);
             this.depositar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.depositar.Name = "depositar";
             this.depositar.Size = new System.Drawing.Size(136, 31);
@@ -243,7 +245,7 @@
             // 
             // retirar
             // 
-            this.retirar.Location = new System.Drawing.Point(466, 77);
+            this.retirar.Location = new System.Drawing.Point(466, 63);
             this.retirar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.retirar.Name = "retirar";
             this.retirar.Size = new System.Drawing.Size(136, 31);
@@ -255,7 +257,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(466, 21);
+            this.button2.Location = new System.Drawing.Point(465, 21);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 35);
             this.button2.TabIndex = 1;
@@ -294,6 +296,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.comboBox2);
             this.tabPage2.Controls.Add(this.dateTimePicker1);
@@ -314,7 +317,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 395);
+            this.label6.Location = new System.Drawing.Point(11, 395);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 20);
             this.label6.TabIndex = 11;
@@ -323,12 +326,12 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(358, 315);
+            this.comboBox2.Location = new System.Drawing.Point(355, 315);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(180, 28);
             this.comboBox2.TabIndex = 10;
-            this.comboBox2.Text = "CBU";
+            this.comboBox2.Text = "Plazo Fijo";
             // 
             // dateTimePicker1
             // 
@@ -360,7 +363,7 @@
             // 
             // BorrarPlazo
             // 
-            this.BorrarPlazo.Location = new System.Drawing.Point(358, 279);
+            this.BorrarPlazo.Location = new System.Drawing.Point(355, 279);
             this.BorrarPlazo.Name = "BorrarPlazo";
             this.BorrarPlazo.Size = new System.Drawing.Size(94, 29);
             this.BorrarPlazo.TabIndex = 3;
@@ -667,9 +670,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(346, 40);
+            this.button1.Location = new System.Drawing.Point(466, 218);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 29);
+            this.button1.Size = new System.Drawing.Size(136, 29);
             this.button1.TabIndex = 7;
             this.button1.Text = "Mostrar Datos";
             this.button1.UseVisualStyleBackColor = true;
@@ -678,7 +681,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(266, 40);
+            this.label2.Location = new System.Drawing.Point(254, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 20);
             this.label2.TabIndex = 6;
@@ -705,6 +708,16 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(355, 390);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(180, 29);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "Mostrar Datos";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -713,7 +726,6 @@
             this.ClientSize = new System.Drawing.Size(914, 800);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -803,5 +815,6 @@
         private ComboBox comboBoxCbuPlazo;
         private ComboBox comboBox2;
         private Label label6;
+        private Button button3;
     }
 }

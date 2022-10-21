@@ -80,7 +80,6 @@ namespace TrabajoPlataformas
         {
             //borro los datos
             dataGridView1.Rows.Clear();
-            dataGridView2.Columns.Clear();
             comboBoxCbu.Items.Clear();
             comboBoxCbuDestino.Items.Clear();
 
@@ -94,6 +93,7 @@ namespace TrabajoPlataformas
                 if (!comboBoxCbu.Items.Contains(caja.cbu))
                 {                  
                     comboBoxCbu.Items.Add(caja.cbu);
+                    comboBoxCbuPlazo.Items.Add(caja.cbu);
                 }
 
             }
@@ -107,22 +107,25 @@ namespace TrabajoPlataformas
                     }
                 }
             }
-            /*foreach (PlazoFijo plazo in miBanco.obtenerPlazosDelUsuario())
+           
+
+        }
+
+        public void refreshPlazos()
+        {
+            dataGridView2.Rows.Clear();
+            comboBoxCbuPlazo.Items.Clear();
+            foreach (PlazoFijo plazo in miBanco.obtenerPlazosDelUsuario())
             {
-                if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
-                    dataGridView1.Rows.Add(plazo.toArray());
-
-                if (!comboBoxCbuPlazo.Items.Contains(plazo.titular.nombre))
-                 {
-                    comboBoxCbuDestino.Items.Add(plazo.titular.nombre);
-                 }
-            }*/
-
+               if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
+                   dataGridView1.Rows.Add(plazo.toArray());
+              
+            }
         }
 
         private void confirmoBorrarDelegado()
         {
-            refreshData();
+            refreshData();            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -280,12 +283,18 @@ namespace TrabajoPlataformas
                 DateTime fechaIni = DateTime.Now;
                 int tasa = 0;
                 miBanco.altaPlazo(miBanco.usuarioActual, caja, monto, fechaIni, dateTimePicker1, tasa, false);
+                refreshPlazos();
             }
         }
 
         private void BorrarPlazo_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            refreshPlazos();
         }
     }
 
