@@ -97,7 +97,7 @@ namespace TrabajoPlataformas
                 }
 
             }
-            foreach (CajaAhorro caja in miBanco.cajasList.ToList())
+            foreach (CajaAhorro caja in miBanco.obtenerCajas()) // banco.cajasList.ToList();
             {
                 // print every caja inside the list except the ones that belongs to the user
                 if (!miBanco.obtenerCajasDelUsuario().Contains(caja))
@@ -108,7 +108,9 @@ namespace TrabajoPlataformas
                     }
                 }
             }
-            /*foreach (PlazoFijo plazo in miBanco.obtenerPlazosDelUsuario())
+            // for each user in miBanco.obtenerUsuarios (except the current user) add the name to comboBoxTitular
+            
+            /*
             {
                 if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
                     dataGridView1.Rows.Add(plazo.toArray());
@@ -118,6 +120,7 @@ namespace TrabajoPlataformas
                     comboBoxCbuDestino.Items.Add(plazo.titular.nombre);
                  }
             }*/
+            
 
         }
 

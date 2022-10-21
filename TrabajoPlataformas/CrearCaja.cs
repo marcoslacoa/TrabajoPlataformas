@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,6 +43,9 @@ namespace TrabajoPlataformas
                     saldoCaja = float.Parse(saldo.Text);
                     banco.crearCajaAhorro(cbuCaja, saldoCaja);
                     break;
+                case 2:
+                   
+                    break;
                 case 3:                   
                     int cbuenInt = Convert.ToInt32(comboBoxCaja.SelectedItem);
                     CajaAhorro caja = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
@@ -68,15 +72,25 @@ namespace TrabajoPlataformas
             comboBoxTitular.Visible = false;
             buttonAgregar.Visible = false;
             buttonBorrar.Visible = false;
-            cbu.Text = "" + cbuCaja;
-            cbu.ReadOnly = true;
-            saldo.Text = "0";
-            saldo.ReadOnly = true;
+            label3.Visible = false;
+            cbu.Visible = false;
+            saldo.Visible = false;
+            label1.Visible = false;
+            label2.Visible = false;
+            buttonAgregar.Visible = false;
+            buttonBorrar.Visible = false;
+            
             foreach (CajaAhorro caja in banco.obtenerCajasDelUsuario())
             {
                 comboBoxCaja.Items.Add(caja.cbu);
                 /* comboBoxTitular.Items.Add(caja.titulares);*/
+                
             }
+            // for each titular in caja.titulares agregar a comboBoxTitular excepto el usuario logueado
+
+            
+           
+
         }
 
         private void saldo_TextChanged(object sender, EventArgs e)
@@ -102,11 +116,17 @@ namespace TrabajoPlataformas
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             cbu.Visible = true;
+            label1.Visible = true;
             label2.Visible = true;
             saldo.Visible = true;
             comboBoxCaja.Visible = false;
             labelTitular.Visible = false;
+            cbu.Text = "" + cbuCaja;
+            cbu.ReadOnly = true;
+            saldo.Text = "0";
+            saldo.ReadOnly = true;
             comboBoxTitular.Visible = false;
             buttonAgregar.Visible = false;
             buttonBorrar.Visible = false;
@@ -118,21 +138,28 @@ namespace TrabajoPlataformas
         {
             cbu.Visible = false;
             label2.Visible = false;
+            label1.Visible = true;
             saldo.Visible = false;
             comboBoxCaja.Visible = true;
-            labelTitular.Visible = true;
-            comboBoxTitular.Visible = true;
+            //labelTitular.Visible = true;
+            //comboBoxTitular.Visible = true;
             buttonAgregar.Visible = true;
             buttonBorrar.Visible = true;
             confirmar.Visible = false;
+            //foreach (Usuario user in banco.obtenerCajasDelUsuario().First().titulares.ToList()) // podria ser obtenertitulares de caja.
+            //{
+
+            //    comboBoxTitular.Items.Add(user.dni.ToString());
+            //}
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
 
             cbu.Visible = false;
-            label2.Visible = true;
-            saldo.Visible = true;
+            label2.Visible = false;
+            saldo.Visible = false;
+            label1.Visible = true;
             comboBoxCaja.Visible = true;
             labelTitular.Visible = false;
             comboBoxTitular.Visible = false;
@@ -145,10 +172,33 @@ namespace TrabajoPlataformas
 
         private void buttonAgregar_Click(object sender, EventArgs e)
         {
-
+            // for each Usuario in banco.obtenerUsuarios() agregar a comboBoxTitular excepto el usuario logueado
+            // agregar el titular seleccionado a comboBoxTitular
+            labelTitular.Visible = true;
+            comboBoxTitular.Visible = true;
+            foreach (Usuario user in banco.obtenerUsuarios())
+            {
+                if (user.dni != usuario.dni)
+                {
+                    comboBoxTitular.Items.Add(user.dni);
+                }
+            }
         }
 
         private void buttonBorrar_Click(object sender, EventArgs e)
+        {
+            labelTitular.Visible = true;
+            comboBoxTitular.Visible = true;
+            //foreach (Usuario user in banco.obtenerUsuarios())
+            //{
+            //    if (user.dni != usuario.dni)
+            //    {
+            //        comboBoxTitular.Items.Add(user.dni);
+            //    }
+            //}
+        }
+
+        private void comboBoxTitular_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

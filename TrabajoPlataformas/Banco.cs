@@ -53,6 +53,7 @@ namespace TrabajoPlataformas
             {
                 Usuario nuevo = new Usuario(nombre, apellido, dni, mail, contra, bloqueado);
                 userList.Add(nuevo);
+                
                 return true;
             }
             catch (Exception)
@@ -352,8 +353,11 @@ namespace TrabajoPlataformas
         public bool iniciarSesion(string usuario, string pass)
         {
             bool encontrar = false;
-                    foreach (Usuario user in userList)
+            // Message box the list of all users
+           
+            foreach (Usuario user in userList)
                     {
+                MessageBox.Show(user.getNombre());
                                 if (user.nombre.Equals(usuario) && user.contra.Equals(pass) && !user.bloqueado) { 
                                 this.usuarioActual = user;
                                 //usuarioActual.listaCajas = new List<CajaAhorro>(cajasList) ; 
@@ -366,8 +370,8 @@ namespace TrabajoPlataformas
                                     if (user.intentosFallidos > 3)
                                     {
                                         user.bloqueado = true;
-
-                                    }
+                                MessageBox.Show("Se ha bloqueado al usuario " + user.nombre, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                                 } else
                                 {
                                     encontrar = false;

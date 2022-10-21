@@ -35,17 +35,17 @@ namespace TrabajoPlataformas
             this.hijoLogin.Show();
             touched = false;
         }
-        private void loginDelegado(string Usuario, string Pass) // DELEGADO PARA INICIAR SESION 
+        private void loginDelegado(string usuario, string pass) // DELEGADO PARA INICIAR SESION 
         {
-            this.usuario = Usuario;
-            this.pass = Pass;
+            this.usuario = usuario;
+            this.pass = pass;
            
             if (banco.iniciarSesion(usuario, pass))
             {
                 MessageBox.Show("Inicio de sesión correcto, Usuario: " + usuario, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                hijoMain = new FormMain(usuario, banco);
+                hijoMain = new FormMain(this.usuario, banco);
                 this.hijoMain.cerrarsesionEvento += cerrarsesion;
-                hijoMain.usuario = Usuario;
+                hijoMain.usuario = this.usuario;
                 hijoMain.MdiParent = this;
                 // Transfevento para cerrar y volver al padre.
                 hijoLogin.Hide();
@@ -53,16 +53,14 @@ namespace TrabajoPlataformas
             }
             else // osea si dio false el metodo IniciarSesion
             {
-                
-                
                 //aca falta preguntar si esta bloqueado
-                foreach (Usuario user in banco.obtenerUsuarios())
-                {
-                    if (user.nombre == this.usuario && user.bloqueado)
-                    {
-                        MessageBox.Show("Se ha bloqueado al usuario " + user.nombre, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                //foreach (Usuario user in banco.obtenerUsuarios())
+                //{
+                //    if (user.nombre == this.usuario && user.bloqueado)
+                //    {
+                //        MessageBox.Show("Se ha bloqueado al usuario " + user.nombre, "titulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    }
+                //}
                 MessageBox.Show("Log in incorrecto", "titulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 hijoLogin.Show();
             }
