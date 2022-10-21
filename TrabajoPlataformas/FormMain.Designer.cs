@@ -31,9 +31,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPageCaja = new System.Windows.Forms.TabPage();
             this.buttonConfirmar = new System.Windows.Forms.Button();
             this.cbuDesitinoLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.comboBoxCbuDestino = new System.Windows.Forms.ComboBox();
             this.cbuLabel = new System.Windows.Forms.Label();
             this.montoLabel = new System.Windows.Forms.Label();
@@ -47,7 +48,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPagePlazo = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -60,7 +62,7 @@
             this.FIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TASA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CrearPlazo = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPagePagos = new System.Windows.Forms.TabPage();
             this.comboBoxPagos = new System.Windows.Forms.ComboBox();
             this.comboBoxCbuPagos = new System.Windows.Forms.ComboBox();
             this.comboBoxTarjetaPagos = new System.Windows.Forms.ComboBox();
@@ -77,26 +79,34 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
+            this.tabPageTarjetas = new System.Windows.Forms.TabPage();
+            this.buttonCrearTarjeta = new System.Windows.Forms.Button();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LIMITE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CONSUMOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.textBoxNumeroTarjeta = new System.Windows.Forms.TextBox();
+            this.textBoxCVCTarjeta = new System.Windows.Forms.TextBox();
+            this.textBoxLimiteTarjeta = new System.Windows.Forms.TextBox();
+            this.comboBoxTarjetaBorrar = new System.Windows.Forms.ComboBox();
+            this.buttonBorrarTarjeta = new System.Windows.Forms.Button();
+            this.buttonPagarTarjeta = new System.Windows.Forms.Button();
+            this.comboBoxTarjetaPagar = new System.Windows.Forms.ComboBox();
+            this.comboBoxCbuPagar = new System.Windows.Forms.ComboBox();
+            this.buttonMostrarDatosTarjeta = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPageCaja.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.tabPagePlazo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tabPagePagos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            this.tabPage4.SuspendLayout();
+            this.tabPageTarjetas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,39 +121,40 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPageCaja);
+            this.tabControl1.Controls.Add(this.tabPagePlazo);
+            this.tabControl1.Controls.Add(this.tabPagePagos);
+            this.tabControl1.Controls.Add(this.tabPageTarjetas);
             this.tabControl1.Location = new System.Drawing.Point(97, 97);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(621, 476);
             this.tabControl1.TabIndex = 8;
             // 
-            // tabPage1
+            // tabPageCaja
             // 
-            this.tabPage1.Controls.Add(this.buttonConfirmar);
-            this.tabPage1.Controls.Add(this.cbuDesitinoLabel);
-            this.tabPage1.Controls.Add(this.comboBoxCbuDestino);
-            this.tabPage1.Controls.Add(this.cbuLabel);
-            this.tabPage1.Controls.Add(this.montoLabel);
-            this.tabPage1.Controls.Add(this.textMonto);
-            this.tabPage1.Controls.Add(this.comboBoxCbu);
-            this.tabPage1.Controls.Add(this.crearcaja);
-            this.tabPage1.Controls.Add(this.transferir);
-            this.tabPage1.Controls.Add(this.depositar);
-            this.tabPage1.Controls.Add(this.retirar);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(613, 443);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Caja de Ahorro";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            this.tabPageCaja.Controls.Add(this.buttonConfirmar);
+            this.tabPageCaja.Controls.Add(this.cbuDesitinoLabel);
+            this.tabPageCaja.Controls.Add(this.button1);
+            this.tabPageCaja.Controls.Add(this.comboBoxCbuDestino);
+            this.tabPageCaja.Controls.Add(this.cbuLabel);
+            this.tabPageCaja.Controls.Add(this.montoLabel);
+            this.tabPageCaja.Controls.Add(this.textMonto);
+            this.tabPageCaja.Controls.Add(this.comboBoxCbu);
+            this.tabPageCaja.Controls.Add(this.crearcaja);
+            this.tabPageCaja.Controls.Add(this.transferir);
+            this.tabPageCaja.Controls.Add(this.depositar);
+            this.tabPageCaja.Controls.Add(this.retirar);
+            this.tabPageCaja.Controls.Add(this.button2);
+            this.tabPageCaja.Controls.Add(this.dataGridView1);
+            this.tabPageCaja.Location = new System.Drawing.Point(4, 29);
+            this.tabPageCaja.Name = "tabPageCaja";
+            this.tabPageCaja.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCaja.Size = new System.Drawing.Size(613, 443);
+            this.tabPageCaja.TabIndex = 0;
+            this.tabPageCaja.Text = "Caja de Ahorro";
+            this.tabPageCaja.UseVisualStyleBackColor = true;
+            this.tabPageCaja.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // buttonConfirmar
             // 
@@ -165,6 +176,16 @@
             this.cbuDesitinoLabel.TabIndex = 11;
             this.cbuDesitinoLabel.Text = "CBU Destino";
             this.cbuDesitinoLabel.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(466, 218);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 29);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Mostrar Datos";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBoxCbuDestino
             // 
@@ -210,7 +231,7 @@
             // 
             // crearcaja
             // 
-            this.crearcaja.Location = new System.Drawing.Point(465, 227);
+            this.crearcaja.Location = new System.Drawing.Point(465, 180);
             this.crearcaja.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.crearcaja.Name = "crearcaja";
             this.crearcaja.Size = new System.Drawing.Size(136, 31);
@@ -221,7 +242,7 @@
             // 
             // transferir
             // 
-            this.transferir.Location = new System.Drawing.Point(465, 177);
+            this.transferir.Location = new System.Drawing.Point(466, 141);
             this.transferir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.transferir.Name = "transferir";
             this.transferir.Size = new System.Drawing.Size(136, 31);
@@ -232,7 +253,7 @@
             // 
             // depositar
             // 
-            this.depositar.Location = new System.Drawing.Point(466, 128);
+            this.depositar.Location = new System.Drawing.Point(466, 102);
             this.depositar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.depositar.Name = "depositar";
             this.depositar.Size = new System.Drawing.Size(136, 31);
@@ -243,7 +264,7 @@
             // 
             // retirar
             // 
-            this.retirar.Location = new System.Drawing.Point(466, 77);
+            this.retirar.Location = new System.Drawing.Point(466, 63);
             this.retirar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.retirar.Name = "retirar";
             this.retirar.Size = new System.Drawing.Size(136, 31);
@@ -255,7 +276,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(466, 21);
+            this.button2.Location = new System.Drawing.Point(465, 21);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 35);
             this.button2.TabIndex = 1;
@@ -292,29 +313,40 @@
             this.Column2.ReadOnly = true;
             this.Column2.Width = 125;
             // 
-            // tabPage2
+            // tabPagePlazo
             // 
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.comboBox2);
-            this.tabPage2.Controls.Add(this.dateTimePicker1);
-            this.tabPage2.Controls.Add(this.MontoInsertPlazo);
-            this.tabPage2.Controls.Add(this.comboBoxCbuPlazo);
-            this.tabPage2.Controls.Add(this.BorrarPlazo);
-            this.tabPage2.Controls.Add(this.dataGridView2);
-            this.tabPage2.Controls.Add(this.CrearPlazo);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(613, 443);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Plazo Fijo";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            this.tabPagePlazo.Controls.Add(this.button3);
+            this.tabPagePlazo.Controls.Add(this.label6);
+            this.tabPagePlazo.Controls.Add(this.comboBox2);
+            this.tabPagePlazo.Controls.Add(this.dateTimePicker1);
+            this.tabPagePlazo.Controls.Add(this.MontoInsertPlazo);
+            this.tabPagePlazo.Controls.Add(this.comboBoxCbuPlazo);
+            this.tabPagePlazo.Controls.Add(this.BorrarPlazo);
+            this.tabPagePlazo.Controls.Add(this.dataGridView2);
+            this.tabPagePlazo.Controls.Add(this.CrearPlazo);
+            this.tabPagePlazo.Location = new System.Drawing.Point(4, 29);
+            this.tabPagePlazo.Name = "tabPagePlazo";
+            this.tabPagePlazo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPagePlazo.Size = new System.Drawing.Size(613, 443);
+            this.tabPagePlazo.TabIndex = 1;
+            this.tabPagePlazo.Text = "Plazo Fijo";
+            this.tabPagePlazo.UseVisualStyleBackColor = true;
+            this.tabPagePlazo.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(355, 390);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(180, 29);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "Mostrar Datos";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 395);
+            this.label6.Location = new System.Drawing.Point(11, 395);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 20);
             this.label6.TabIndex = 11;
@@ -323,12 +355,12 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(358, 315);
+            this.comboBox2.Location = new System.Drawing.Point(355, 315);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(180, 28);
             this.comboBox2.TabIndex = 10;
-            this.comboBox2.Text = "CBU";
+            this.comboBox2.Text = "Plazo Fijo";
             // 
             // dateTimePicker1
             // 
@@ -360,7 +392,7 @@
             // 
             // BorrarPlazo
             // 
-            this.BorrarPlazo.Location = new System.Drawing.Point(358, 279);
+            this.BorrarPlazo.Location = new System.Drawing.Point(355, 279);
             this.BorrarPlazo.Name = "BorrarPlazo";
             this.BorrarPlazo.Size = new System.Drawing.Size(94, 29);
             this.BorrarPlazo.TabIndex = 3;
@@ -423,26 +455,26 @@
             this.CrearPlazo.UseVisualStyleBackColor = true;
             this.CrearPlazo.Click += new System.EventHandler(this.CrearPlazo_Click);
             // 
-            // tabPage3
+            // tabPagePagos
             // 
-            this.tabPage3.Controls.Add(this.comboBoxPagos);
-            this.tabPage3.Controls.Add(this.comboBoxCbuPagos);
-            this.tabPage3.Controls.Add(this.comboBoxTarjetaPagos);
-            this.tabPage3.Controls.Add(this.buttonConfirmarPago);
-            this.tabPage3.Controls.Add(this.labelNumeroPagos);
-            this.tabPage3.Controls.Add(this.labelMontoPagos);
-            this.tabPage3.Controls.Add(this.dataGridView3);
-            this.tabPage3.Controls.Add(this.dataGridView4);
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.button7);
-            this.tabPage3.Controls.Add(this.button6);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(613, 443);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Pagos";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPagePagos.Controls.Add(this.comboBoxPagos);
+            this.tabPagePagos.Controls.Add(this.comboBoxCbuPagos);
+            this.tabPagePagos.Controls.Add(this.comboBoxTarjetaPagos);
+            this.tabPagePagos.Controls.Add(this.buttonConfirmarPago);
+            this.tabPagePagos.Controls.Add(this.labelNumeroPagos);
+            this.tabPagePagos.Controls.Add(this.labelMontoPagos);
+            this.tabPagePagos.Controls.Add(this.dataGridView3);
+            this.tabPagePagos.Controls.Add(this.dataGridView4);
+            this.tabPagePagos.Controls.Add(this.label5);
+            this.tabPagePagos.Controls.Add(this.label4);
+            this.tabPagePagos.Controls.Add(this.button7);
+            this.tabPagePagos.Controls.Add(this.button6);
+            this.tabPagePagos.Location = new System.Drawing.Point(4, 29);
+            this.tabPagePagos.Name = "tabPagePagos";
+            this.tabPagePagos.Size = new System.Drawing.Size(613, 443);
+            this.tabPagePagos.TabIndex = 2;
+            this.tabPagePagos.Text = "Pagos";
+            this.tabPagePagos.UseVisualStyleBackColor = true;
             // 
             // comboBoxPagos
             // 
@@ -597,25 +629,36 @@
             this.button6.Text = "ADMINISTRAR PAGOS";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // tabPageTarjetas
             // 
-            this.tabPage4.Controls.Add(this.button5);
-            this.tabPage4.Controls.Add(this.dataGridView5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(613, 443);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Tarjetas";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPageTarjetas.Controls.Add(this.buttonMostrarDatosTarjeta);
+            this.tabPageTarjetas.Controls.Add(this.comboBoxCbuPagar);
+            this.tabPageTarjetas.Controls.Add(this.comboBoxTarjetaPagar);
+            this.tabPageTarjetas.Controls.Add(this.buttonPagarTarjeta);
+            this.tabPageTarjetas.Controls.Add(this.buttonBorrarTarjeta);
+            this.tabPageTarjetas.Controls.Add(this.comboBoxTarjetaBorrar);
+            this.tabPageTarjetas.Controls.Add(this.textBoxLimiteTarjeta);
+            this.tabPageTarjetas.Controls.Add(this.textBoxCVCTarjeta);
+            this.tabPageTarjetas.Controls.Add(this.textBoxNumeroTarjeta);
+            this.tabPageTarjetas.Controls.Add(this.buttonCrearTarjeta);
+            this.tabPageTarjetas.Controls.Add(this.dataGridView5);
+            this.tabPageTarjetas.Location = new System.Drawing.Point(4, 29);
+            this.tabPageTarjetas.Name = "tabPageTarjetas";
+            this.tabPageTarjetas.Size = new System.Drawing.Size(613, 443);
+            this.tabPageTarjetas.TabIndex = 3;
+            this.tabPageTarjetas.Text = "Tarjetas";
+            this.tabPageTarjetas.UseVisualStyleBackColor = true;
+            this.tabPageTarjetas.Click += new System.EventHandler(this.tabPageTarjetas_Click);
             // 
-            // button5
+            // buttonCrearTarjeta
             // 
-            this.button5.Location = new System.Drawing.Point(3, 268);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(174, 59);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "ADMINISTRAR TARJETAS";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonCrearTarjeta.Location = new System.Drawing.Point(16, 243);
+            this.buttonCrearTarjeta.Name = "buttonCrearTarjeta";
+            this.buttonCrearTarjeta.Size = new System.Drawing.Size(174, 62);
+            this.buttonCrearTarjeta.TabIndex = 2;
+            this.buttonCrearTarjeta.Text = "Crear Tarjeta";
+            this.buttonCrearTarjeta.UseVisualStyleBackColor = true;
+            this.buttonCrearTarjeta.Click += new System.EventHandler(this.buttonCrearTarjeta_Click);
             // 
             // dataGridView5
             // 
@@ -629,7 +672,7 @@
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersWidth = 51;
             this.dataGridView5.RowTemplate.Height = 29;
-            this.dataGridView5.Size = new System.Drawing.Size(551, 259);
+            this.dataGridView5.Size = new System.Drawing.Size(599, 224);
             this.dataGridView5.TabIndex = 1;
             this.dataGridView5.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellContentClick);
             // 
@@ -665,20 +708,10 @@
             this.CONSUMOS.ReadOnly = true;
             this.CONSUMOS.Width = 125;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(346, 40);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 29);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Mostrar Datos";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(266, 40);
+            this.label2.Location = new System.Drawing.Point(254, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 20);
             this.label2.TabIndex = 6;
@@ -705,6 +738,87 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // textBoxNumeroTarjeta
+            // 
+            this.textBoxNumeroTarjeta.Location = new System.Drawing.Point(16, 318);
+            this.textBoxNumeroTarjeta.Name = "textBoxNumeroTarjeta";
+            this.textBoxNumeroTarjeta.Size = new System.Drawing.Size(174, 27);
+            this.textBoxNumeroTarjeta.TabIndex = 3;
+            this.textBoxNumeroTarjeta.Text = "Numero";
+            // 
+            // textBoxCVCTarjeta
+            // 
+            this.textBoxCVCTarjeta.Location = new System.Drawing.Point(16, 396);
+            this.textBoxCVCTarjeta.Name = "textBoxCVCTarjeta";
+            this.textBoxCVCTarjeta.Size = new System.Drawing.Size(174, 27);
+            this.textBoxCVCTarjeta.TabIndex = 4;
+            this.textBoxCVCTarjeta.Text = "CVC";
+            // 
+            // textBoxLimiteTarjeta
+            // 
+            this.textBoxLimiteTarjeta.Location = new System.Drawing.Point(16, 360);
+            this.textBoxLimiteTarjeta.Name = "textBoxLimiteTarjeta";
+            this.textBoxLimiteTarjeta.Size = new System.Drawing.Size(174, 27);
+            this.textBoxLimiteTarjeta.TabIndex = 5;
+            this.textBoxLimiteTarjeta.Text = "Limite";
+            // 
+            // comboBoxTarjetaBorrar
+            // 
+            this.comboBoxTarjetaBorrar.FormattingEnabled = true;
+            this.comboBoxTarjetaBorrar.Location = new System.Drawing.Point(408, 317);
+            this.comboBoxTarjetaBorrar.Name = "comboBoxTarjetaBorrar";
+            this.comboBoxTarjetaBorrar.Size = new System.Drawing.Size(174, 28);
+            this.comboBoxTarjetaBorrar.TabIndex = 7;
+            this.comboBoxTarjetaBorrar.Text = "Tarjeta";
+            // 
+            // buttonBorrarTarjeta
+            // 
+            this.buttonBorrarTarjeta.Location = new System.Drawing.Point(408, 243);
+            this.buttonBorrarTarjeta.Name = "buttonBorrarTarjeta";
+            this.buttonBorrarTarjeta.Size = new System.Drawing.Size(174, 62);
+            this.buttonBorrarTarjeta.TabIndex = 8;
+            this.buttonBorrarTarjeta.Text = "Borrar Tarjeta";
+            this.buttonBorrarTarjeta.UseVisualStyleBackColor = true;
+            this.buttonBorrarTarjeta.Click += new System.EventHandler(this.buttonBorrarTarjeta_Click);
+            // 
+            // buttonPagarTarjeta
+            // 
+            this.buttonPagarTarjeta.Location = new System.Drawing.Point(210, 243);
+            this.buttonPagarTarjeta.Name = "buttonPagarTarjeta";
+            this.buttonPagarTarjeta.Size = new System.Drawing.Size(174, 62);
+            this.buttonPagarTarjeta.TabIndex = 9;
+            this.buttonPagarTarjeta.Text = "Pagar Tarjeta";
+            this.buttonPagarTarjeta.UseVisualStyleBackColor = true;
+            this.buttonPagarTarjeta.Click += new System.EventHandler(this.buttonPagarTarjeta_Click);
+            // 
+            // comboBoxTarjetaPagar
+            // 
+            this.comboBoxTarjetaPagar.FormattingEnabled = true;
+            this.comboBoxTarjetaPagar.Location = new System.Drawing.Point(210, 318);
+            this.comboBoxTarjetaPagar.Name = "comboBoxTarjetaPagar";
+            this.comboBoxTarjetaPagar.Size = new System.Drawing.Size(174, 28);
+            this.comboBoxTarjetaPagar.TabIndex = 10;
+            this.comboBoxTarjetaPagar.Text = "Tarjeta";
+            // 
+            // comboBoxCbuPagar
+            // 
+            this.comboBoxCbuPagar.FormattingEnabled = true;
+            this.comboBoxCbuPagar.Location = new System.Drawing.Point(210, 360);
+            this.comboBoxCbuPagar.Name = "comboBoxCbuPagar";
+            this.comboBoxCbuPagar.Size = new System.Drawing.Size(174, 28);
+            this.comboBoxCbuPagar.TabIndex = 11;
+            this.comboBoxCbuPagar.Text = "CBU";
+            // 
+            // buttonMostrarDatosTarjeta
+            // 
+            this.buttonMostrarDatosTarjeta.Location = new System.Drawing.Point(408, 396);
+            this.buttonMostrarDatosTarjeta.Name = "buttonMostrarDatosTarjeta";
+            this.buttonMostrarDatosTarjeta.Size = new System.Drawing.Size(174, 29);
+            this.buttonMostrarDatosTarjeta.TabIndex = 12;
+            this.buttonMostrarDatosTarjeta.Text = "Mostrar Datos";
+            this.buttonMostrarDatosTarjeta.UseVisualStyleBackColor = true;
+            this.buttonMostrarDatosTarjeta.Click += new System.EventHandler(this.buttonMostrarDatosTarjeta_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -713,7 +827,6 @@
             this.ClientSize = new System.Drawing.Size(914, 800);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -723,17 +836,18 @@
             this.Text = "Form3";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabPageCaja.ResumeLayout(false);
+            this.tabPageCaja.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabPagePlazo.ResumeLayout(false);
+            this.tabPagePlazo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabPagePagos.ResumeLayout(false);
+            this.tabPagePagos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            this.tabPage4.ResumeLayout(false);
+            this.tabPageTarjetas.ResumeLayout(false);
+            this.tabPageTarjetas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -749,12 +863,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private TabControl tabControl1;
-        private TabPage tabPage1;
+        private TabPage tabPageCaja;
         private Button button2;
-        private TabPage tabPage2;
+        private TabPage tabPagePlazo;
         private Button CrearPlazo;
-        private TabPage tabPage3;
-        private TabPage tabPage4;
+        private TabPage tabPagePagos;
+        private TabPage tabPageTarjetas;
         private Label label3;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
@@ -775,7 +889,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn LIMITE;
         private DataGridViewTextBoxColumn CONSUMOS;
-        private Button button5;
+        private Button buttonCrearTarjeta;
         private Label label5;
         private Label label4;
         private Button button7;
@@ -803,5 +917,15 @@
         private ComboBox comboBoxCbuPlazo;
         private ComboBox comboBox2;
         private Label label6;
+        private Button button3;
+        private ComboBox comboBoxTarjetaPagar;
+        private Button buttonPagarTarjeta;
+        private Button buttonBorrarTarjeta;
+        private ComboBox comboBoxTarjetaBorrar;
+        private TextBox textBoxLimiteTarjeta;
+        private TextBox textBoxCVCTarjeta;
+        private TextBox textBoxNumeroTarjeta;
+        private ComboBox comboBoxCbuPagar;
+        private Button buttonMostrarDatosTarjeta;
     }
 }

@@ -23,5 +23,9 @@ namespace TrabajoPlataformas
             this.limite = Limite;
             this.consumos = Consumos;
         }
+        public string[] toArray()
+        {
+            return new string[] { numero.ToString(), codigoSeguridad.ToString(), limite.ToString(), consumos.ToString() };
+        }
     }
 }

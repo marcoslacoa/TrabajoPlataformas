@@ -25,6 +25,7 @@ namespace TrabajoPlataformas
         public cerrarsesion cerrarsesionEvento;
         public List<CajaAhorro> cajas;
         int numeroDeClick = 0;
+        int numeroDeTab = 0;
 
         public FormMain(string usuario, Banco b)
         {
@@ -80,7 +81,6 @@ namespace TrabajoPlataformas
         {
             //borro los datos
             dataGridView1.Rows.Clear();
-            dataGridView2.Columns.Clear();
             comboBoxCbu.Items.Clear();
             comboBoxCbuDestino.Items.Clear();
 
@@ -94,10 +94,11 @@ namespace TrabajoPlataformas
                 if (!comboBoxCbu.Items.Contains(caja.cbu))
                 {                  
                     comboBoxCbu.Items.Add(caja.cbu);
+                    comboBoxCbuPlazo.Items.Add(caja.cbu);
                 }
 
             }
-            foreach (CajaAhorro caja in miBanco.obtenerCajas()) // banco.cajasList.ToList();
+            foreach (CajaAhorro caja in miBanco.cajasList.ToList())
             {
                 // print every caja inside the list except the ones that belongs to the user
                 if (!miBanco.obtenerCajasDelUsuario().Contains(caja))
@@ -108,25 +109,36 @@ namespace TrabajoPlataformas
                     }
                 }
             }
-            // for each user in miBanco.obtenerUsuarios (except the current user) add the name to comboBoxTitular
-            
-            /*
+
+        }
+
+        public void refreshPlazos()
+        {
+            dataGridView2.Rows.Clear();
+            comboBoxCbuPlazo.Items.Clear();
+            foreach (PlazoFijo plazo in miBanco.obtenerPlazosDelUsuario())
             {
-                if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
-                    dataGridView1.Rows.Add(plazo.toArray());
+               if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
+                   dataGridView1.Rows.Add(plazo.toArray());
+              
+            }
+        }
 
-                if (!comboBoxCbuPlazo.Items.Contains(plazo.titular.nombre))
-                 {
-                    comboBoxCbuDestino.Items.Add(plazo.titular.nombre);
-                 }
-            }*/
-            
+        public void refreshTarjeta()
+        {
+            dataGridView5.Rows.Clear();
+            //comboBoxCbuPlazo.Items.Clear();
+            foreach (TarjetaCredito tarjeta in miBanco.obtenerTarjetasDelUsuario())
+            {
+                if (miBanco.obtenerTarjetasDelUsuario().Contains(tarjeta))
+                    dataGridView1.Rows.Add(tarjeta.toArray());
 
+            }
         }
 
         private void confirmoBorrarDelegado()
         {
-            refreshData();
+            refreshData();            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -192,6 +204,7 @@ namespace TrabajoPlataformas
 
         }
 
+        //Caja de Ahorro
         private void buttonConfirmar_Click(object sender, EventArgs e)
         {
             switch (numeroDeClick)
@@ -235,7 +248,6 @@ namespace TrabajoPlataformas
                         refreshData();
 
                     }
-
                     break;
             }
         }
@@ -275,6 +287,7 @@ namespace TrabajoPlataformas
 
         }
 
+        //Plazos fijos
         private void CrearPlazo_Click(object sender, EventArgs e)
         {
             if(comboBoxCbuPlazo.SelectedItem != null)
@@ -290,7 +303,66 @@ namespace TrabajoPlataformas
 
         private void BorrarPlazo_Click(object sender, EventArgs e)
         {
+            int cbuenInt = Convert.ToInt32(comboBox2.SelectedItem);
+            PlazoFijo plazo = miBanco.obtenerPlazosDelUsuario().First(x => x.monto == cbuenInt);
+            miBanco.bajaPlazo(plazo);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            refreshPlazos();
+        }
+
+        //Tarjetas
+        private void buttonCrearTarjeta_Click(object sender, EventArgs e)
+        {
+              int numero = int.Parse(textBoxNumeroTarjeta.Text);
+              int cvc = int.Parse(textBoxCVCTarjeta.Text);
+              int limite = int.Parse(textBoxLimiteTarjeta.Text);
+              
+              miBanco.altaTarjeta(miBanco.usuarioActual, numero, cvc, limite,//Pagos);
+        }
+
+        private void buttonPagarTarjeta_Click(object sender, EventArgs e)
+        {
+            if(comboBoxTarjetaPagar.SelectedItem != null && comboBoxCbuPagar.SelectedItem != null)
+            {
+                int cbuenIntTarjeta = Convert.ToInt32(comboBoxTarjetaPagar.SelectedItem);
+                int cbuenIntCaja = Convert.ToInt32(comboBoxCbuPagar.SelectedItem);
+                TarjetaCredito tarjeta = miBanco.obtenerTarjetasDelUsuario().First(x => x.numero == cbuenIntTarjeta);
+                CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenIntCaja);
+                miBanco.pagarTarjeta(tarjeta, caja);
+            } else
+            {
+                MessageBox.Show("Debes ingresar la tarjeta y el cbu para realiza el pago");
+            }
             
+            
+        }
+
+        private void buttonBorrarTarjeta_Click(object sender, EventArgs e)
+        {
+            if (comboBoxTarjetaBorrar.SelectedItem != null)
+            {
+                int cbuenInt = Convert.ToInt32(comboBoxTarjetaBorrar.SelectedItem);
+                TarjetaCredito tarjeta = miBanco.obtenerTarjetasDelUsuario().First(x => x.numero == cbuenInt);
+                miBanco.bajaTarjeta(tarjeta);
+            }
+            else
+            {
+                MessageBox.Show("Debes ingresar la tarjeta que queres borrar");
+            }
+            
+        }
+
+        private void tabPageTarjetas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonMostrarDatosTarjeta_Click(object sender, EventArgs e)
+        {
+            refreshTarjeta();
         }
     }
 
