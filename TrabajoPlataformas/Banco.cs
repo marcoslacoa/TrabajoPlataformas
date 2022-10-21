@@ -413,16 +413,30 @@ namespace TrabajoPlataformas
 
         public Movimiento transferir(CajaAhorro origen, CajaAhorro destino, float monto)
         {
+            MessageBox.Show("Se ha transferido " + monto);
             if (monto <= 0)
             {
-                throw new ApplicationException("Monto invalido");
+                MessageBox.Show("Monto invalido");
             }
-            origen.saldo -= monto;
-            destino.saldo += monto;
+            foreach (CajaAhorro caja in cajasList)
+            {
+                if (caja.cbu == origen.cbu)
+                {
+                    if (monto > caja.saldo)
+                    {
+                        MessageBox.Show("Saldo insuficiente");
+                    }
+                    caja.saldo -= monto;
+                }
+                if (caja.cbu == destino.cbu)
+                {
+                    caja.saldo += monto;
+                }
+            }
+           
             Movimiento movOrigen = new Movimiento(origen, "Transferencia", monto, DateTime.Now);
             Movimiento movDestino = new Movimiento(destino, "Transferencia", monto, DateTime.Now);
-            MessageBox.Show("Se ha transferido " + monto);
-
+            
             return movOrigen;
         }
 

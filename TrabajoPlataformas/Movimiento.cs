@@ -21,5 +21,8 @@ namespace TrabajoPlataformas
             this.monto = Monto;
             this.fecha = Fecha;
         }
+        public void toStringMovimiento() {
+            MessageBox.Show("Detalle: " + detalle + " Monto: " + monto + " Fecha: " + fecha);
+        }
     }
 }
