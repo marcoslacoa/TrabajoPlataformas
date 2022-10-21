@@ -49,7 +49,7 @@ namespace TrabajoPlataformas
                         MessageBox.Show("Porfavor retire todo su dinero ante de eliminar la caja.");
                     else
                     {
-                        banco.bajaCaja(caja.cbu);
+                        banco.bajaCaja(caja);
                         this.confirmBorrarEvento();
                     }
                     //Logica para borrar la caja

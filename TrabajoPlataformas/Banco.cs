@@ -126,10 +126,10 @@ namespace TrabajoPlataformas
         }
 
 
-        public bool bajaCaja(int cajacbu)
+        public bool bajaCaja(CajaAhorro caja)
         {
  
-            CajaAhorro cajaToRemove = this.cajasList.First(x => x.cbu == cajacbu);
+            CajaAhorro cajaToRemove = this.cajasList.First(x => x.cbu == caja.cbu);
             try
             {
                 if (cajaToRemove != null)
