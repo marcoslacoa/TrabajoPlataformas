@@ -97,9 +97,10 @@ namespace TrabajoPlataformas
                 }
 
             }
-            foreach (CajaAhorro caja in miBanco.cajasList)
+            foreach (CajaAhorro caja in miBanco.cajasList.ToList())
             {
-                if (caja.usuario != miBanco.usuarioActual)
+                // print every caja inside the list except the ones that belongs to the user
+                if (!miBanco.obtenerCajasDelUsuario().Contains(caja))
                 {
                     if (!comboBoxCbuDestino.Items.Contains(caja.cbu))
                     {
@@ -222,6 +223,7 @@ namespace TrabajoPlataformas
                 case 3:
                     if (comboBoxCbu.SelectedItem != null)
                     {
+                        MessageBox.Show("Transferencia realizandose");
                         // take the combobox selected item and convert it to int
                         int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
                         int cbuenIntDestino = Convert.ToInt32(comboBoxCbuDestino.SelectedItem);
