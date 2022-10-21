@@ -81,6 +81,8 @@ namespace TrabajoPlataformas
             //borro los datos
             dataGridView1.Rows.Clear();
             dataGridView2.Columns.Clear();
+            comboBoxCbu.Items.Clear();
+            comboBoxCbuDestino.Items.Clear();
 
             foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
             {
@@ -90,7 +92,7 @@ namespace TrabajoPlataformas
                     dataGridView1.Rows.Add(caja.toArray());
 
                 if (!comboBoxCbu.Items.Contains(caja.cbu))
-                {
+                {                  
                     comboBoxCbu.Items.Add(caja.cbu);
                 }
 
@@ -105,7 +107,7 @@ namespace TrabajoPlataformas
                     }
                 }
             }
-            foreach (PlazoFijo plazo in miBanco.obtenerPlazosDelUsuario())
+            /*foreach (PlazoFijo plazo in miBanco.obtenerPlazosDelUsuario())
             {
                 if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
                     dataGridView1.Rows.Add(plazo.toArray());
@@ -114,7 +116,7 @@ namespace TrabajoPlataformas
                  {
                     comboBoxCbuDestino.Items.Add(plazo.titular.nombre);
                  }
-            }
+            }*/
 
         }
 

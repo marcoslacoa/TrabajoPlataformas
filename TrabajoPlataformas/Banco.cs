@@ -133,7 +133,7 @@ namespace TrabajoPlataformas
             try
             {
                 if (cajaToRemove != null)
-                    cajasList.Remove(cajaToRemove);
+                    usuarioActual.listaCajas.Remove(cajaToRemove);
                 return true;
             }
             catch
@@ -401,7 +401,7 @@ namespace TrabajoPlataformas
         {
             if (monto > caja.saldo)
             {
-                throw new ApplicationException("Saldo insuficiente");
+                MessageBox.Show("Saldo insuficiente");
             }
             caja.saldo -= monto;
             Movimiento mov = new Movimiento(caja, "Retiro", monto, DateTime.Now);
