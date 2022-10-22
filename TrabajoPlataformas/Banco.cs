@@ -357,11 +357,11 @@ namespace TrabajoPlataformas
             bool encontrar = false;
                     foreach (Usuario user in userList)
                     {
-                     MessageBox.Show(user.getNombre());
+                     //MessageBox.Show(user.getNombre());
                                 if (user.nombre.Equals(usuario) && user.contra.Equals(pass) && !user.bloqueado) { 
                                 this.usuarioActual = user;
                                 //usuarioActual.listaCajas = new List<CajaAhorro>(cajasList) ; 
-                                encontrar = true;
+                                return true;
                                 }
                                 else if (user.nombre.Equals(usuario) && !user.contra.Equals(pass))
                                 {
@@ -376,7 +376,7 @@ namespace TrabajoPlataformas
                                 {
                                     encontrar = false;
                                 }
-                                // ELSE DE SI EL USUARIO ESTÁ BLOQUEADO. QUE PASA ACA?
+                                
                     }
             return encontrar;
         }
