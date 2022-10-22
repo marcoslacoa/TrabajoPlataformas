@@ -36,7 +36,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.comboBoxCaja = new System.Windows.Forms.ComboBox();
+            this.comboBoxCajaAgregar = new System.Windows.Forms.ComboBox();
             this.buttonAgregar = new System.Windows.Forms.Button();
             this.buttonBorrar = new System.Windows.Forms.Button();
             this.labelTitular = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             // 
             // confirmar
             // 
-            this.confirmar.Location = new System.Drawing.Point(314, 293);
+            this.confirmar.Location = new System.Drawing.Point(314, 309);
             this.confirmar.Name = "confirmar";
             this.confirmar.Size = new System.Drawing.Size(218, 78);
             this.confirmar.TabIndex = 0;
@@ -120,21 +120,22 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // comboBoxCaja
+            // comboBoxCajaAgregar
             // 
-            this.comboBoxCaja.FormattingEnabled = true;
-            this.comboBoxCaja.Location = new System.Drawing.Point(314, 189);
-            this.comboBoxCaja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBoxCaja.Name = "comboBoxCaja";
-            this.comboBoxCaja.Size = new System.Drawing.Size(218, 23);
-            this.comboBoxCaja.TabIndex = 8;
+            this.comboBoxCajaAgregar.FormattingEnabled = true;
+            this.comboBoxCajaAgregar.Location = new System.Drawing.Point(314, 189);
+            this.comboBoxCajaAgregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxCajaAgregar.Name = "comboBoxCajaAgregar";
+            this.comboBoxCajaAgregar.Size = new System.Drawing.Size(218, 23);
+            this.comboBoxCajaAgregar.TabIndex = 8;
+            this.comboBoxCajaAgregar.SelectedIndexChanged += new System.EventHandler(this.comboBoxCaja_SelectedIndexChanged);
             // 
             // buttonAgregar
             // 
-            this.buttonAgregar.Location = new System.Drawing.Point(190, 293);
+            this.buttonAgregar.Location = new System.Drawing.Point(346, 220);
             this.buttonAgregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAgregar.Name = "buttonAgregar";
-            this.buttonAgregar.Size = new System.Drawing.Size(191, 78);
+            this.buttonAgregar.Size = new System.Drawing.Size(63, 40);
             this.buttonAgregar.TabIndex = 10;
             this.buttonAgregar.Text = "Agregar Titular";
             this.buttonAgregar.UseVisualStyleBackColor = true;
@@ -142,10 +143,10 @@
             // 
             // buttonBorrar
             // 
-            this.buttonBorrar.Location = new System.Drawing.Point(459, 293);
+            this.buttonBorrar.Location = new System.Drawing.Point(431, 218);
             this.buttonBorrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBorrar.Name = "buttonBorrar";
-            this.buttonBorrar.Size = new System.Drawing.Size(191, 78);
+            this.buttonBorrar.Size = new System.Drawing.Size(70, 42);
             this.buttonBorrar.TabIndex = 11;
             this.buttonBorrar.Text = "Eliminar Titular";
             this.buttonBorrar.UseVisualStyleBackColor = true;
@@ -154,7 +155,7 @@
             // labelTitular
             // 
             this.labelTitular.AutoSize = true;
-            this.labelTitular.Location = new System.Drawing.Point(207, 240);
+            this.labelTitular.Location = new System.Drawing.Point(207, 273);
             this.labelTitular.Name = "labelTitular";
             this.labelTitular.Size = new System.Drawing.Size(43, 15);
             this.labelTitular.TabIndex = 12;
@@ -163,7 +164,7 @@
             // comboBoxTitular
             // 
             this.comboBoxTitular.FormattingEnabled = true;
-            this.comboBoxTitular.Location = new System.Drawing.Point(314, 236);
+            this.comboBoxTitular.Location = new System.Drawing.Point(314, 270);
             this.comboBoxTitular.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxTitular.Name = "comboBoxTitular";
             this.comboBoxTitular.Size = new System.Drawing.Size(218, 23);
@@ -189,7 +190,7 @@
             this.Controls.Add(this.labelTitular);
             this.Controls.Add(this.buttonBorrar);
             this.Controls.Add(this.buttonAgregar);
-            this.Controls.Add(this.comboBoxCaja);
+            this.Controls.Add(this.comboBoxCajaAgregar);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -216,7 +217,7 @@
         private Button button1;
         private Button button2;
         private Button button3;
-        private ComboBox comboBoxCaja;
+        private ComboBox comboBoxCajaAgregar;
         private TextBox titularModificar;
         private Button buttonAgregar;
         private Button buttonBorrar;
