@@ -320,7 +320,7 @@ namespace TrabajoPlataformas
               int cvc = int.Parse(textBoxCVCTarjeta.Text);
               int limite = int.Parse(textBoxLimiteTarjeta.Text);
               
-              miBanco.altaTarjeta(miBanco.usuarioActual, numero, cvc, limite,//Pagos);
+              //miBanco.altaTarjeta(miBanco.usuarioActual, numero, cvc, limite,//Pagos);
         }
 
         private void buttonPagarTarjeta_Click(object sender, EventArgs e)
