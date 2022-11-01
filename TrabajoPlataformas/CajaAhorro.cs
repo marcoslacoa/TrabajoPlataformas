@@ -17,8 +17,12 @@ namespace TrabajoPlataformas
         public CajaAhorro(int cbu2, Usuario usuario)
         {
             this.usuario = usuario;
+            titulares = new List<Usuario>();
+            this.titulares.Add(usuario);
+            movimientos = new List<Movimiento>();
             this.cbu = cbu2;
-        }                                    
+        }
+
         public string[] toArray()
         {
             return new string[] { cbu.ToString(), saldo.ToString() };

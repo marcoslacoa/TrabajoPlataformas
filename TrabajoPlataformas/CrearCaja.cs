@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
@@ -20,7 +21,8 @@ namespace TrabajoPlataformas
         public int numeroDeClick;
         public cofirmoBorrarDelegate confirmBorrarEvento;
         public int numeroDeClickModificar;
-        
+        public int cbuSeleccionado;
+
         public CrearCaja(Banco banco, Usuario usuario)
         {
             InitializeComponent();
@@ -42,26 +44,40 @@ namespace TrabajoPlataformas
             {
                 case 1:
                     saldoCaja = float.Parse(saldo.Text);
-                    banco.crearCajaAhorro(cbuCaja, saldoCaja);
+                    banco.crearCajaAhorro(cbuCaja, saldoCaja, usuario);
                     break;
-                case 2:
+                case 2:                  
                     switch (numeroDeClickModificar)
                     {
                         case 1:
+
+                            int usuarioSeleccionado = Convert.ToInt32(comboBoxTitular.SelectedItem);
+                            Usuario usuario = banco.userList.First(x => x.dni == usuarioSeleccionado);
+                            CajaAhorro cajaSeleccionada = banco.cajasList.First(x => x.cbu == cbuSeleccionado);
+                            cajaSeleccionada.titulares.Add(usuario);
+                            usuario.listaCajas.Add(cajaSeleccionada);
                             
+                            Trace.WriteLine(cajaSeleccionada.titulares.Count.ToString());
                             break;
                         case 2:
+
+                            int usuarioSeleccionado2 = Convert.ToInt32(comboBoxTitular.SelectedItem);
+                            Usuario usuario2 = banco.userList.First(x => x.dni == usuarioSeleccionado2);
+                            CajaAhorro cajaSeleccionada2 = banco.cajasList.First(x => x.cbu == cbuSeleccionado);
+                            cajaSeleccionada2.titulares.Remove(usuario2);
+                            usuario2.listaCajas.Remove(cajaSeleccionada2);
+                            Trace.WriteLine(cajaSeleccionada2.titulares.Count.ToString());
                             break;
                     }
                     break;
                 case 3:                   
                     int cbuenInt = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
-                    CajaAhorro caja = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
-                    if (caja.saldo != 0)
+                    CajaAhorro caja2 = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
+                    if (caja2.saldo != 0)
                         MessageBox.Show("Porfavor retire todo su dinero ante de eliminar la caja.");
                     else
                     {
-                        banco.bajaCaja(caja);
+                        banco.bajaCaja(caja2);
                         this.confirmBorrarEvento();
                     }
                     //Logica para borrar la caja
@@ -177,8 +193,10 @@ namespace TrabajoPlataformas
         {
             labelTitular.Visible = true;
             comboBoxTitular.Visible = true;
+            confirmar.Visible = true;
+            numeroDeClickModificar = 1;
 
-            int cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
+            cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
             CajaAhorro caja = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuSeleccionado);
             comboBoxTitular.Items.Clear();
 
@@ -190,21 +208,23 @@ namespace TrabajoPlataformas
                 }
             }
 
-            int usuarioSeleccionado = Convert.ToInt32(comboBoxTitular.SelectedItem);
-            Usuario usuario = banco.obtenerUsuarios().First(x => x.dni == usuarioSeleccionado);
-
-
         }
 
         private void buttonBorrar_Click(object sender, EventArgs e)
         {
             labelTitular.Visible = true;
             comboBoxTitular.Visible = true;
-            
-            CajaAhorro caja = banco.obtenerCajasDelUsuario().First(x => x.cbu == Convert.ToInt32(comboBoxCajaAgregar.SelectedItem));
-            foreach (Usuario user in caja.titulares.ToList())
+            confirmar.Visible = true;
+            numeroDeClickModificar = 2;
+
+
+            cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
+            CajaAhorro caja = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuSeleccionado);
+            comboBoxTitular.Items.Clear();
+
+            foreach (Usuario user in caja.titulares)
             {
-                comboBoxTitular.Items.Add(user.dni.ToString());
+                comboBoxTitular.Items.Add(user.dni);
             }
         }
 

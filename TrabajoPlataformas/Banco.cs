@@ -102,19 +102,19 @@ namespace TrabajoPlataformas
 
         public void altaCaja(CajaAhorro caja)
         {
-            cajasList.Add(caja);           
+            cajasList.Add(caja);
         }
 
-        public bool crearCajaAhorro(int cbu2, float saldo)
+        public bool crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
         {
             if (this.cajasList.Any(caja => caja.cbu == cbu2))
             {
                 MessageBox.Show("El CBU ya existe", "Ingreso");
             }
-            CajaAhorro cajaNueva = new CajaAhorro(cbu2, this.usuarioActual);
+            CajaAhorro cajaNueva = new CajaAhorro(cbu2, usuario);
             this.usuarioActual.listaCajas.Add(cajaNueva);       
             cajaNueva.saldo = saldo;
-            cajaNueva.titulares.Add(usuarioActual);
+
             try
             {
                 altaCaja(cajaNueva);

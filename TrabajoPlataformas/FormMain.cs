@@ -25,7 +25,6 @@ namespace TrabajoPlataformas
         public cerrarsesion cerrarsesionEvento;
         public List<CajaAhorro> cajas;
         int numeroDeClick = 0;
-        int numeroDeTab = 0;
 
         public FormMain(string usuario, Banco b)
         {
@@ -79,17 +78,16 @@ namespace TrabajoPlataformas
         public delegate void cerrarsesion();
         private void refreshData()
         {
-            //borro los datos
+            Trace.WriteLine(miBanco.obtenerCajasDelUsuario().Count.ToString());
             dataGridView1.Rows.Clear();
             comboBoxCbu.Items.Clear();
             comboBoxCbuDestino.Items.Clear();
 
             foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
             {
-                //string[] arr = new string[] { caja.saldo.ToString(), caja.cbu.ToString() };
-                //dataGridView1.Rows.Add(arr);
-                if (miBanco.obtenerCajasDelUsuario().Contains(caja))
-                    dataGridView1.Rows.Add(caja.toArray());
+                   dataGridView1.Rows.Add(caja.toArray());
+                   Trace.WriteLine(caja.titulares.Count.ToString());
+
 
                 if (!comboBoxCbu.Items.Contains(caja.cbu))
                 {                  
