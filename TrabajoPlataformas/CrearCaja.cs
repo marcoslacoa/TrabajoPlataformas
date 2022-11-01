@@ -19,7 +19,8 @@ namespace TrabajoPlataformas
         public Usuario usuario;
         public int numeroDeClick;
         public cofirmoBorrarDelegate confirmBorrarEvento;
-
+        public int numeroDeClickModificar;
+        
         public CrearCaja(Banco banco, Usuario usuario)
         {
             InitializeComponent();
@@ -44,7 +45,14 @@ namespace TrabajoPlataformas
                     banco.crearCajaAhorro(cbuCaja, saldoCaja);
                     break;
                 case 2:
-                   
+                    switch (numeroDeClickModificar)
+                    {
+                        case 1:
+                            
+                            break;
+                        case 2:
+                            break;
+                    }
                     break;
                 case 3:                   
                     int cbuenInt = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
@@ -167,22 +175,23 @@ namespace TrabajoPlataformas
 
         private void buttonAgregar_Click(object sender, EventArgs e)
         {
-            // for each Usuario in banco.obtenerUsuarios() agregar a comboBoxTitular excepto el usuario logueado
-            // agregar el titular seleccionado a comboBoxTitular
             labelTitular.Visible = true;
             comboBoxTitular.Visible = true;
+
             int cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
             CajaAhorro caja = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuSeleccionado);
-            //clean comboBoxTitular
             comboBoxTitular.Items.Clear();
+
             foreach (Usuario user in banco.obtenerUsuarios())
             {
-                //if user is not titular of cajita
                 if (!caja.titulares.Contains(user))
                 {
-                    comboBoxTitular.Items.Add(user.dni.ToString());
+                    comboBoxTitular.Items.Add(user.dni);
                 }
             }
+
+            int usuarioSeleccionado = Convert.ToInt32(comboBoxTitular.SelectedItem);
+            Usuario usuario = banco.obtenerUsuarios().First(x => x.dni == usuarioSeleccionado);
 
 
         }

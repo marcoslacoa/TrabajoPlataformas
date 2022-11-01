@@ -9,7 +9,7 @@ namespace TrabajoPlataformas
     public class CajaAhorro
     {
         public int cbu;
-        public List<Usuario> titulares { get; }
+        public List<Usuario> titulares { get; set; }
         public List <Movimiento> movimientos { get; set; }
         public float saldo;
         public Usuario usuario;

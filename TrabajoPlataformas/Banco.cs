@@ -102,8 +102,7 @@ namespace TrabajoPlataformas
 
         public void altaCaja(CajaAhorro caja)
         {
-            cajasList.Add(caja);
-            //this.usuarioActual.listaCajas.Add(caja);
+            cajasList.Add(caja);           
         }
 
         public bool crearCajaAhorro(int cbu2, float saldo)
@@ -113,8 +112,9 @@ namespace TrabajoPlataformas
                 MessageBox.Show("El CBU ya existe", "Ingreso");
             }
             CajaAhorro cajaNueva = new CajaAhorro(cbu2, this.usuarioActual);
-            this.usuarioActual.listaCajas.Add(cajaNueva);
+            this.usuarioActual.listaCajas.Add(cajaNueva);       
             cajaNueva.saldo = saldo;
+            cajaNueva.titulares.Add(usuarioActual);
             try
             {
                 altaCaja(cajaNueva);
@@ -145,7 +145,7 @@ namespace TrabajoPlataformas
             }
         }
 
-       /* public bool modificarCaja(int cbu, Usuario usuario)
+        /*public bool modificarCaja(int cbu, Usuario usuario)
         {
             CajaAhorro aModificar = cajasList[id];
             try
