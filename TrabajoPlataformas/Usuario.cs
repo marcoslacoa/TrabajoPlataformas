@@ -55,6 +55,15 @@ namespace TrabajoPlataformas
             contra = Contra;
             //
         }
+        // agregar caja a lista de cajas
+        public void agregarCaja(CajaAhorro caja)
+        {
+            listaCajas.Add(caja);
+        }
+        public void eliminarCaja(CajaAhorro caja)
+        {
+            listaCajas.Remove(caja);
+        }
 
         //public bool bloqueado()
         //{

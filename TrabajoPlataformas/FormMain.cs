@@ -78,7 +78,6 @@ namespace TrabajoPlataformas
         public delegate void cerrarsesion();
         private void refreshData()
         {
-            Trace.WriteLine(miBanco.obtenerCajasDelUsuario().Count.ToString());
             dataGridView1.Rows.Clear();
             comboBoxCbu.Items.Clear();
             comboBoxCbuDestino.Items.Clear();
@@ -86,8 +85,6 @@ namespace TrabajoPlataformas
             foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
             {
                    dataGridView1.Rows.Add(caja.toArray());
-                   Trace.WriteLine(caja.titulares.Count.ToString());
-
 
                 if (!comboBoxCbu.Items.Contains(caja.cbu))
                 {                  

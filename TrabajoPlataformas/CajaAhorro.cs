@@ -22,7 +22,14 @@ namespace TrabajoPlataformas
             movimientos = new List<Movimiento>();
             this.cbu = cbu2;
         }
-
+        public void agregarTitular(Usuario usuario)
+        {
+            this.titulares.Add(usuario);
+        }
+        public void eliminarTitular(Usuario usuario)
+        {
+            this.titulares.Remove(usuario);
+        }
         public string[] toArray()
         {
             return new string[] { cbu.ToString(), saldo.ToString() };

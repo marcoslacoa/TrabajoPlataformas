@@ -46,28 +46,25 @@ namespace TrabajoPlataformas
                     saldoCaja = float.Parse(saldo.Text);
                     banco.crearCajaAhorro(cbuCaja, saldoCaja, usuario);
                     break;
-                case 2:                  
-                    switch (numeroDeClickModificar)
-                    {
-                        case 1:
+                case 2:
+                    if (numeroDeClickModificar == 1) { 
 
-                            int usuarioSeleccionado = Convert.ToInt32(comboBoxTitular.SelectedItem);
-                            Usuario usuario = banco.userList.First(x => x.dni == usuarioSeleccionado);
-                            CajaAhorro cajaSeleccionada = banco.cajasList.First(x => x.cbu == cbuSeleccionado);
-                            cajaSeleccionada.titulares.Add(usuario);
-                            usuario.listaCajas.Add(cajaSeleccionada);
+                        int usuarioSeleccionado = Convert.ToInt32(comboBoxTitular.SelectedItem); //dni
+                            Usuario usuario = banco.obtenerUsuarios().First(x => x.dni == usuarioSeleccionado);
+                        int cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem); //cbu
+                        CajaAhorro cajaSeleccionada = banco.obtenerCajas().First(x => x.cbu == cbuSeleccionado);
+                            cajaSeleccionada.agregarTitular(usuario);
+                            usuario.agregarCaja(cajaSeleccionada);
                             
                             Trace.WriteLine(cajaSeleccionada.titulares.Count.ToString());
-                            break;
-                        case 2:
+                    }
+                    else if (numeroDeClickModificar == 2) { 
 
-                            int usuarioSeleccionado2 = Convert.ToInt32(comboBoxTitular.SelectedItem);
-                            Usuario usuario2 = banco.userList.First(x => x.dni == usuarioSeleccionado2);
-                            CajaAhorro cajaSeleccionada2 = banco.cajasList.First(x => x.cbu == cbuSeleccionado);
-                            cajaSeleccionada2.titulares.Remove(usuario2);
-                            usuario2.listaCajas.Remove(cajaSeleccionada2);
-                            Trace.WriteLine(cajaSeleccionada2.titulares.Count.ToString());
-                            break;
+                        int usuarioSeleccionado2 = Convert.ToInt32(comboBoxTitular.SelectedItem);
+                            Usuario usuario2 = banco.obtenerUsuarios().First(x => x.dni == usuarioSeleccionado2);
+                            CajaAhorro cajaSeleccionada2 = banco.cajasList.ToList().First(x => x.cbu == cbuSeleccionado);
+                        cajaSeleccionada2.eliminarTitular(usuario2);
+                        usuario2.eliminarCaja(cajaSeleccionada2);
                     }
                     break;
                 case 3:                   
@@ -196,7 +193,7 @@ namespace TrabajoPlataformas
             confirmar.Visible = true;
             numeroDeClickModificar = 1;
 
-            cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
+            int cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
             CajaAhorro caja = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuSeleccionado);
             comboBoxTitular.Items.Clear();
 
