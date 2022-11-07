@@ -392,79 +392,66 @@ namespace TrabajoPlataformas
         }
 
     
-        public Movimiento depositar(CajaAhorro caja, float monto)
+        public bool depositar(CajaAhorro caja, float monto)
         {
             if (monto <= 0)
             {
-                throw new ApplicationException("Monto invalido");
+                return false; //No se puede depositar un monto negativo o cero.
             }
             caja.saldo += monto;
-            Movimiento mov = new Movimiento(caja, "Deposito", monto, DateTime.Now);
+            this.altaMovimiento(caja, "Deposito", monto, DateTime.Now);
             MessageBox.Show("Se ha depositado " + monto);
             
-            return mov;
+            return true;
         }
-
-        public Movimiento retirar(CajaAhorro caja, float monto)
+        
+        public bool retirar(CajaAhorro caja, float monto)
         {
             if (monto > caja.saldo)
             {
-                MessageBox.Show("Saldo insuficiente");
+                return false; //No hay saldo suficiente
             }
             caja.saldo -= monto;
-            Movimiento mov = new Movimiento(caja, "Retiro", monto, DateTime.Now);
+            this.altaMovimiento(caja, "Retiro", monto, DateTime.Now);
             MessageBox.Show("Se ha retirado " + monto);
-            
-            return mov;
+
+            return true; //Retiro exitoso
             // Mensaje de respuesta con datos del objeto
         }
 
-        public Movimiento transferir(CajaAhorro origen, CajaAhorro destino, float monto)
+        public int transferir(int cbuOrigen, int cbuDestino, float monto) // If monto <= 0 entonces retorna 1. Si monto > saldo entonces retorna 2. Si no hay error retorna 0.
         {
-            MessageBox.Show("Se ha transferido " + monto);
-            if (monto <= 0)
+            CajaAhorro origen = this.obtenerCajas().First(x => x.cbu == cbuOrigen);
+            CajaAhorro destino = this.obtenerCajas().First(x => x.cbu == cbuDestino);
+            if (destino == null)
             {
-                MessageBox.Show("Monto invalido");
+                return 0; // No existe la caja destino
             }
-            foreach (CajaAhorro caja in cajasList)
+            if (origen.saldo < monto)
             {
-                if (caja.cbu == origen.cbu)
-                {
-                    if (monto > caja.saldo)
-                    {
-                        MessageBox.Show("Saldo insuficiente");
-                    }
-                    caja.saldo -= monto;
-                }
-                if (caja.cbu == destino.cbu)
-                {
-                    caja.saldo += monto;
-                }
+                return 1; // No hay saldo suficiente
             }
-           
-            Movimiento movOrigen = new Movimiento(origen, "Transferencia", monto, DateTime.Now);
-            Movimiento movDestino = new Movimiento(destino, "Transferencia", monto, DateTime.Now);
-            
-            return movOrigen;
+            origen.saldo -= monto;
+            this.altaMovimiento(origen, "Transferencia", monto, DateTime.Now);
+            destino.saldo += monto;
+            this.altaMovimiento(destino, "Transferencia", monto, DateTime.Now);
+            return 2; // Transferencia exitosa
         }
 
-        /*public List<Movimiento> buscarMovimiento(CajaAhorro caja, string detalle, DateTime fecha, float monto)
-        {
-            // Devuelve una lista de movimientos de la caja de ahorro filtrada por al menos uno de
-            // los parámetros(el usuario puede ingresar los 3 parámetros, 2 o 1) Detalle, Fecha y Monto.           
-            List<Movimiento> filtrado = new List<Movimiento>();
-            
-        }*/
 
-        public Movimiento pagarTarjeta(TarjetaCredito tarjeta, CajaAhorro caja)
+        public bool pagarTarjeta(TarjetaCredito tarjeta, CajaAhorro caja)
         {
             if (tarjeta.consumos > caja.saldo)
             {
-                throw new ApplicationException("Saldo en caja insuficiente");
+                return false;
             }
-            caja.saldo -= tarjeta.consumos;
-            Movimiento mov = new Movimiento(caja, "Pago de tarjeta", tarjeta.consumos, DateTime.Now);
-            return mov;
+            else
+            {
+                caja.saldo -= tarjeta.consumos;
+                this.altaMovimiento(caja, "Pago de tarjeta", tarjeta.consumos, DateTime.Now);
+                return true;
+            }
+            
         }
 
         //Mostrar datos

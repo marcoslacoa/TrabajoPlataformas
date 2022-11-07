@@ -211,8 +211,13 @@ namespace TrabajoPlataformas
                         int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
                         CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
                         float monto = float.Parse(textMonto.Text);
-                        miBanco.retirar(caja, monto);
-                        
+                        if (miBanco.retirar(caja, monto)){
+                            MessageBox.Show("Retiro realizado con exito");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo realizar el retiro");
+                        }
                         refreshData();
                     }
                     break;
@@ -223,8 +228,14 @@ namespace TrabajoPlataformas
                         int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
                         CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
                         float monto = float.Parse(textMonto.Text);
-                        miBanco.depositar(caja, monto);
-                        
+                        if (miBanco.depositar(caja, monto))
+                        {
+                            MessageBox.Show("Deposito realizado con exito");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo realizar el deposito");
+                        }
                         refreshData();
                     }                  
                     break;
@@ -235,11 +246,21 @@ namespace TrabajoPlataformas
                         // take the combobox selected item and convert it to int
                         int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
                         int cbuenIntDestino = Convert.ToInt32(comboBoxCbuDestino.SelectedItem);
-                        CajaAhorro origen = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
-                        CajaAhorro destino = miBanco.obtenerCajas().First(x => x.cbu == cbuenIntDestino);
                         float monto = float.Parse(textMonto.Text);
-                        miBanco.transferir(origen, destino, monto);
-                       
+                        int result =  miBanco.transferir(cbuenInt, cbuenIntDestino, monto);
+                        switch (result)
+                        {
+                            case 0:
+                                MessageBox.Show("No existe la caja destino");
+                                break;
+                            case 1:
+                                MessageBox.Show(" No hay saldo suficiente");
+                                break;
+                            case 2:
+                                MessageBox.Show("Transferencia exitosa");
+                                break;
+                           
+                        }
                         refreshData();
 
                     }
@@ -326,7 +347,14 @@ namespace TrabajoPlataformas
                 int cbuenIntCaja = Convert.ToInt32(comboBoxCbuPagar.SelectedItem);
                 TarjetaCredito tarjeta = miBanco.obtenerTarjetasDelUsuario().First(x => x.numero == cbuenIntTarjeta);
                 CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenIntCaja);
-                miBanco.pagarTarjeta(tarjeta, caja);
+                if (miBanco.pagarTarjeta(tarjeta, caja))
+                {
+                    MessageBox.Show("Pago realizado");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo realizar el pago");
+                }
             } else
             {
                 MessageBox.Show("Debes ingresar la tarjeta y el cbu para realiza el pago");
