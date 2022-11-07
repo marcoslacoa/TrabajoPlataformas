@@ -44,7 +44,22 @@ namespace TrabajoPlataformas
             {
                 case 1:
                     saldoCaja = float.Parse(saldo.Text);
-                    banco.crearCajaAhorro(cbuCaja, saldoCaja, usuario);
+                    if(banco.crearCajaAhorro(cbuCaja, saldoCaja, usuario) == 2)
+                    {
+                            MessageBox.Show("Caja de ahorro creada con exito");
+                            this.Close();
+                        }
+                    else if (banco.crearCajaAhorro(cbuCaja, saldoCaja, usuario) == 1)
+                    {
+                            MessageBox.Show("No se pudo crear la caja de ahorro. El CBU ya existe");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo crear la caja de ahorro. El saldo es negativo");
+                    }
+                    
+                    
+                   
                     break;
                 case 2:
                     if (numeroDeClickModificar == 1) { 
@@ -67,11 +82,13 @@ namespace TrabajoPlataformas
                         usuario2.eliminarCaja(cajaSeleccionada2);
                     }
                     break;
-                case 3:                   
+                case 3: 
                     int cbuenInt = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
-                    if (banco.bajaCaja(cbuenInt) == 1)
+                    int aux = banco.bajaCaja(cbuenInt);
+                    if (aux == 1)
                         MessageBox.Show("Porfavor retire todo su dinero ante de eliminar la caja.");
-                    else if (banco.bajaCaja(cbuenInt) == 3)
+                        
+                    else if (aux == 3)
                         MessageBox.Show("La caja no existe.");
                     else
                         MessageBox.Show("La caja se ha eliminado correctamente.");

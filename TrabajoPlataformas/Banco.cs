@@ -105,33 +105,28 @@ namespace TrabajoPlataformas
         //ABM Caja de Ahorro
         public CajaAhorro getCaja(int cbu)
         {
-            //print cajasList.First(x => x.cbu == cbu);
-            return cajasList.First(x => x.cbu == cbu); // devuelve la caja con el cbu que le pasamos
+            return cajasList.FirstOrDefault(x => x.cbu == cbu);
         }
-        public void altaCaja(CajaAhorro caja)
-        {
-            this.cajasList.Add(caja);
-        }
-
-        public bool crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
+       
+        
+        public int crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
         {
             if (this.cajasList.Any(caja => caja.cbu == cbu2))
             {
-                MessageBox.Show("El CBU ya existe", "Ingreso");
+                return 1; // CBU ya existe
             }
             CajaAhorro cajaNueva = new CajaAhorro(cbu2, usuario);
             cajaNueva.saldo = saldo;
-            this.usuarioActual.agregarCaja(cajaNueva);       
-
+            this.usuarioActual.agregarCaja(cajaNueva);
+            this.cajasList.Add(cajaNueva);
             try
             {
-                altaCaja(cajaNueva);
                 Trace.WriteLine(cajaNueva);
-                return true;
+                return 2;
             }
             catch (Exception)
             {
-                return false;
+                return 3;
             }
 
         }
@@ -147,12 +142,13 @@ namespace TrabajoPlataformas
                 return 1;
             }
             else if (cajaToRemove != null) // si la caja existe
-                {
-                    usuarioActual.eliminarCaja(cajaToRemove); // 
-                    this.cajasList.Remove(cajaToRemove);
+            {
+                this.cajasList.Remove(cajaToRemove);
+                
+                usuarioActual.eliminarCaja(cajaToRemove); // 
                 return 2;
-                }
-                else return 3;
+             }
+              else return 3;
             
             
         }
