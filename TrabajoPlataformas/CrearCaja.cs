@@ -82,7 +82,7 @@ namespace TrabajoPlataformas
                         usuario2.eliminarCaja(cajaSeleccionada2);
                     }
                     break;
-                case 3: 
+                case 3: // Borrar caja
                     int cbuenInt = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
                     int aux = banco.bajaCaja(cbuenInt);
                     if (aux == 1)
