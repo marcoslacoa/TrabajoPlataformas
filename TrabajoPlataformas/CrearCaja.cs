@@ -63,23 +63,52 @@ namespace TrabajoPlataformas
                     break;
                 case 2:
                     if (numeroDeClickModificar == 1) { 
-
                         int usuarioSeleccionado = Convert.ToInt32(comboBoxTitular.SelectedItem); //dni
-                            Usuario usuario = banco.obtenerUsuarios().First(x => x.dni == usuarioSeleccionado);
                         int cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem); //cbu
-                        CajaAhorro cajaSeleccionada = banco.obtenerCajas().First(x => x.cbu == cbuSeleccionado);
-                            cajaSeleccionada.agregarTitular(usuario);
-                            usuario.agregarCaja(cajaSeleccionada);
-                            
-                            Trace.WriteLine(cajaSeleccionada.titulares.Count.ToString());
+                        int aux2 = banco.agregarTitular(cbuSeleccionado, usuarioSeleccionado);
+                        // execute the method agregarTitular from banco
+                        if(aux2 == 0)
+                        {
+                            // No existe el usuario
+                            MessageBox.Show("No existe el usuario");
+                        }
+                        else if (aux2 == 1) {
+                            // El usuario ya es titular
+                            MessageBox.Show("El usuario ya es titular");
+                        }
+                        else
+                        {
+                            // El usuario se agrego correctamente
+                            MessageBox.Show("El usuario se agrego correctamente"); 
+                        }
+
+
                     }
                     else if (numeroDeClickModificar == 2) { 
 
                         int usuarioSeleccionado2 = Convert.ToInt32(comboBoxTitular.SelectedItem);
-                            Usuario usuario2 = banco.obtenerUsuarios().First(x => x.dni == usuarioSeleccionado2);
-                            CajaAhorro cajaSeleccionada2 = banco.obtenerCajas().First(x => x.cbu == cbuSeleccionado);
-                        cajaSeleccionada2.eliminarTitular(usuario2);
-                        usuario2.eliminarCaja(cajaSeleccionada2);
+                        
+                        int aux3 = banco.eliminarTitular(this.cbuSeleccionado, usuarioSeleccionado2);
+                        if (aux3 == 0)
+                        {
+                            // No existe el usuario
+                            MessageBox.Show("No existe el usuario");
+                        }
+                        else if (aux3 == 1)
+                        {
+                            // El usuario no es titular
+                            MessageBox.Show("El usuario no es titular");
+                        }
+                        else if (aux3 == 2)
+                        {
+                            // El usuario es el unico titular 
+                            MessageBox.Show("El usuario es el unico titular");
+                        }
+                        else
+                        {
+                            // El usuario se elimino correctamente
+                            MessageBox.Show("El usuario se elimino correctamente");
+                        }
                     }
                     break;
                 case 3: // Borrar caja 

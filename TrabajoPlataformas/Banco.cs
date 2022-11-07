@@ -107,8 +107,12 @@ namespace TrabajoPlataformas
         {
             return cajasList.FirstOrDefault(x => x.cbu == cbu);
         }
-       
-        
+
+        public Usuario getUsuario(int dni)
+        {
+            return userList.FirstOrDefault(x => x.dni == dni);
+        }
+
         public int crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
         {
             if (this.cajasList.Any(caja => caja.cbu == cbu2))
@@ -445,6 +449,44 @@ namespace TrabajoPlataformas
             return 2; // Transferencia exitosa
         }
 
+        public int agregarTitular(int cbu, int dni) { // PROFE: ACA TENGO QUE PASARLE SOLO CBU Y DNI A LA CLASE CAJA AHORRO Y A USUARIO, O PUEDO PASARLE EL OBJETO?
+            CajaAhorro caja = getCaja(cbu);
+            Usuario nuevoTitular = getUsuario(dni);
+            if (nuevoTitular == null)
+            {
+                return 0; // No existe el usuario
+            }
+            if (caja.titulares.Contains(nuevoTitular))
+            {
+                return 1; // El usuario ya es titular
+            }
+            caja.agregarTitular(nuevoTitular);
+            nuevoTitular.agregarCaja(caja);
+            return 2; // Titular agregado exitosamente
+        }
+        
+        public int eliminarTitular(int cbu, int dni)
+        {
+            CajaAhorro caja = getCaja(cbu);
+            Usuario usuario = getUsuario(dni);
+
+            if (usuario == null)
+            {
+                return 0; // No existe el usuario
+            }
+            if (!caja.titulares.Contains(usuario))
+            {
+                return 1; // El usuario no es titular
+            }
+            if (caja.titulares.Count == 1)
+            {
+
+                return 2; // No se puede eliminar el unico titular
+            }
+            caja.eliminarTitular(usuario);
+            usuario.eliminarCaja(caja);
+            return 3;
+        }
 
         public bool pagarTarjeta(TarjetaCredito tarjeta, CajaAhorro caja)
         {
