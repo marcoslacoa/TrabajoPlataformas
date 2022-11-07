@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TrabajoPlataformas
 {
     public class CajaAhorro
-    {
+    {   
         public int cbu;
         public List<Usuario> titulares { get; set; }
         public List <Movimiento> movimientos { get; set; }

@@ -69,15 +69,13 @@ namespace TrabajoPlataformas
                     break;
                 case 3:                   
                     int cbuenInt = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
-                    CajaAhorro caja2 = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
-                    if (caja2.saldo != 0)
+                    if (banco.bajaCaja(cbuenInt) == 1)
                         MessageBox.Show("Porfavor retire todo su dinero ante de eliminar la caja.");
+                    else if (banco.bajaCaja(cbuenInt) == 3)
+                        MessageBox.Show("La caja no existe.");
                     else
-                    {
-                        banco.bajaCaja(caja2);
+                        MessageBox.Show("La caja se ha eliminado correctamente.");
                         this.confirmBorrarEvento();
-                    }
-                    //Logica para borrar la caja
                     break;
 
             }          

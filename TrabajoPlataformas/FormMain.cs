@@ -209,10 +209,10 @@ namespace TrabajoPlataformas
                     {
                         // take the combobox selected item and convert it to int
                         int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
-                        CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
                         float monto = float.Parse(textMonto.Text);
-                        if (miBanco.retirar(caja, monto)){
-                            MessageBox.Show("Retiro realizado con exito");
+                        if (miBanco.retirar(cbuenInt, monto)){
+                            MessageBox.Show("Se ha retirado " + monto);
+                            MessageBox.Show("Retiro realizado con exito"); 
                         }
                         else
                         {
@@ -226,10 +226,10 @@ namespace TrabajoPlataformas
                     {
                         // take the combobox selected item and convert it to int
                         int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
-                        CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
                         float monto = float.Parse(textMonto.Text);
-                        if (miBanco.depositar(caja, monto))
+                        if (miBanco.depositar(cbuenInt, monto))
                         {
+                            MessageBox.Show("Se ha depositado " + monto);
                             MessageBox.Show("Deposito realizado con exito");
                         }
                         else

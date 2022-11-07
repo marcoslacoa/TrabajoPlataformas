@@ -23,6 +23,10 @@ namespace TrabajoPlataformas
         public List<TarjetaCredito> tarjetas { get; }
         //public List<CajaAhorro> cajasLista { get => listaCajas.ToList(); }
         
+        public Usuario()
+        {
+            
+        }
         public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, int IntentosFallidos, bool Bloqueado,
             List<CajaAhorro> CajasList, List<PlazoFijo> PlazoFijo, List<Pago>Pagos, List<TarjetaCredito> Tarjetas)
         {

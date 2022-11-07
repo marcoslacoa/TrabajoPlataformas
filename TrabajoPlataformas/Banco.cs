@@ -23,7 +23,7 @@ namespace TrabajoPlataformas
         private List<TarjetaCredito> tarjetas;
 
         public Usuario usuarioActual;
-        private CajaAhorro caja;
+        //private CajaAhorro caja;
         
         public List <CajaAhorro> obtenerCajasDelUsuario()
         {
@@ -103,10 +103,14 @@ namespace TrabajoPlataformas
         }
 
         //ABM Caja de Ahorro
-
+        public CajaAhorro getCaja(int cbu)
+        {
+            //print cajasList.First(x => x.cbu == cbu);
+            return cajasList.First(x => x.cbu == cbu); // devuelve la caja con el cbu que le pasamos
+        }
         public void altaCaja(CajaAhorro caja)
         {
-            cajasList.Add(caja);
+            this.cajasList.Add(caja);
         }
 
         public bool crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
@@ -116,8 +120,8 @@ namespace TrabajoPlataformas
                 MessageBox.Show("El CBU ya existe", "Ingreso");
             }
             CajaAhorro cajaNueva = new CajaAhorro(cbu2, usuario);
-            this.usuarioActual.listaCajas.Add(cajaNueva);       
             cajaNueva.saldo = saldo;
+            this.usuarioActual.agregarCaja(cajaNueva);       
 
             try
             {
@@ -133,20 +137,24 @@ namespace TrabajoPlataformas
         }
 
 
-        public bool bajaCaja(CajaAhorro caja)
-        {
- 
-            CajaAhorro cajaToRemove = this.cajasList.First(x => x.cbu == caja.cbu);
-            try
+        public int bajaCaja(int cbuCaja)
+        {   
+
+            CajaAhorro cajaToRemove = this.getCaja(cbuCaja);
+            if (cajaToRemove.saldo > 0)
             {
-                if (cajaToRemove != null)
-                    usuarioActual.listaCajas.Remove(cajaToRemove);
-                return true;
+            //si la caja tiene saldo no se puede eliminar
+                return 1;
             }
-            catch
-            {
-                return false;
-            }
+            else if (cajaToRemove != null) // si la caja existe
+                {
+                    usuarioActual.eliminarCaja(cajaToRemove); // 
+                    this.cajasList.Remove(cajaToRemove);
+                return 2;
+                }
+                else return 3;
+            
+            
         }
 
         /*public bool modificarCaja(int cbu, Usuario usuario)
@@ -391,38 +399,41 @@ namespace TrabajoPlataformas
             return true;
         }
 
-    
-        public bool depositar(CajaAhorro caja, float monto)
+
+        // Metodo para obtener una caja en especifico
+        
+        public bool depositar(int cbuCaja, float monto)
         {
+            CajaAhorro caja = getCaja(cbuCaja);
+            
             if (monto <= 0)
             {
                 return false; //No se puede depositar un monto negativo o cero.
             }
             caja.saldo += monto;
             this.altaMovimiento(caja, "Deposito", monto, DateTime.Now);
-            MessageBox.Show("Se ha depositado " + monto);
             
             return true;
         }
         
-        public bool retirar(CajaAhorro caja, float monto)
+        public bool retirar(int cbuCaja, float monto)
         {
+            CajaAhorro caja = getCaja(cbuCaja);
             if (monto > caja.saldo)
             {
                 return false; //No hay saldo suficiente
             }
             caja.saldo -= monto;
             this.altaMovimiento(caja, "Retiro", monto, DateTime.Now);
-            MessageBox.Show("Se ha retirado " + monto);
 
-            return true; //Retiro exitoso
+            return true; //Retiro exitoso 
             // Mensaje de respuesta con datos del objeto
         }
 
         public int transferir(int cbuOrigen, int cbuDestino, float monto) // If monto <= 0 entonces retorna 1. Si monto > saldo entonces retorna 2. Si no hay error retorna 0.
         {
-            CajaAhorro origen = this.obtenerCajas().First(x => x.cbu == cbuOrigen);
-            CajaAhorro destino = this.obtenerCajas().First(x => x.cbu == cbuDestino);
+            CajaAhorro origen = this.getCaja(cbuOrigen);
+            CajaAhorro destino = this.getCaja(cbuDestino);
             if (destino == null)
             {
                 return 0; // No existe la caja destino
