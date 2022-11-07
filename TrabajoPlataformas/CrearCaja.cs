@@ -62,7 +62,7 @@ namespace TrabajoPlataformas
 
                         int usuarioSeleccionado2 = Convert.ToInt32(comboBoxTitular.SelectedItem);
                             Usuario usuario2 = banco.obtenerUsuarios().First(x => x.dni == usuarioSeleccionado2);
-                            CajaAhorro cajaSeleccionada2 = banco.cajasList.ToList().First(x => x.cbu == cbuSeleccionado);
+                            CajaAhorro cajaSeleccionada2 = banco.obtenerCajas().First(x => x.cbu == cbuSeleccionado);
                         cajaSeleccionada2.eliminarTitular(usuario2);
                         usuario2.eliminarCaja(cajaSeleccionada2);
                     }

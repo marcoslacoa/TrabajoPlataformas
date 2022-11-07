@@ -93,7 +93,7 @@ namespace TrabajoPlataformas
                 }
 
             }
-            foreach (CajaAhorro caja in miBanco.cajasList.ToList())
+            foreach (CajaAhorro caja in miBanco.obtenerCajas())
             {
                 // print every caja inside the list except the ones that belongs to the user
                 if (!miBanco.obtenerCajasDelUsuario().Contains(caja))
@@ -236,7 +236,7 @@ namespace TrabajoPlataformas
                         int cbuenInt = Convert.ToInt32(comboBoxCbu.SelectedItem);
                         int cbuenIntDestino = Convert.ToInt32(comboBoxCbuDestino.SelectedItem);
                         CajaAhorro origen = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
-                        CajaAhorro destino = miBanco.cajasList.First(x => x.cbu == cbuenIntDestino);
+                        CajaAhorro destino = miBanco.obtenerCajas().First(x => x.cbu == cbuenIntDestino);
                         float monto = float.Parse(textMonto.Text);
                         miBanco.transferir(origen, destino, monto);
                        

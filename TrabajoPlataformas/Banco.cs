@@ -15,15 +15,15 @@ namespace TrabajoPlataformas
 {
     public class Banco 
     {
-        public List<Usuario> userList;
-        public List<CajaAhorro> cajasList;
-        public List<PlazoFijo> plazosFijos { get; }
-        public List<Pago> pagos { get; }
-        public List<Movimiento> movimientos { get; }
-        public List<TarjetaCredito> tarjetas { get; }
+        private List<Usuario> userList;
+        private List<CajaAhorro> cajasList;
+        private List<PlazoFijo> plazosFijos;
+        private List<Pago> pagos;
+        private List<Movimiento> movimientos;
+        private List<TarjetaCredito> tarjetas;
 
         public Usuario usuarioActual;
-        public CajaAhorro caja;
+        private CajaAhorro caja;
         
         public List <CajaAhorro> obtenerCajasDelUsuario()
         {
@@ -36,6 +36,10 @@ namespace TrabajoPlataformas
         public List<TarjetaCredito> obtenerTarjetasDelUsuario()
         {
             return this.usuarioActual.tarjetas.ToList();
+        }
+        public List<Pago> obtenerPagosDelUsuario()
+        {
+            return this.usuarioActual.pagos.ToList();
         }
         public Banco()
         {
