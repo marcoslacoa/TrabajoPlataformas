@@ -63,12 +63,14 @@
             this.TASA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CrearPlazo = new System.Windows.Forms.Button();
             this.tabPagePagos = new System.Windows.Forms.TabPage();
+            this.textBoxDetalle = new System.Windows.Forms.TextBox();
+            this.textBoxMontoPago = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.buttonBorrarPago = new System.Windows.Forms.Button();
+            this.buttonCrearPago = new System.Windows.Forms.Button();
             this.comboBoxPagos = new System.Windows.Forms.ComboBox();
             this.comboBoxCbuPagos = new System.Windows.Forms.ComboBox();
             this.comboBoxTarjetaPagos = new System.Windows.Forms.ComboBox();
-            this.buttonConfirmarPago = new System.Windows.Forms.Button();
-            this.labelNumeroPagos = new System.Windows.Forms.Label();
-            this.labelMontoPagos = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,9 +79,17 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonRealizarPago = new System.Windows.Forms.Button();
             this.tabPageTarjetas = new System.Windows.Forms.TabPage();
+            this.buttonMostrarDatosTarjeta = new System.Windows.Forms.Button();
+            this.comboBoxCbuPagar = new System.Windows.Forms.ComboBox();
+            this.comboBoxTarjetaPagar = new System.Windows.Forms.ComboBox();
+            this.buttonPagarTarjeta = new System.Windows.Forms.Button();
+            this.buttonBorrarTarjeta = new System.Windows.Forms.Button();
+            this.comboBoxTarjetaBorrar = new System.Windows.Forms.ComboBox();
+            this.textBoxLimiteTarjeta = new System.Windows.Forms.TextBox();
+            this.textBoxCVCTarjeta = new System.Windows.Forms.TextBox();
+            this.textBoxNumeroTarjeta = new System.Windows.Forms.TextBox();
             this.buttonCrearTarjeta = new System.Windows.Forms.Button();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,15 +99,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.textBoxNumeroTarjeta = new System.Windows.Forms.TextBox();
-            this.textBoxCVCTarjeta = new System.Windows.Forms.TextBox();
-            this.textBoxLimiteTarjeta = new System.Windows.Forms.TextBox();
-            this.comboBoxTarjetaBorrar = new System.Windows.Forms.ComboBox();
-            this.buttonBorrarTarjeta = new System.Windows.Forms.Button();
-            this.buttonPagarTarjeta = new System.Windows.Forms.Button();
-            this.comboBoxTarjetaPagar = new System.Windows.Forms.ComboBox();
-            this.comboBoxCbuPagar = new System.Windows.Forms.ComboBox();
-            this.buttonMostrarDatosTarjeta = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageCaja.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -457,18 +459,20 @@
             // 
             // tabPagePagos
             // 
+            this.tabPagePagos.Controls.Add(this.button5);
+            this.tabPagePagos.Controls.Add(this.textBoxDetalle);
+            this.tabPagePagos.Controls.Add(this.textBoxMontoPago);
+            this.tabPagePagos.Controls.Add(this.comboBox1);
+            this.tabPagePagos.Controls.Add(this.buttonBorrarPago);
+            this.tabPagePagos.Controls.Add(this.buttonCrearPago);
             this.tabPagePagos.Controls.Add(this.comboBoxPagos);
             this.tabPagePagos.Controls.Add(this.comboBoxCbuPagos);
             this.tabPagePagos.Controls.Add(this.comboBoxTarjetaPagos);
-            this.tabPagePagos.Controls.Add(this.buttonConfirmarPago);
-            this.tabPagePagos.Controls.Add(this.labelNumeroPagos);
-            this.tabPagePagos.Controls.Add(this.labelMontoPagos);
             this.tabPagePagos.Controls.Add(this.dataGridView3);
             this.tabPagePagos.Controls.Add(this.dataGridView4);
             this.tabPagePagos.Controls.Add(this.label5);
             this.tabPagePagos.Controls.Add(this.label4);
-            this.tabPagePagos.Controls.Add(this.button7);
-            this.tabPagePagos.Controls.Add(this.button6);
+            this.tabPagePagos.Controls.Add(this.buttonRealizarPago);
             this.tabPagePagos.Location = new System.Drawing.Point(4, 29);
             this.tabPagePagos.Name = "tabPagePagos";
             this.tabPagePagos.Size = new System.Drawing.Size(613, 443);
@@ -476,10 +480,56 @@
             this.tabPagePagos.Text = "Pagos";
             this.tabPagePagos.UseVisualStyleBackColor = true;
             // 
+            // textBoxDetalle
+            // 
+            this.textBoxDetalle.Location = new System.Drawing.Point(3, 360);
+            this.textBoxDetalle.Name = "textBoxDetalle";
+            this.textBoxDetalle.Size = new System.Drawing.Size(185, 27);
+            this.textBoxDetalle.TabIndex = 20;
+            this.textBoxDetalle.Text = "Detalle";
+            // 
+            // textBoxMontoPago
+            // 
+            this.textBoxMontoPago.Location = new System.Drawing.Point(3, 326);
+            this.textBoxMontoPago.Name = "textBoxMontoPago";
+            this.textBoxMontoPago.Size = new System.Drawing.Size(185, 27);
+            this.textBoxMontoPago.TabIndex = 19;
+            this.textBoxMontoPago.Text = "Monto";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(210, 326);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(185, 28);
+            this.comboBox1.TabIndex = 18;
+            this.comboBox1.Tag = "";
+            this.comboBox1.Text = "PAGO";
+            // 
+            // buttonBorrarPago
+            // 
+            this.buttonBorrarPago.Location = new System.Drawing.Point(210, 394);
+            this.buttonBorrarPago.Name = "buttonBorrarPago";
+            this.buttonBorrarPago.Size = new System.Drawing.Size(185, 46);
+            this.buttonBorrarPago.TabIndex = 17;
+            this.buttonBorrarPago.Text = "Eliminar Pago";
+            this.buttonBorrarPago.UseVisualStyleBackColor = true;
+            this.buttonBorrarPago.Click += new System.EventHandler(this.buttonBorrarPago_Click);
+            // 
+            // buttonCrearPago
+            // 
+            this.buttonCrearPago.Location = new System.Drawing.Point(3, 394);
+            this.buttonCrearPago.Name = "buttonCrearPago";
+            this.buttonCrearPago.Size = new System.Drawing.Size(185, 46);
+            this.buttonCrearPago.TabIndex = 16;
+            this.buttonCrearPago.Text = "Crear Pago";
+            this.buttonCrearPago.UseVisualStyleBackColor = true;
+            this.buttonCrearPago.Click += new System.EventHandler(this.buttonCrearPago_Click);
+            // 
             // comboBoxPagos
             // 
             this.comboBoxPagos.FormattingEnabled = true;
-            this.comboBoxPagos.Location = new System.Drawing.Point(218, 356);
+            this.comboBoxPagos.Location = new System.Drawing.Point(417, 360);
             this.comboBoxPagos.Name = "comboBoxPagos";
             this.comboBoxPagos.Size = new System.Drawing.Size(185, 28);
             this.comboBoxPagos.TabIndex = 15;
@@ -489,7 +539,7 @@
             // comboBoxCbuPagos
             // 
             this.comboBoxCbuPagos.FormattingEnabled = true;
-            this.comboBoxCbuPagos.Location = new System.Drawing.Point(218, 292);
+            this.comboBoxCbuPagos.Location = new System.Drawing.Point(417, 326);
             this.comboBoxCbuPagos.Name = "comboBoxCbuPagos";
             this.comboBoxCbuPagos.Size = new System.Drawing.Size(185, 28);
             this.comboBoxCbuPagos.TabIndex = 14;
@@ -506,33 +556,6 @@
             this.comboBoxTarjetaPagos.TabIndex = 13;
             this.comboBoxTarjetaPagos.Tag = "";
             this.comboBoxTarjetaPagos.Text = "TARJETA";
-            // 
-            // buttonConfirmarPago
-            // 
-            this.buttonConfirmarPago.Location = new System.Drawing.Point(418, 356);
-            this.buttonConfirmarPago.Name = "buttonConfirmarPago";
-            this.buttonConfirmarPago.Size = new System.Drawing.Size(184, 59);
-            this.buttonConfirmarPago.TabIndex = 12;
-            this.buttonConfirmarPago.Text = "CONFIMAR PAGO";
-            this.buttonConfirmarPago.UseVisualStyleBackColor = true;
-            // 
-            // labelNumeroPagos
-            // 
-            this.labelNumeroPagos.AutoSize = true;
-            this.labelNumeroPagos.Location = new System.Drawing.Point(294, 395);
-            this.labelNumeroPagos.Name = "labelNumeroPagos";
-            this.labelNumeroPagos.Size = new System.Drawing.Size(33, 20);
-            this.labelNumeroPagos.TabIndex = 11;
-            this.labelNumeroPagos.Text = "000";
-            // 
-            // labelMontoPagos
-            // 
-            this.labelMontoPagos.AutoSize = true;
-            this.labelMontoPagos.Location = new System.Drawing.Point(218, 395);
-            this.labelMontoPagos.Name = "labelMontoPagos";
-            this.labelMontoPagos.Size = new System.Drawing.Size(56, 20);
-            this.labelMontoPagos.TabIndex = 10;
-            this.labelMontoPagos.Text = "Monto:";
             // 
             // dataGridView3
             // 
@@ -610,24 +633,15 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "PAGOS PENDIENTES";
             // 
-            // button7
+            // buttonRealizarPago
             // 
-            this.button7.Location = new System.Drawing.Point(11, 356);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(185, 59);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Realizar pago";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(11, 291);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(185, 59);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "ADMINISTRAR PAGOS";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonRealizarPago.Location = new System.Drawing.Point(417, 394);
+            this.buttonRealizarPago.Name = "buttonRealizarPago";
+            this.buttonRealizarPago.Size = new System.Drawing.Size(185, 46);
+            this.buttonRealizarPago.TabIndex = 6;
+            this.buttonRealizarPago.Text = "Realizar pago";
+            this.buttonRealizarPago.UseVisualStyleBackColor = true;
+            this.buttonRealizarPago.Click += new System.EventHandler(this.buttonRealizarPago_Click);
             // 
             // tabPageTarjetas
             // 
@@ -649,6 +663,87 @@
             this.tabPageTarjetas.Text = "Tarjetas";
             this.tabPageTarjetas.UseVisualStyleBackColor = true;
             this.tabPageTarjetas.Click += new System.EventHandler(this.tabPageTarjetas_Click);
+            // 
+            // buttonMostrarDatosTarjeta
+            // 
+            this.buttonMostrarDatosTarjeta.Location = new System.Drawing.Point(408, 396);
+            this.buttonMostrarDatosTarjeta.Name = "buttonMostrarDatosTarjeta";
+            this.buttonMostrarDatosTarjeta.Size = new System.Drawing.Size(174, 29);
+            this.buttonMostrarDatosTarjeta.TabIndex = 12;
+            this.buttonMostrarDatosTarjeta.Text = "Mostrar Datos";
+            this.buttonMostrarDatosTarjeta.UseVisualStyleBackColor = true;
+            this.buttonMostrarDatosTarjeta.Click += new System.EventHandler(this.buttonMostrarDatosTarjeta_Click);
+            // 
+            // comboBoxCbuPagar
+            // 
+            this.comboBoxCbuPagar.FormattingEnabled = true;
+            this.comboBoxCbuPagar.Location = new System.Drawing.Point(210, 360);
+            this.comboBoxCbuPagar.Name = "comboBoxCbuPagar";
+            this.comboBoxCbuPagar.Size = new System.Drawing.Size(174, 28);
+            this.comboBoxCbuPagar.TabIndex = 11;
+            this.comboBoxCbuPagar.Text = "CBU";
+            // 
+            // comboBoxTarjetaPagar
+            // 
+            this.comboBoxTarjetaPagar.FormattingEnabled = true;
+            this.comboBoxTarjetaPagar.Location = new System.Drawing.Point(210, 318);
+            this.comboBoxTarjetaPagar.Name = "comboBoxTarjetaPagar";
+            this.comboBoxTarjetaPagar.Size = new System.Drawing.Size(174, 28);
+            this.comboBoxTarjetaPagar.TabIndex = 10;
+            this.comboBoxTarjetaPagar.Text = "Tarjeta";
+            // 
+            // buttonPagarTarjeta
+            // 
+            this.buttonPagarTarjeta.Location = new System.Drawing.Point(210, 243);
+            this.buttonPagarTarjeta.Name = "buttonPagarTarjeta";
+            this.buttonPagarTarjeta.Size = new System.Drawing.Size(174, 62);
+            this.buttonPagarTarjeta.TabIndex = 9;
+            this.buttonPagarTarjeta.Text = "Pagar Tarjeta";
+            this.buttonPagarTarjeta.UseVisualStyleBackColor = true;
+            this.buttonPagarTarjeta.Click += new System.EventHandler(this.buttonPagarTarjeta_Click);
+            // 
+            // buttonBorrarTarjeta
+            // 
+            this.buttonBorrarTarjeta.Location = new System.Drawing.Point(408, 243);
+            this.buttonBorrarTarjeta.Name = "buttonBorrarTarjeta";
+            this.buttonBorrarTarjeta.Size = new System.Drawing.Size(174, 62);
+            this.buttonBorrarTarjeta.TabIndex = 8;
+            this.buttonBorrarTarjeta.Text = "Borrar Tarjeta";
+            this.buttonBorrarTarjeta.UseVisualStyleBackColor = true;
+            this.buttonBorrarTarjeta.Click += new System.EventHandler(this.buttonBorrarTarjeta_Click);
+            // 
+            // comboBoxTarjetaBorrar
+            // 
+            this.comboBoxTarjetaBorrar.FormattingEnabled = true;
+            this.comboBoxTarjetaBorrar.Location = new System.Drawing.Point(408, 317);
+            this.comboBoxTarjetaBorrar.Name = "comboBoxTarjetaBorrar";
+            this.comboBoxTarjetaBorrar.Size = new System.Drawing.Size(174, 28);
+            this.comboBoxTarjetaBorrar.TabIndex = 7;
+            this.comboBoxTarjetaBorrar.Text = "Tarjeta";
+            // 
+            // textBoxLimiteTarjeta
+            // 
+            this.textBoxLimiteTarjeta.Location = new System.Drawing.Point(16, 360);
+            this.textBoxLimiteTarjeta.Name = "textBoxLimiteTarjeta";
+            this.textBoxLimiteTarjeta.Size = new System.Drawing.Size(174, 27);
+            this.textBoxLimiteTarjeta.TabIndex = 5;
+            this.textBoxLimiteTarjeta.Text = "Limite";
+            // 
+            // textBoxCVCTarjeta
+            // 
+            this.textBoxCVCTarjeta.Location = new System.Drawing.Point(16, 396);
+            this.textBoxCVCTarjeta.Name = "textBoxCVCTarjeta";
+            this.textBoxCVCTarjeta.Size = new System.Drawing.Size(174, 27);
+            this.textBoxCVCTarjeta.TabIndex = 4;
+            this.textBoxCVCTarjeta.Text = "CVC";
+            // 
+            // textBoxNumeroTarjeta
+            // 
+            this.textBoxNumeroTarjeta.Location = new System.Drawing.Point(16, 318);
+            this.textBoxNumeroTarjeta.Name = "textBoxNumeroTarjeta";
+            this.textBoxNumeroTarjeta.Size = new System.Drawing.Size(174, 27);
+            this.textBoxNumeroTarjeta.TabIndex = 3;
+            this.textBoxNumeroTarjeta.Text = "Numero";
             // 
             // buttonCrearTarjeta
             // 
@@ -738,86 +833,15 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // textBoxNumeroTarjeta
+            // button5
             // 
-            this.textBoxNumeroTarjeta.Location = new System.Drawing.Point(16, 318);
-            this.textBoxNumeroTarjeta.Name = "textBoxNumeroTarjeta";
-            this.textBoxNumeroTarjeta.Size = new System.Drawing.Size(174, 27);
-            this.textBoxNumeroTarjeta.TabIndex = 3;
-            this.textBoxNumeroTarjeta.Text = "Numero";
-            // 
-            // textBoxCVCTarjeta
-            // 
-            this.textBoxCVCTarjeta.Location = new System.Drawing.Point(16, 396);
-            this.textBoxCVCTarjeta.Name = "textBoxCVCTarjeta";
-            this.textBoxCVCTarjeta.Size = new System.Drawing.Size(174, 27);
-            this.textBoxCVCTarjeta.TabIndex = 4;
-            this.textBoxCVCTarjeta.Text = "CVC";
-            // 
-            // textBoxLimiteTarjeta
-            // 
-            this.textBoxLimiteTarjeta.Location = new System.Drawing.Point(16, 360);
-            this.textBoxLimiteTarjeta.Name = "textBoxLimiteTarjeta";
-            this.textBoxLimiteTarjeta.Size = new System.Drawing.Size(174, 27);
-            this.textBoxLimiteTarjeta.TabIndex = 5;
-            this.textBoxLimiteTarjeta.Text = "Limite";
-            // 
-            // comboBoxTarjetaBorrar
-            // 
-            this.comboBoxTarjetaBorrar.FormattingEnabled = true;
-            this.comboBoxTarjetaBorrar.Location = new System.Drawing.Point(408, 317);
-            this.comboBoxTarjetaBorrar.Name = "comboBoxTarjetaBorrar";
-            this.comboBoxTarjetaBorrar.Size = new System.Drawing.Size(174, 28);
-            this.comboBoxTarjetaBorrar.TabIndex = 7;
-            this.comboBoxTarjetaBorrar.Text = "Tarjeta";
-            // 
-            // buttonBorrarTarjeta
-            // 
-            this.buttonBorrarTarjeta.Location = new System.Drawing.Point(408, 243);
-            this.buttonBorrarTarjeta.Name = "buttonBorrarTarjeta";
-            this.buttonBorrarTarjeta.Size = new System.Drawing.Size(174, 62);
-            this.buttonBorrarTarjeta.TabIndex = 8;
-            this.buttonBorrarTarjeta.Text = "Borrar Tarjeta";
-            this.buttonBorrarTarjeta.UseVisualStyleBackColor = true;
-            this.buttonBorrarTarjeta.Click += new System.EventHandler(this.buttonBorrarTarjeta_Click);
-            // 
-            // buttonPagarTarjeta
-            // 
-            this.buttonPagarTarjeta.Location = new System.Drawing.Point(210, 243);
-            this.buttonPagarTarjeta.Name = "buttonPagarTarjeta";
-            this.buttonPagarTarjeta.Size = new System.Drawing.Size(174, 62);
-            this.buttonPagarTarjeta.TabIndex = 9;
-            this.buttonPagarTarjeta.Text = "Pagar Tarjeta";
-            this.buttonPagarTarjeta.UseVisualStyleBackColor = true;
-            this.buttonPagarTarjeta.Click += new System.EventHandler(this.buttonPagarTarjeta_Click);
-            // 
-            // comboBoxTarjetaPagar
-            // 
-            this.comboBoxTarjetaPagar.FormattingEnabled = true;
-            this.comboBoxTarjetaPagar.Location = new System.Drawing.Point(210, 318);
-            this.comboBoxTarjetaPagar.Name = "comboBoxTarjetaPagar";
-            this.comboBoxTarjetaPagar.Size = new System.Drawing.Size(174, 28);
-            this.comboBoxTarjetaPagar.TabIndex = 10;
-            this.comboBoxTarjetaPagar.Text = "Tarjeta";
-            // 
-            // comboBoxCbuPagar
-            // 
-            this.comboBoxCbuPagar.FormattingEnabled = true;
-            this.comboBoxCbuPagar.Location = new System.Drawing.Point(210, 360);
-            this.comboBoxCbuPagar.Name = "comboBoxCbuPagar";
-            this.comboBoxCbuPagar.Size = new System.Drawing.Size(174, 28);
-            this.comboBoxCbuPagar.TabIndex = 11;
-            this.comboBoxCbuPagar.Text = "CBU";
-            // 
-            // buttonMostrarDatosTarjeta
-            // 
-            this.buttonMostrarDatosTarjeta.Location = new System.Drawing.Point(408, 396);
-            this.buttonMostrarDatosTarjeta.Name = "buttonMostrarDatosTarjeta";
-            this.buttonMostrarDatosTarjeta.Size = new System.Drawing.Size(174, 29);
-            this.buttonMostrarDatosTarjeta.TabIndex = 12;
-            this.buttonMostrarDatosTarjeta.Text = "Mostrar Datos";
-            this.buttonMostrarDatosTarjeta.UseVisualStyleBackColor = true;
-            this.buttonMostrarDatosTarjeta.Click += new System.EventHandler(this.buttonMostrarDatosTarjeta_Click);
+            this.button5.Location = new System.Drawing.Point(3, 277);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(185, 34);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "Mostrar Datos";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // FormMain
             // 
@@ -892,14 +916,10 @@
         private Button buttonCrearTarjeta;
         private Label label5;
         private Label label4;
-        private Button button7;
-        private Button button6;
+        private Button buttonRealizarPago;
         private ComboBox comboBoxPagos;
         private ComboBox comboBoxCbuPagos;
         private ComboBox comboBoxTarjetaPagos;
-        private Button buttonConfirmarPago;
-        private Label labelNumeroPagos;
-        private Label labelMontoPagos;
         private DataGridView dataGridView3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
@@ -927,5 +947,11 @@
         private TextBox textBoxNumeroTarjeta;
         private ComboBox comboBoxCbuPagar;
         private Button buttonMostrarDatosTarjeta;
+        private TextBox textBoxDetalle;
+        private TextBox textBoxMontoPago;
+        private ComboBox comboBox1;
+        private Button buttonBorrarPago;
+        private Button buttonCrearPago;
+        private Button button5;
     }
 }

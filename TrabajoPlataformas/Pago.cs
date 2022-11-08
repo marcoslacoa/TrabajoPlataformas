@@ -22,5 +22,9 @@ namespace TrabajoPlataformas
             this.pagado = Pagado;
             this.detalle = detalle;
         }
+        public string[] toArray()
+        {
+            return new string[] { monto.ToString(), detalle.ToString() };
+        }
     }
 }

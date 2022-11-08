@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
@@ -41,10 +42,7 @@ namespace TrabajoPlataformas
             buttonConfirmar.Visible = false;
             comboBoxCbuPagos.Visible = false;
             comboBoxTarjetaPagos.Visible = false;
-            comboBoxPagos.Visible = false;
-            labelMontoPagos.Visible = false;
-            labelNumeroPagos.Visible = false;
-            
+            comboBoxPagos.Visible = false;           
         }
         //public FormMain(object[] args)
         //{
@@ -113,9 +111,13 @@ namespace TrabajoPlataformas
             comboBoxCbuPlazo.Items.Clear();
             foreach (PlazoFijo plazo in miBanco.obtenerPlazosDelUsuario())
             {
-               if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
-                   dataGridView1.Rows.Add(plazo.toArray());
-              
+                if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
+                   dataGridView2.Rows.Add(plazo.toArray());
+
+                if (!comboBox2.Items.Contains(plazo.id))
+                {
+                    comboBox2.Items.Add(plazo.id);
+                }
             }
         }
 
@@ -126,7 +128,20 @@ namespace TrabajoPlataformas
             foreach (TarjetaCredito tarjeta in miBanco.obtenerTarjetasDelUsuario())
             {
                 if (miBanco.obtenerTarjetasDelUsuario().Contains(tarjeta))
-                    dataGridView1.Rows.Add(tarjeta.toArray());
+                    dataGridView5.Rows.Add(tarjeta.toArray());
+
+            }
+        }
+
+        public void refreshPagos()
+        {
+            dataGridView3.Rows.Clear();
+            dataGridView4.Rows.Clear();
+            
+            foreach (Pago pago in miBanco.obtenerPagosDelUsuario())
+            {
+                if (miBanco.obtenerPagosDelUsuario().Contains(pago))
+                    dataGridView3.Rows.Add(pago.toArray());
 
             }
         }
@@ -280,12 +295,7 @@ namespace TrabajoPlataformas
 
         private void button7_Click(object sender, EventArgs e)
         {
-           comboBoxCbuPagos.Visible = true;
-           comboBoxTarjetaPagos.Visible = true;
-           comboBoxPagos.Visible = true;
-           labelMontoPagos.Visible = true;
-           labelNumeroPagos.Visible = true;
-           buttonConfirmarPago.Visible = true;              
+   
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -309,7 +319,7 @@ namespace TrabajoPlataformas
             if(comboBoxCbuPlazo.SelectedItem != null)
             {
                 int cbuenInt = Convert.ToInt32(comboBoxCbuPlazo.SelectedItem);
-                CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
+                //CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
                 float monto = float.Parse(MontoInsertPlazo.Text);
                 DateTime fechaIni = DateTime.Now;
                 int tasa = 0;
@@ -319,17 +329,16 @@ namespace TrabajoPlataformas
 
         private void BorrarPlazo_Click(object sender, EventArgs e)
         {
-            //int cbuenInt = Convert.ToInt32(comboBox2.SelectedItem);
-           
-
-            //if (miBanco.bajaPlazo(cbuenInt))
-            //{
-            //    MessageBox.Show("Se ha borrado el plazo fijo");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No se pudo borrar el plazo fijo");
-            //}
+            int cbuenInt = Convert.ToInt32(comboBox2.SelectedItem);
+            
+            if (miBanco.bajaPlazo(cbuenInt))
+            {
+               MessageBox.Show("Se ha borrado el plazo fijo");
+            }
+            else
+            {
+                MessageBox.Show("No se pudo borrar el plazo fijo");
+            }
 
         }
 
@@ -368,8 +377,7 @@ namespace TrabajoPlataformas
             {
                 MessageBox.Show("Debes ingresar la tarjeta y el cbu para realiza el pago");
             }
-            
-            
+         
         }
 
         private void buttonBorrarTarjeta_Click(object sender, EventArgs e)
@@ -395,6 +403,42 @@ namespace TrabajoPlataformas
         private void buttonMostrarDatosTarjeta_Click(object sender, EventArgs e)
         {
             refreshTarjeta();
+        }
+
+        private void buttonCrearPago_Click(object sender, EventArgs e)
+        {
+            if (textBoxMontoPago != null && textBoxDetalle != null)
+            {
+                float monto = float.Parse(textBoxMontoPago.Text);
+                string detalle = textBoxDetalle.Text;
+                if (miBanco.altaPago(miBanco.usuarioActual,monto, false, detalle))
+                {
+                    MessageBox.Show("Pago creado");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo crear el pago");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes ingresar el monto y detalle para crear un pago");
+            }
+        }
+
+        private void buttonBorrarPago_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonRealizarPago_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            refreshPagos();
         }
     }
 

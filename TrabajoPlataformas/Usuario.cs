@@ -30,7 +30,7 @@ namespace TrabajoPlataformas
         public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, int IntentosFallidos, bool Bloqueado,
             List<CajaAhorro> CajasList, List<PlazoFijo> PlazoFijo, List<Pago>Pagos, List<TarjetaCredito> Tarjetas)
         {
-             nombre = Nombre;
+            nombre = Nombre;
             apellido = Apellido;
             dni = Dni;
             mail = Mail;
@@ -51,6 +51,8 @@ namespace TrabajoPlataformas
             contra = Contra;
             this.bloqueado = Bloqueado;
             listaCajas = new List<CajaAhorro>();
+            plazoFijo = new List<PlazoFijo>();
+            pagos = new List<Pago>();
         }
 
         public Usuario(string Nombre, string Contra)
@@ -67,6 +69,24 @@ namespace TrabajoPlataformas
         public void eliminarCaja(CajaAhorro caja)
         {
             listaCajas.Remove(caja);
+        }
+
+        public void agregarPlazo(PlazoFijo plazo)
+        {
+            plazoFijo.Add(plazo);
+        }
+        public void eliminarPlazo(PlazoFijo plazo)
+        {
+            plazoFijo.Remove(plazo);
+        }
+
+        public void agregarPago(Pago pago)
+        {
+            pagos.Add(pago);
+        }
+        public void eliminarPago(Pago pago)
+        {
+            pagos.Remove(pago);
         }
 
         //public bool bloqueado()

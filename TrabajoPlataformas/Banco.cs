@@ -143,6 +143,16 @@ namespace TrabajoPlataformas
             return userList.FirstOrDefault(x => x.dni == dni);
         }
 
+        public PlazoFijo getPlazo(int id)
+        {
+            return plazosFijos.FirstOrDefault(x => x.id == id);
+        }
+
+        public Pago getPago(int id)
+        {
+            return pagos.FirstOrDefault(x => x.id == id);
+        }
+
         public int crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
         {
             if (this.cajasList.Any(caja => caja.cbu == cbu2))
@@ -211,7 +221,8 @@ namespace TrabajoPlataformas
             {
                 CajaAhorro caja = this.getCaja(cbu);
                 PlazoFijo nuevo = new PlazoFijo(titular, caja ,monto, fechaIni, fechaFin, tasa, pagado);
-                plazosFijos.Add(nuevo);
+                this.plazosFijos.Add(nuevo);
+                this.usuarioActual.agregarPlazo(nuevo);
                 return true;
             }
             catch (Exception)
@@ -220,22 +231,26 @@ namespace TrabajoPlataformas
             }
         }
 
-        //public bool bajaPlazo(int cbu)
-        //{
-            
-        //    PlazoFijo plazaToRemove = this.plazosFijos.FirstOrDefault(x => x.id == plazo.id); // COMO SERIA ACA?
-        //    try
-        //    {
-        //        if (plazaToRemove != null)
-        //            usuarioActual.plazoFijo.Remove(plazaToRemove);
-        //        return true;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
+        public bool bajaPlazo(int id)
+        {
 
+            PlazoFijo plazoToRemove = this.getPlazo(id);
+            try
+            {
+                if (plazoToRemove != null)
+                  this.plazosFijos.Remove(plazoToRemove);
+                  this.usuarioActual.eliminarPlazo(plazoToRemove);
+                   
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        //NO IMPLEMENTAR, NO SE PUEDEN MODIFICAR PLAZOS
         /*public bool modificarPlazo(int id, Usuario titular, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado)
         {
             PlazoFijo aModificar = plazosFijos[id];
@@ -260,6 +275,7 @@ namespace TrabajoPlataformas
             {
                 Pago nuevo = new Pago(usuario, monto, pagado, detalle);
                 pagos.Add(nuevo);
+                this.usuarioActual.agregarPago(nuevo);
                 return true;
             }
             catch (Exception)
