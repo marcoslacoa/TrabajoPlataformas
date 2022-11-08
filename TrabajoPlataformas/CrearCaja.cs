@@ -16,12 +16,11 @@ namespace TrabajoPlataformas
     {
         public Banco banco;
         public int cbuCaja;
-        public float saldoCaja;
+        
         public Usuario usuario;
         public int numeroDeClick;
         public cofirmoBorrarDelegate confirmBorrarEvento;
         public int numeroDeClickModificar;
-        public int cbuSeleccionado;
 
         public CrearCaja(Banco banco, Usuario usuario)
         {
@@ -43,7 +42,7 @@ namespace TrabajoPlataformas
             switch (numeroDeClick)
             {
                 case 1:
-                    saldoCaja = float.Parse(saldo.Text);
+                   float saldoCaja = float.Parse(saldo.Text);
                     if(banco.crearCajaAhorro(cbuCaja, saldoCaja, usuario) == 2)
                     {
                             MessageBox.Show("Caja de ahorro creada con exito");
@@ -87,8 +86,10 @@ namespace TrabajoPlataformas
                     else if (numeroDeClickModificar == 2) { 
 
                         int usuarioSeleccionado2 = Convert.ToInt32(comboBoxTitular.SelectedItem);
-                        
-                        int aux3 = banco.eliminarTitular(this.cbuSeleccionado, usuarioSeleccionado2);
+                        int cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
+
+
+                        int aux3 = banco.eliminarTitular(cbuSeleccionado, usuarioSeleccionado2);
                         if (aux3 == 0)
                         {
                             // No existe el usuario
@@ -202,6 +203,7 @@ namespace TrabajoPlataformas
             buttonBorrar.Visible = true;
             confirmar.Visible = false;
             comboBoxCajaAgregar.Items.Clear();
+            numeroDeClick = 2;
             foreach (CajaAhorro caja in banco.obtenerCajasDelUsuario())
             {
                 comboBoxCajaAgregar.Items.Add(caja.cbu);
@@ -259,7 +261,7 @@ namespace TrabajoPlataformas
             numeroDeClickModificar = 2;
 
 
-            cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
+            int cbuSeleccionado = Convert.ToInt32(comboBoxCajaAgregar.SelectedItem);
             CajaAhorro caja = banco.obtenerCajasDelUsuario().First(x => x.cbu == cbuSeleccionado);
             comboBoxTitular.Items.Clear();
 

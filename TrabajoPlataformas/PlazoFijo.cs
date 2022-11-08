@@ -18,7 +18,7 @@ namespace TrabajoPlataformas
         public Boolean pagado { get; set; }
 
         public PlazoFijo(Usuario Titular, CajaAhorro Caja , float Monto,DateTime FechaIni, DateTimePicker FechaFin, float Tasa, bool Pagado)
-        {
+        {   
             this.titular = Titular;
             this.monto = Monto;
             this.fechaIni = FechaIni;
@@ -26,7 +26,8 @@ namespace TrabajoPlataformas
             this.tasa = Tasa;
             this.pagado = Pagado;
             this.caja = Caja;
-        }
+            this.id = new Random().Next(100000, 999999);
+        } 
 
         public string[] toArray()
         {

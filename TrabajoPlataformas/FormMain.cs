@@ -313,15 +313,24 @@ namespace TrabajoPlataformas
                 float monto = float.Parse(MontoInsertPlazo.Text);
                 DateTime fechaIni = DateTime.Now;
                 int tasa = 0;
-                miBanco.altaPlazo(miBanco.usuarioActual, caja, monto, fechaIni, dateTimePicker1, tasa, false);
+                miBanco.altaPlazo(miBanco.usuarioActual, cbuenInt, monto, fechaIni, dateTimePicker1, tasa, false);
             }
         }
 
         private void BorrarPlazo_Click(object sender, EventArgs e)
         {
-            int cbuenInt = Convert.ToInt32(comboBox2.SelectedItem);
-            PlazoFijo plazo = miBanco.obtenerPlazosDelUsuario().First(x => x.monto == cbuenInt);
-            miBanco.bajaPlazo(plazo);
+            //int cbuenInt = Convert.ToInt32(comboBox2.SelectedItem);
+           
+
+            //if (miBanco.bajaPlazo(cbuenInt))
+            //{
+            //    MessageBox.Show("Se ha borrado el plazo fijo");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("No se pudo borrar el plazo fijo");
+            //}
+
         }
 
         private void button3_Click(object sender, EventArgs e)

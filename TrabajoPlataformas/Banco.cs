@@ -88,7 +88,7 @@ namespace TrabajoPlataformas
 
         public bool modificarUsuario(int id, int dni, string nombre, string mail, string apellido, string contra, bool bloqueado)
         {
-            Usuario aModificar = userList[id];
+            Usuario aModificar = this.userList.Find(x => x.dni == id);
             try
             {
                 Usuario nuevo = new Usuario(nombre, apellido, dni, mail, contra, bloqueado);
@@ -101,6 +101,36 @@ namespace TrabajoPlataformas
                 return false;
             }
         }
+        //public bool modificarUsuario(Usuario u)
+        //{
+        //    Usuario aModificar = this.userList.Find(x => x.dni == u.dni);
+        //    try
+        //    {
+        //        Usuario nuevo = new Usuario(u.nombre, u.apellido, u.dni, u.mail, u.contra, u.bloqueado);
+        //        userList[u.dni] = nuevo;
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        userList[u.dni] = aModificar;
+        //        return false;
+        //    }
+        //}
+        //public bool modificarUsuario(Usuario u)
+        //{
+        //    bool modifique = false;
+        //    int i = 0;
+        //    while (!modifique && i < userList.Count)
+        //    {
+        //        if (userList[i].dni == u.dni)
+        //        {
+        //            userList[i] = u;
+        //            modifique = true;
+        //        }
+        //        i++;
+        //    }
+        //    return modifique;
+        //}
 
         //ABM Caja de Ahorro
         public CajaAhorro getCaja(int cbu)
@@ -175,10 +205,11 @@ namespace TrabajoPlataformas
 
         //ABM Plazo Fijo
 
-        public bool altaPlazo(Usuario titular, CajaAhorro caja , float monto, DateTime fechaIni, DateTimePicker fechaFin, float tasa, bool pagado)
+        public bool altaPlazo(Usuario titular, int cbu , float monto, DateTime fechaIni, DateTimePicker fechaFin, float tasa, bool pagado) // ESTA BIEN ESTO? PROFE
         {
             try
             {
+                CajaAhorro caja = this.getCaja(cbu);
                 PlazoFijo nuevo = new PlazoFijo(titular, caja ,monto, fechaIni, fechaFin, tasa, pagado);
                 plazosFijos.Add(nuevo);
                 return true;
@@ -189,20 +220,21 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool bajaPlazo(PlazoFijo plazo)
-        {
-            PlazoFijo plazaToRemove = this.plazosFijos.First(x => x.titular == plazo.titular);
-            try
-            {
-                if (plazaToRemove != null)
-                    usuarioActual.plazoFijo.Remove(plazaToRemove);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        //public bool bajaPlazo(int cbu)
+        //{
+            
+        //    PlazoFijo plazaToRemove = this.plazosFijos.FirstOrDefault(x => x.id == plazo.id); // COMO SERIA ACA?
+        //    try
+        //    {
+        //        if (plazaToRemove != null)
+        //            usuarioActual.plazoFijo.Remove(plazaToRemove);
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
         /*public bool modificarPlazo(int id, Usuario titular, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado)
         {
@@ -443,13 +475,13 @@ namespace TrabajoPlataformas
                 return 1; // No hay saldo suficiente
             }
             origen.saldo -= monto;
-            this.altaMovimiento(origen, "Transferencia", monto, DateTime.Now);
+            this.altaMovimiento(origen, "Transferencia enviada ", monto, DateTime.Now);
             destino.saldo += monto;
-            this.altaMovimiento(destino, "Transferencia", monto, DateTime.Now);
+            this.altaMovimiento(destino, "Transferencia recibida", monto, DateTime.Now);
             return 2; // Transferencia exitosa
         }
 
-        public int agregarTitular(int cbu, int dni) { // PROFE: ACA TENGO QUE PASARLE SOLO CBU Y DNI A LA CLASE CAJA AHORRO Y A USUARIO, O PUEDO PASARLE EL OBJETO?
+        public int agregarTitular(int cbu, int dni) { // PROFE: ACA TENGO QUE PASARLE SOLO CBU Y DNI A LA CLASE CAJA AHORRO Y A USUARIO,
             CajaAhorro caja = getCaja(cbu);
             Usuario nuevoTitular = getUsuario(dni);
             if (nuevoTitular == null)
