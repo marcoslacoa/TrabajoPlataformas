@@ -19,6 +19,8 @@ namespace TrabajoPlataformas
         private List<CajaAhorro> cajasList;
         private List<PlazoFijo> plazosFijos;
         private List<Pago> pagos;
+        private List<Pago> pagosPendientes;
+        private List<Pago> pagosRealizados;
         private List<Movimiento> movimientos;
         private List<TarjetaCredito> tarjetas;
 
@@ -148,9 +150,9 @@ namespace TrabajoPlataformas
             return plazosFijos.FirstOrDefault(x => x.id == id);
         }
 
-        public Pago getPago(int id)
+        public Pago getPago(string detalle)// int id
         {
-            return pagos.FirstOrDefault(x => x.id == id);
+            return pagos.FirstOrDefault(x => x.detalle == detalle);
         }
 
         public int crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
@@ -284,22 +286,23 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool bajaPago(int id)
+        public bool bajaPago(string detalle)
         {
-            Pago aEliminar = pagos[id];
+            // Solo se puede hacer si el pago esta hecho
+            Pago pagoToRemove = this.getPago(detalle);
             try
             {
-                pagos[id] = null;
+                if (pagoToRemove != null)
+                this.pagos.Remove(pagoToRemove);
+                this.usuarioActual.eliminarPago(pagoToRemove);
                 return true;
             }
             catch (Exception)
-            {
-                pagos[id] = aEliminar;
+            {               
                 return false;
             }
         }
 
-        // NO implementar, no está permitido modificar un Plazo Fijo.
         /*public bool modificarPago(int id, Usuario usuario, float monto, bool pagado)
         {
             Pago aModificar = pagos[id];
@@ -550,6 +553,32 @@ namespace TrabajoPlataformas
             }
             
         }
+
+        public bool realizarPagoCaja(int cbuCaja, string detalle) // ID
+        {
+            CajaAhorro caja = getCaja(cbuCaja);
+            Pago pago = getPago(detalle);
+            if (caja.saldo < pago.monto)
+            {
+                return false;
+            } else
+            {
+                pago.pagado = true;
+                caja.saldo -= pago.monto;
+                return true;
+            }
+        }
+
+        /*public int realizarPagoTarjeta(int numeroTarjeta , string detalle) //ID 
+        {
+            //Tarjeta tarjeta = getTarjeta(numeroTarjeta);
+
+            if ()
+            {
+
+            }
+            return 0;
+        }*/
 
         //Mostrar datos
 

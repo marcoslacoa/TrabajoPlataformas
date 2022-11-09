@@ -39,10 +39,7 @@ namespace TrabajoPlataformas
             montoLabel.Visible = false;
             comboBoxCbu.Visible = false;
             comboBoxCbuDestino.Visible = false;
-            buttonConfirmar.Visible = false;
-            comboBoxCbuPagos.Visible = false;
-            comboBoxTarjetaPagos.Visible = false;
-            comboBoxPagos.Visible = false;           
+            buttonConfirmar.Visible = false;        
         }
         //public FormMain(object[] args)
         //{
@@ -88,6 +85,7 @@ namespace TrabajoPlataformas
                 {                  
                     comboBoxCbu.Items.Add(caja.cbu);
                     comboBoxCbuPlazo.Items.Add(caja.cbu);
+                    comboBoxCbuPagos.Items.Add(caja.cbu);
                 }
 
             }
@@ -135,13 +133,20 @@ namespace TrabajoPlataformas
 
         public void refreshPagos()
         {
-            dataGridView3.Rows.Clear();
-            dataGridView4.Rows.Clear();
+            dataGridView3.Rows.Clear(); //Pendientes
+            dataGridView4.Rows.Clear(); //Realizados
             
             foreach (Pago pago in miBanco.obtenerPagosDelUsuario())
             {
-                if (miBanco.obtenerPagosDelUsuario().Contains(pago))
-                    dataGridView3.Rows.Add(pago.toArray());
+                //if (miBanco.obtenerPagosDelUsuario().Contains(pago))
+                    if(!pago.pagado)
+                    { 
+                        dataGridView3.Rows.Add(pago.toArray());
+                        comboBoxPagos.Items.Add(pago.detalle); //Id para base de datos
+                    }
+                    else
+                        dataGridView4.Rows.Add(pago.toArray());
+
 
             }
         }
@@ -433,6 +438,20 @@ namespace TrabajoPlataformas
 
         private void buttonRealizarPago_Click(object sender, EventArgs e)
         {
+            int cbuenIntCajaPago = Convert.ToInt32(comboBoxCbuPagos.SelectedItem);
+            CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenIntCajaPago);
+            string cbuenStringPago = Convert.ToString(comboBoxPagos.SelectedItem);
+            Pago pago = miBanco.obtenerPagosDelUsuario().FirstOrDefault(x => x.detalle == cbuenStringPago);
+
+            if(!miBanco.realizarPagoCaja(cbuenIntCajaPago, cbuenStringPago))
+            {
+                MessageBox.Show("Usted no tiene saldo para realizar el pago");
+            }
+            else
+            {
+                MessageBox.Show("Pago realizado");
+                refreshPagos();
+            }
 
         }
 

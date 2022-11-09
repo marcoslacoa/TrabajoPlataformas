@@ -63,6 +63,7 @@
             this.TASA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CrearPlazo = new System.Windows.Forms.Button();
             this.tabPagePagos = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
             this.textBoxDetalle = new System.Windows.Forms.TextBox();
             this.textBoxMontoPago = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -99,7 +100,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageCaja.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -480,6 +480,16 @@
             this.tabPagePagos.Text = "Pagos";
             this.tabPagePagos.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(3, 277);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(185, 34);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "Mostrar Datos";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // textBoxDetalle
             // 
             this.textBoxDetalle.Location = new System.Drawing.Point(3, 360);
@@ -545,7 +555,6 @@
             this.comboBoxCbuPagos.TabIndex = 14;
             this.comboBoxCbuPagos.Tag = "";
             this.comboBoxCbuPagos.Text = "CAJA";
-            this.comboBoxCbuPagos.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // comboBoxTarjetaPagos
             // 
@@ -832,16 +841,6 @@
             this.button4.Text = "Salir";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(3, 277);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(185, 34);
-            this.button5.TabIndex = 21;
-            this.button5.Text = "Mostrar Datos";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // FormMain
             // 
