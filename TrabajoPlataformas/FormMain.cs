@@ -76,6 +76,8 @@ namespace TrabajoPlataformas
             dataGridView1.Rows.Clear();
             comboBoxCbu.Items.Clear();
             comboBoxCbuDestino.Items.Clear();
+            comboBoxCbuPagos.Items.Clear();
+            
 
             foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
             {
@@ -128,6 +130,7 @@ namespace TrabajoPlataformas
                 if (miBanco.obtenerTarjetasDelUsuario().Contains(tarjeta))
                     dataGridView5.Rows.Add(tarjeta.toArray());
 
+
             }
         }
 
@@ -135,17 +138,24 @@ namespace TrabajoPlataformas
         {
             dataGridView3.Rows.Clear(); //Pendientes
             dataGridView4.Rows.Clear(); //Realizados
-            
+            comboBoxCbuPagosEliminar.Items.Clear();
+            comboBoxPagos.Items.Clear();
+
             foreach (Pago pago in miBanco.obtenerPagosDelUsuario())
             {
                 //if (miBanco.obtenerPagosDelUsuario().Contains(pago))
-                    if(!pago.pagado)
-                    { 
-                        dataGridView3.Rows.Add(pago.toArray());
-                        comboBoxPagos.Items.Add(pago.detalle); //Id para base de datos
-                    }
-                    else
+                if(!pago.pagado) // pago pendiente 
+                { 
+                   dataGridView3.Rows.Add(pago.toArray());
+                   comboBoxPagos.Items.Add(pago.detalle); //Id para base de datos
+
+                }
+                else // pago realizado
+                { 
                         dataGridView4.Rows.Add(pago.toArray());
+                    comboBoxCbuPagosEliminar.Items.Add(pago.detalle);
+                    
+                }
 
 
             }
@@ -433,7 +443,16 @@ namespace TrabajoPlataformas
 
         private void buttonBorrarPago_Click(object sender, EventArgs e)
         {
-
+            string detalle = comboBoxCbuPagosEliminar.SelectedItem.ToString();
+            if (miBanco.bajaPago(detalle))
+            {
+                MessageBox.Show("Pago eliminado");
+                refreshPagos();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo eliminar el pago");
+            }
         }
 
         private void buttonRealizarPago_Click(object sender, EventArgs e)
@@ -459,6 +478,16 @@ namespace TrabajoPlataformas
         private void button5_Click(object sender, EventArgs e)
         {
             refreshPagos();
+        }
+
+        private void comboBoxPagos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxCbuPagos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
