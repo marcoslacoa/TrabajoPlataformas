@@ -331,7 +331,8 @@ namespace TrabajoPlataformas
             try
             {
                 Movimiento nuevo = new Movimiento(caja, detalle, monto, fecha);
-                movimientos.Add(nuevo);
+                this.movimientos.Add(nuevo);
+                caja.movimientos.Add(nuevo);
                 return true;
             }
             catch (Exception)
