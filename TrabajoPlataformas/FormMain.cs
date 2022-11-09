@@ -21,11 +21,11 @@ namespace TrabajoPlataformas
         List<List<string>> datos;
         public string usuario;
         public Banco miBanco;
-        CrearCaja hijoCrearCaja;
-        
+        CrearCaja hijoCrearCaja;        
         public cerrarsesion cerrarsesionEvento;
         public List<CajaAhorro> cajas;
         int numeroDeClick = 0;
+        int numeroDeClickPagar = 0;
 
         public FormMain(string usuario, Banco b)
         {
@@ -39,7 +39,9 @@ namespace TrabajoPlataformas
             montoLabel.Visible = false;
             comboBoxCbu.Visible = false;
             comboBoxCbuDestino.Visible = false;
-            buttonConfirmar.Visible = false;        
+            buttonConfirmar.Visible = false;
+            comboBoxCbuPagos.Visible = false;
+            comboBoxTarjetaPagos.Visible = false;
         }
         //public FormMain(object[] args)
         //{
@@ -78,7 +80,7 @@ namespace TrabajoPlataformas
             comboBoxCbuDestino.Items.Clear();
             comboBoxCbuPagos.Items.Clear();
             comboBoxCbuMov.Items.Clear();
-
+            comboBoxCbuPagar.Items.Clear();
 
             foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
             {
@@ -90,6 +92,7 @@ namespace TrabajoPlataformas
                     comboBoxCbuPlazo.Items.Add(caja.cbu);
                     comboBoxCbuPagos.Items.Add(caja.cbu);
                     comboBoxCbuMov.Items.Add(caja.cbu);
+                    comboBoxCbuPagar.Items.Add(caja.cbu);
                 }
 
             }
@@ -143,7 +146,18 @@ namespace TrabajoPlataformas
                 if (miBanco.obtenerTarjetasDelUsuario().Contains(tarjeta))
                     dataGridView5.Rows.Add(tarjeta.toArray());
 
-
+                if (!comboBoxTarjetaPagos.Items.Contains(tarjeta.numero))
+                {
+                    comboBoxTarjetaPagos.Items.Add(tarjeta.numero);
+                }
+                if (!comboBoxTarjetaBorrar.Items.Contains(tarjeta.numero))
+                {
+                    comboBoxTarjetaBorrar.Items.Add(tarjeta.numero);
+                }
+                if (!comboBoxTarjetaPagar.Items.Contains(tarjeta.numero))
+                {
+                    comboBoxTarjetaPagar.Items.Add(tarjeta.numero);
+                }
             }
         }
 
@@ -165,7 +179,7 @@ namespace TrabajoPlataformas
                 }
                 else // pago realizado
                 { 
-                        dataGridView4.Rows.Add(pago.toArray());
+                    dataGridView4.Rows.Add(pago.toArray());
                     comboBoxCbuPagosEliminar.Items.Add(pago.detalle);
                     
                 }
@@ -381,8 +395,8 @@ namespace TrabajoPlataformas
               int numero = int.Parse(textBoxNumeroTarjeta.Text);
               int cvc = int.Parse(textBoxCVCTarjeta.Text);
               int limite = int.Parse(textBoxLimiteTarjeta.Text);
-              
-              //miBanco.altaTarjeta(miBanco.usuarioActual, numero, cvc, limite,//Pagos);
+              float consumos = 0; 
+              miBanco.altaTarjeta(miBanco.usuarioActual, numero, cvc, limite, consumos);
         }
 
         private void buttonPagarTarjeta_Click(object sender, EventArgs e)
@@ -470,21 +484,42 @@ namespace TrabajoPlataformas
 
         private void buttonRealizarPago_Click(object sender, EventArgs e)
         {
-            int cbuenIntCajaPago = Convert.ToInt32(comboBoxCbuPagos.SelectedItem);
-            CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenIntCajaPago);
             string cbuenStringPago = Convert.ToString(comboBoxPagos.SelectedItem);
             Pago pago = miBanco.obtenerPagosDelUsuario().FirstOrDefault(x => x.detalle == cbuenStringPago);
 
-            if(!miBanco.realizarPagoCaja(cbuenIntCajaPago, cbuenStringPago))
+            switch (numeroDeClickPagar)
             {
-                MessageBox.Show("Usted no tiene saldo para realizar el pago");
+                case 1:
+                    int cbuenIntTarjetaPago = Convert.ToInt32(comboBoxTarjetaPagos.SelectedItem);
+                   
+                    if (!miBanco.realizarPagoTarjeta(cbuenIntTarjetaPago, cbuenStringPago))
+                    {
+                        MessageBox.Show("El monto del pago excede el limite de la tarjeta");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pago realizado");
+                        refreshPagos();
+                        refreshData();
+                    }
+                    break;
+                case 2:
+
+                    int cbuenIntCajaPago = Convert.ToInt32(comboBoxCbuPagos.SelectedItem);
+
+                    if (!miBanco.realizarPagoCaja(cbuenIntCajaPago, cbuenStringPago))
+                    {
+                        MessageBox.Show("Usted no tiene saldo para realizar el pago");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pago realizado");
+                        refreshPagos();
+                        refreshData();
+                    }
+                    break;
             }
-            else
-            {
-                MessageBox.Show("Pago realizado");
-                refreshPagos();
-                refreshData();
-            }
+            
 
         }
 
@@ -512,6 +547,20 @@ namespace TrabajoPlataformas
         {
             refreshMovimientos();
 
+        }
+
+        private void buttonPagarConTarjeta_Click(object sender, EventArgs e)
+        {
+            comboBoxTarjetaPagos.Visible = true;
+            comboBoxCbuPagos.Visible = false;
+            numeroDeClickPagar = 1;
+        }
+
+        private void buttonPagarConCaja_Click(object sender, EventArgs e)
+        {
+            comboBoxTarjetaPagos.Visible = false;
+            comboBoxCbuPagos.Visible = true;
+            numeroDeClickPagar = 2;
         }
     }
 

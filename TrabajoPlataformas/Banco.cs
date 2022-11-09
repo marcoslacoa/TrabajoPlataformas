@@ -155,6 +155,11 @@ namespace TrabajoPlataformas
             return pagos.FirstOrDefault(x => x.detalle == detalle);
         }
 
+        public TarjetaCredito getTarjeta(int numero)// int id
+        {
+            return tarjetas.FirstOrDefault(x => x.numero == numero);
+        }
+
         public int crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
         {
             if (this.cajasList.Any(caja => caja.cbu == cbu2))
@@ -374,6 +379,7 @@ namespace TrabajoPlataformas
             {
                 TarjetaCredito nuevo = new TarjetaCredito(titular, numero, codigoSeguridad, limite, consumos);
                 tarjetas.Add(nuevo);
+                this.usuarioActual.agregarTarjeta(nuevo);
                 return true;
             }
             catch (Exception)
@@ -388,6 +394,7 @@ namespace TrabajoPlataformas
             try
             {
                 if (tarjetaToRemove != null)
+                    tarjetas.Remove(tarjetaToRemove);
                     usuarioActual.tarjetas.Remove(tarjetaToRemove);
                 return true;
             }
@@ -569,16 +576,21 @@ namespace TrabajoPlataformas
             }
         }
 
-        /*public int realizarPagoTarjeta(int numeroTarjeta , string detalle) //ID 
+        public bool realizarPagoTarjeta(int numeroTarjeta , string detalle) //ID 
         {
-            //Tarjeta tarjeta = getTarjeta(numeroTarjeta);
-
-            if ()
+            TarjetaCredito tarjeta = getTarjeta(numeroTarjeta);
+            Pago pago = getPago(detalle);
+            if (tarjeta.limite < pago.monto)
             {
-
+                return false;
             }
-            return 0;
-        }*/
+            else
+            {
+                pago.pagado = true;
+                tarjeta.consumos += pago.monto;
+                return true;
+            }
+        }
 
         //Mostrar datos
 

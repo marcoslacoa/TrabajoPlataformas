@@ -41,7 +41,6 @@ namespace TrabajoPlataformas
             this.pagos = Pagos;
             this.tarjetas = Tarjetas;
             this.bloqueado = Bloqueado;
-           
         }
 
         public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, bool Bloqueado) : this(Nombre, Apellido)
@@ -53,6 +52,7 @@ namespace TrabajoPlataformas
             listaCajas = new List<CajaAhorro>();
             plazoFijo = new List<PlazoFijo>();
             pagos = new List<Pago>();
+            tarjetas = new List<TarjetaCredito>();
         }
 
         public Usuario(string Nombre, string Contra)
@@ -87,6 +87,14 @@ namespace TrabajoPlataformas
         public void eliminarPago(Pago pago)
         {
             pagos.Remove(pago);
+        }
+        public void agregarTarjeta(TarjetaCredito tarjeta)
+        {
+            tarjetas.Add(tarjeta);
+        }
+        public void eliminarTarjeta(TarjetaCredito tarjeta)
+        {
+            tarjetas.Remove(tarjeta);
         }
 
         //public bool bloqueado()
