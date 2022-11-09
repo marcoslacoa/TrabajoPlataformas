@@ -564,7 +564,7 @@ namespace TrabajoPlataformas
             } else
             {
                 pago.pagado = true;
-                caja.saldo -= pago.monto;
+                this.retirar(cbuCaja, pago.monto);
                 return true;
             }
         }
