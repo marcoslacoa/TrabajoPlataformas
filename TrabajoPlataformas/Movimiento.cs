@@ -24,5 +24,9 @@ namespace TrabajoPlataformas
         public void toStringMovimiento() {
             MessageBox.Show("Detalle: " + detalle + " Monto: " + monto + " Fecha: " + fecha);
         }
+        public string[] toArray()
+        {
+            return new string[] { caja.ToString() , detalle.ToString(), monto.ToString(), fecha.ToString() };
+        }
     }
 }

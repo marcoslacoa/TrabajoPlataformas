@@ -602,16 +602,11 @@ namespace TrabajoPlataformas
             return pagos.ToList();
         }
 
-        public List<Movimiento> obtenerMovimiento(int Cbu)
+        public List<Movimiento> obtenerMovimientos(int Cbu)
         {
-            foreach(CajaAhorro c in usuarioActual.listaCajas)
-            {
-                if(c.cbu == Cbu)
-                {
-                    return c.movimientos.ToList();
-                }
-            }
-            return null;
+            // brings all the user.movements
+            CajaAhorro caja = getCaja(Cbu);
+            return caja.movimientos.ToList();
         }
 
         public List<TarjetaCredito> obtenerTarjeta()

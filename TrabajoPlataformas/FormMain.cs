@@ -77,7 +77,8 @@ namespace TrabajoPlataformas
             comboBoxCbu.Items.Clear();
             comboBoxCbuDestino.Items.Clear();
             comboBoxCbuPagos.Items.Clear();
-            
+            comboBoxCbuMov.Items.Clear();
+
 
             foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
             {
@@ -88,6 +89,7 @@ namespace TrabajoPlataformas
                     comboBoxCbu.Items.Add(caja.cbu);
                     comboBoxCbuPlazo.Items.Add(caja.cbu);
                     comboBoxCbuPagos.Items.Add(caja.cbu);
+                    comboBoxCbuMov.Items.Add(caja.cbu);
                 }
 
             }
@@ -105,6 +107,17 @@ namespace TrabajoPlataformas
 
         }
 
+        public void refreshMovimientos()
+        {
+            {
+                dataGridView6.Rows.Clear();
+                int cbuSeleccionadoMovimientos = Convert.ToInt32(comboBoxCbuMov.SelectedItem);
+                foreach (Movimiento movimiento in miBanco.obtenerMovimientos(cbuSeleccionadoMovimientos))
+                {
+                    dataGridView6.Rows.Add(movimiento.toArray());
+                }
+            }
+        }
         public void refreshPlazos()
         {
             dataGridView2.Rows.Clear();
@@ -487,6 +500,17 @@ namespace TrabajoPlataformas
 
         private void comboBoxCbuPagos_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void comboBoxCbuMov_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshMovimientos();
+        }
+
+        private void mostrar2_Click(object sender, EventArgs e)
+        {
+            refreshMovimientos();
 
         }
     }
