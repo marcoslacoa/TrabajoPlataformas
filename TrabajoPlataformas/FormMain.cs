@@ -451,6 +451,7 @@ namespace TrabajoPlataformas
             {
                 MessageBox.Show("Pago realizado");
                 refreshPagos();
+                refreshData();
             }
 
         }
