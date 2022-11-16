@@ -67,6 +67,24 @@ namespace TrabajoPlataformas
             .HasForeignKey(D => D.id)
             .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Pago>()
+            .HasOne(D => D.usuario)
+            .WithMany(U => U.pagos)
+            .HasForeignKey(D => D.id)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Movimiento>()
+            .HasOne(D => D.caja)
+            .WithMany(U => U.movimientos)
+            .HasForeignKey(D => D.id)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<TarjetaCredito>()
+            .HasOne(D => D.titular)
+            .WithMany(U => U.tarjetas)
+            .HasForeignKey(D => D.id)
+            .OnDelete(DeleteBehavior.Cascade);
+
             // EXCLUIR
             modelBuilder.Ignore<Banco>();
         }
