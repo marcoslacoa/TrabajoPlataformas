@@ -15,6 +15,7 @@ namespace TrabajoPlataformas
         public List <Movimiento> movimientos { get; set; }
         public float saldo;
         public Usuario usuario;
+        public List<UsuarioCaja> UserCaja { get; set; }
 
         public CajaAhorro() { }
         public CajaAhorro(int cbu2, Usuario usuario)

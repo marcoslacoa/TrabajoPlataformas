@@ -85,9 +85,21 @@ namespace TrabajoPlataformas
             .HasForeignKey(D => D.id)
             .OnDelete(DeleteBehavior.Cascade);
 
+            //RELACIONES MANY TO MANY
+
+            modelBuilder.Entity<Usuario>()
+                .HasMany(U => U.listaCajas)
+                .WithMany(P => P.titulares)
+                .UsingEntity<UsuarioCaja>(
+                    eup => eup.HasOne(up => up.caja).WithMany(p => p.UserCaja).HasForeignKey(u => u.id),
+                    eup => eup.HasOne(up => up.usuario).WithMany(u => u.UserCaja).HasForeignKey(u => u.num_usr),
+                    eup => eup.HasKey(k => new { k.num_usr, k.id })
+                );
+
             // EXCLUIR
             modelBuilder.Ignore<Banco>();
         }
     }
 }
+
 
