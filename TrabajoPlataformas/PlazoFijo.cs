@@ -16,6 +16,7 @@ namespace TrabajoPlataformas
         public float tasa { get; set; }
         public CajaAhorro caja { get; set; }
         public Boolean pagado { get; set; }
+        public PlazoFijo() {  }
 
         public PlazoFijo(Usuario Titular, CajaAhorro Caja , float Monto,DateTime FechaIni, DateTimePicker FechaFin, float Tasa, bool Pagado)
         {   

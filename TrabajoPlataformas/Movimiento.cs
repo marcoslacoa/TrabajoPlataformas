@@ -26,7 +26,7 @@ namespace TrabajoPlataformas
         }
         public string[] toArray()
         {
-            return new string[] { caja.ToString() , detalle.ToString(), monto.ToString(), fecha.ToString() };
+            return new string[] { caja.cbu.ToString() , detalle.ToString(), monto.ToString(), fecha.ToString() };
         }
     }
 }

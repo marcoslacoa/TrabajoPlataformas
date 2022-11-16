@@ -15,6 +15,9 @@ namespace TrabajoPlataformas
 
         public string detalle { get; set; }
 
+        public Pago() { }
+
+
         public Pago(Usuario Usuario, float Monto, bool Pagado, string detalle)
         {
             this.usuario = Usuario;
