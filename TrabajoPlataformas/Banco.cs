@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace TrabajoPlataformas
 
         public Usuario usuarioActual;
         //private CajaAhorro caja;
+        private Contexto contexto;
         
         public List <CajaAhorro> obtenerCajasDelUsuario()
         {
@@ -396,7 +398,9 @@ namespace TrabajoPlataformas
             {
                 if (tarjetaToRemove != null)
                     tarjetas.Remove(tarjetaToRemove);
-                    usuarioActual.tarjetas.Remove(tarjetaToRemove);
+                usuarioActual.tarjetas.Remove(tarjetaToRemove);
+                
+                    
                 return true;
             }
             catch

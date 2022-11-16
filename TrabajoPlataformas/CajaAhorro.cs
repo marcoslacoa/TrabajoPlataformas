@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TrabajoPlataformas
 {
     public class CajaAhorro
@@ -14,6 +15,7 @@ namespace TrabajoPlataformas
         public float saldo;
         public Usuario usuario;
 
+        public CajaAhorro() { }
         public CajaAhorro(int cbu2, Usuario usuario)
         {
             this.usuario = usuario;
