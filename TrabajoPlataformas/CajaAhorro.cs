@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 namespace TrabajoPlataformas
 {
     public class CajaAhorro
-    {   
-        public int cbu;
+    {
+        public int id { get; set; }
+        public int cbu { get; set; }
         public List<Usuario> titulares { get; set; }
         public List <Movimiento> movimientos { get; set; }
         public float saldo;
