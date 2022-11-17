@@ -22,7 +22,10 @@ namespace TrabajoPlataformas
         public List<Pago> pagos { get; }
         public List<TarjetaCredito> tarjetas { get; }
         //public List<CajaAhorro> cajasLista { get => listaCajas.ToList(); }
+        public ICollection<CajaAhorro> cajas { get; } = new List<CajaAhorro>();
         public List<UsuarioCaja> UserCaja { get; set; }
+
+        public bool esADM;
 
         public Usuario()
         {

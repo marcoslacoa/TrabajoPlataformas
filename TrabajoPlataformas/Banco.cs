@@ -63,7 +63,9 @@ namespace TrabajoPlataformas
             try
             {
                 Usuario nuevo = new Usuario(nombre, apellido, dni, mail, contra, bloqueado);
-                userList.Add(nuevo);
+                //userList.Add(nuevo);
+                contexto.usuarios.Add(nuevo);
+                contexto.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -81,7 +83,9 @@ namespace TrabajoPlataformas
                 {
                     if (userList[i].dni == dni)
                     {
-                        userList.RemoveAt(i);
+                        //userList.RemoveAt(i);
+                        contexto.usuarios.Remove(userList[i]);
+                        contexto.SaveChanges();
                         elimine = true;
                     }
                     i++;
@@ -95,7 +99,7 @@ namespace TrabajoPlataformas
             Usuario aModificar = this.userList.Find(x => x.dni == id);
             try
             {
-                Usuario nuevo = new Usuario(nombre, apellido, dni, mail, contra, bloqueado);
+                Usuario nuevo = new Usuario(nombre, apellido, dni, mail, contra, bloqueado);             
                 userList[id] = nuevo;
                 return true;
             }

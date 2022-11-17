@@ -96,6 +96,26 @@ namespace TrabajoPlataformas
                     eup => eup.HasKey(k => new { k.num_usr, k.id })
                 );
 
+            //propiedades de los datos
+            modelBuilder.Entity<Usuario>(
+                usr =>
+                {
+                    usr.Property(u => u.nombre).HasColumnType("varchar(50)");
+                    usr.Property(u => u.apellido).HasColumnType("varchar(50)");
+                    usr.Property(u => u.dni).HasColumnType("varchar(50)");
+                    usr.Property(u => u.mail).HasColumnType("varchar(512)");
+                    usr.Property(u => u.contra).HasColumnType("varchar(50)");
+                    usr.Property(u => u.esADM).HasColumnType("bit");
+                    usr.Property(u => u.bloqueado).HasColumnType("bit");
+                });
+
+            modelBuilder.Entity<CajaAhorro>(
+                usr =>
+                {
+                    usr.Property(u => u.cbu).HasColumnType("varchar(50)");
+                    usr.Property(u => u.saldo).HasColumnType("varchar(50)");
+                });
+
             // EXCLUIR
             modelBuilder.Ignore<Banco>();
         }
