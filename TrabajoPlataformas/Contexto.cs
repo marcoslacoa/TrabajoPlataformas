@@ -39,7 +39,7 @@ namespace TrabajoPlataformas
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // CREACIONES DE CLASES 
-            
+
             modelBuilder.Entity<Usuario>()
                .ToTable("Usuarios")
                .HasKey(u => u.id);
@@ -60,7 +60,7 @@ namespace TrabajoPlataformas
                 .HasKey(d => d.id);
 
             // RELACIONES ONE TO MANY // CHECKEAR
-            
+
             modelBuilder.Entity<PlazoFijo>()
             .HasOne(D => D.titular)
             .WithMany(U => U.plazoFijo)
@@ -102,9 +102,10 @@ namespace TrabajoPlataformas
                 {
                     usr.Property(u => u.nombre).HasColumnType("varchar(50)");
                     usr.Property(u => u.apellido).HasColumnType("varchar(50)");
-                    usr.Property(u => u.dni).HasColumnType("varchar(50)");
+                    usr.Property(u => u.dni).HasColumnType("int(11)");
                     usr.Property(u => u.mail).HasColumnType("varchar(512)");
                     usr.Property(u => u.contra).HasColumnType("varchar(50)");
+                    usr.Property(u => u.intentosFallidos).HasColumnType("int(11)");
                     usr.Property(u => u.esADM).HasColumnType("bit");
                     usr.Property(u => u.bloqueado).HasColumnType("bit");
                 });
@@ -112,9 +113,49 @@ namespace TrabajoPlataformas
             modelBuilder.Entity<CajaAhorro>(
                 usr =>
                 {
-                    usr.Property(u => u.cbu).HasColumnType("varchar(50)");
-                    usr.Property(u => u.saldo).HasColumnType("varchar(50)");
+                    usr.Property(u => u.cbu).HasColumnType("int(11)");
+                    usr.Property(u => u.saldo).HasColumnType("float");
                 });
+
+            modelBuilder.Entity<TarjetaCredito>(
+                usr =>
+                {
+                    usr.Property(u => u.titular).HasColumnType("varchar(50)");
+                    usr.Property(u => u.numero).HasColumnType("int(11)");
+                    usr.Property(u => u.consumos).HasColumnType("float");
+                    usr.Property(u => u.limite).HasColumnType("int(11)");
+                    usr.Property(u => u.codigoSeguridad).HasColumnType("int(11)");
+                });
+
+            modelBuilder.Entity<Pago>(
+                usr =>
+                {
+                    usr.Property(u => u.detalle).HasColumnType("varchar(50)");
+                    usr.Property(u => u.usuario).HasColumnType("varchar(50)");
+                    usr.Property(u => u.monto).HasColumnType("float");
+                    usr.Property(u => u.pagado).HasColumnType("bit");
+                });
+
+            modelBuilder.Entity<PlazoFijo>(
+               usr =>
+               {
+                   usr.Property(u => u.titular).HasColumnType("varchar(50)");
+                   usr.Property(u => u.tasa).HasColumnType("int(11)");
+                   usr.Property(u => u.fechaIni).HasColumnType("datetime");
+                   usr.Property(u => u.FechaFin).HasColumnType("datetime");
+                   usr.Property(u => u.pagado).HasColumnType("bit");
+                   usr.Property(u => u.caja).HasColumnType("varchar(50)");
+                   usr.Property(u => u.monto).HasColumnType("float");
+               });
+
+            modelBuilder.Entity<Movimiento>(
+               usr =>
+               {
+                   usr.Property(u => u.caja).HasColumnType("varchar(50)");
+                   usr.Property(u => u.detalle).HasColumnType("varchar(50)");
+                   usr.Property(u => u.monto).HasColumnType("float");
+                   usr.Property(u => u.fecha).HasColumnType("datetime");
+               });
 
             // EXCLUIR
             modelBuilder.Ignore<Banco>();
