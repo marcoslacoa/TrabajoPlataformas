@@ -47,6 +47,7 @@ namespace TrabajoPlataformas
         }
         public Banco()
         {
+            inicializarAtributos();
             userList = new List<Usuario>();
             cajasList = new List<CajaAhorro>();
             plazosFijos = new List<PlazoFijo>();
@@ -61,7 +62,10 @@ namespace TrabajoPlataformas
                 contexto = new Contexto();
                 contexto.usuarios.Include(u => u.listaCajas).Load();
                 contexto.cajas.Include(p => p.titulares).Load();
-                
+                contexto.plazos.Load();
+                contexto.pagos.Load();
+                contexto.movimientos.Load();
+                contexto.tarjetas.Load();
             }
             catch (Exception e)
             {
