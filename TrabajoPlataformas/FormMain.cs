@@ -26,7 +26,7 @@ namespace TrabajoPlataformas
         public List<CajaAhorro> cajas;
         int numeroDeClick = 0;
         int numeroDeClickPagar = 0;
-
+        EditarUsuario hijoEditarUsuario;
         public FormMain(string usuario, Banco b)
         {
             InitializeComponent();
@@ -561,6 +561,13 @@ namespace TrabajoPlataformas
             comboBoxTarjetaPagos.Visible = false;
             comboBoxCbuPagos.Visible = true;
             numeroDeClickPagar = 2;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.hijoEditarUsuario = new EditarUsuario(miBanco, miBanco.usuarioActual);
+
+            hijoEditarUsuario.Show();
         }
     }
 
