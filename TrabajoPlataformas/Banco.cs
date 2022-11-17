@@ -54,6 +54,20 @@ namespace TrabajoPlataformas
             movimientos = new List<Movimiento>();
             tarjetas = new List<TarjetaCredito>();
         }
+        private void inicializarAtributos()
+        {
+            try
+            {
+                contexto = new Contexto();
+                contexto.usuarios.Include(u => u.listaCajas).Load();
+                contexto.cajas.Include(p => p.titulares).Load();
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
 
         //CORREGIR LOS PARAMETROS DE LOS ABM, VER EN LA CONSIGA CUALES SON
 
