@@ -89,7 +89,7 @@ namespace TrabajoPlataformas
 
             modelBuilder.Entity<Usuario>()
                 .HasMany(U => U.cajas)
-                .WithMany(P => P.users)
+                .WithMany(P => P.titulares)
                 .UsingEntity<UsuarioCaja>(
                     eup => eup.HasOne(up => up.caja).WithMany(p => p.UserCaja).HasForeignKey(u => u.id),
                     eup => eup.HasOne(up => up.usuario).WithMany(u => u.UserCaja).HasForeignKey(u => u.num_usr),

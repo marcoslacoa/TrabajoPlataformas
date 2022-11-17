@@ -17,12 +17,12 @@ namespace TrabajoPlataformas
         public int intentosFallidos { get; set; }
 
         public bool bloqueado = false;
-        public List<CajaAhorro> listaCajas { get; set; }
+      
         public List<PlazoFijo> plazoFijo { get; }
         public List<Pago> pagos { get; }
         public List<TarjetaCredito> tarjetas { get; }
         //public List<CajaAhorro> cajasLista { get => listaCajas.ToList(); }
-        public ICollection<CajaAhorro> cajas { get; } = new List<CajaAhorro>();
+        public ICollection<CajaAhorro> listaCajas { get; set; } 
         public List<UsuarioCaja> UserCaja { get; set; }
 
         public bool esADM;

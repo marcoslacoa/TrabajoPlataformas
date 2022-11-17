@@ -11,13 +11,11 @@ namespace TrabajoPlataformas
     {
         public int id { get; set; }
         public int cbu { get; set; }
-        public List<Usuario> titulares { get; set; }
+        public ICollection<Usuario> titulares { get; set; } 
         public List <Movimiento> movimientos { get; set; }
         public float saldo;
         public Usuario usuario;
-        public ICollection<Usuario> users { get; } = new List<Usuario>();
         public List<UsuarioCaja> UserCaja { get; set; }
-
         public CajaAhorro() { }
         public CajaAhorro(int cbu2, Usuario usuario)
         {
@@ -26,6 +24,7 @@ namespace TrabajoPlataformas
             this.titulares.Add(usuario);
             movimientos = new List<Movimiento>();
             this.cbu = cbu2;
+            
         }
         public void agregarTitular(Usuario usuario)
         {

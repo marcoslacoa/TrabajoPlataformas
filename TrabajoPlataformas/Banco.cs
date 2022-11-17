@@ -74,14 +74,14 @@ namespace TrabajoPlataformas
             }
         }
         
-        public bool bajaUsuario(int dni)
+        public bool bajaUsuario(int id)
         {
             {
                 bool elimine = false;
                 int i = 0;
                 while (!elimine && i < userList.Count)
                 {
-                    if (userList[i].dni == dni)
+                    if (userList[i].id == id)
                     {
                         //userList.RemoveAt(i);
                         contexto.usuarios.Remove(userList[i]);
