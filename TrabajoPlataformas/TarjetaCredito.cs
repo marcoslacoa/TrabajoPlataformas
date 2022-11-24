@@ -14,7 +14,7 @@ namespace TrabajoPlataformas
         public int codigoSeguridad { get; set; }
         public float limite { get; set; }
         public float consumos { get; set; }
-
+        public TarjetaCredito() { }
         public TarjetaCredito(Usuario Titular, int Numero, int CodigoSeguridad, float Limite, float Consumos)
         {
             this.titular = Titular;

@@ -88,7 +88,7 @@ namespace TrabajoPlataformas
             //RELACIONES MANY TO MANY
 
             modelBuilder.Entity<Usuario>()
-                .HasMany(U => U.cajas)
+                .HasMany(U => U.listaCajas)
                 .WithMany(P => P.titulares)
                 .UsingEntity<UsuarioCaja>(
                     eup => eup.HasOne(up => up.caja).WithMany(p => p.UserCaja).HasForeignKey(u => u.id),

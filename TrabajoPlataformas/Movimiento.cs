@@ -13,7 +13,7 @@ namespace TrabajoPlataformas
         public string detalle { get; set; }
         public float monto { get; set; }
         public DateTime fecha { get; set; }
-
+        public Movimiento() { }
         public Movimiento(CajaAhorro Caja, string Detalle, float Monto, DateTime Fecha)
         {
             this.caja = Caja;
