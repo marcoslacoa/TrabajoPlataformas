@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 
+
 namespace TrabajoPlataformas
 {
     internal class Contexto : DbContext
@@ -32,7 +33,7 @@ namespace TrabajoPlataformas
 
         {
 
-            optionsBuilder.UseSqlServer(_connectionString);
+            optionsBuilder.UseSqlServer(Properties.Resources.String1);
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -83,6 +84,7 @@ namespace TrabajoPlataformas
             .WithMany(U => U.tarjetas)
             .HasForeignKey(D => D.id)
             .OnDelete(DeleteBehavior.Cascade);
+
 
             //RELACIONES MANY TO MANY
 
