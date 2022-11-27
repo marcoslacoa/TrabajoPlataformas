@@ -21,13 +21,15 @@ namespace TrabajoPlataformas
 
 
         private readonly string _connectionString;
-        public Contexto(string connectionString)
+//        public Contexto(string connectionString)
 
-        {
+//        {
 
-            _connectionString = connectionString;
+//            _connectionString = connectionString;
+//// add resources string1
+//            _connectionString = r
 
-        }
+//        }
         public Contexto() { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
