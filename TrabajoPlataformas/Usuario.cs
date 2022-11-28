@@ -31,7 +31,7 @@ namespace TrabajoPlataformas
         {
             
         }
-        public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, int IntentosFallidos, bool Bloqueado,
+        public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, bool EsADM, int IntentosFallidos, bool Bloqueado,
             List<CajaAhorro> CajasList, List<PlazoFijo> PlazoFijo, List<Pago>Pagos, List<TarjetaCredito> Tarjetas)
         {
             nombre = Nombre;
@@ -39,6 +39,7 @@ namespace TrabajoPlataformas
             dni = Dni;
             mail = Mail;
             contra = Contra;
+            esADM = EsADM;
             this.intentosFallidos = IntentosFallidos;
             this.listaCajas = CajasList;
             this.plazoFijo = PlazoFijo;
@@ -47,12 +48,13 @@ namespace TrabajoPlataformas
             this.bloqueado = Bloqueado;
         }
 
-        public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, bool Bloqueado) : this(Nombre, Apellido)
+        public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, bool Bloqueado, bool EsADM) : this(Nombre, Apellido)
         {
             dni = Dni;
             mail = Mail;
             contra = Contra;
             this.bloqueado = Bloqueado;
+            this.esADM = EsADM;
             listaCajas = new List<CajaAhorro>();
             plazoFijo = new List<PlazoFijo>();
             pagos = new List<Pago>();

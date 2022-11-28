@@ -76,11 +76,11 @@ namespace TrabajoPlataformas
         //CORREGIR LOS PARAMETROS DE LOS ABM, VER EN LA CONSIGA CUALES SON
 
         //ABM Usuario
-        public bool altaUsuario(int dni, string nombre, string apellido, string mail, string contra, bool bloqueado)
+        public bool altaUsuario(int dni, string nombre, string apellido, string mail, string contra, bool bloqueado, bool admin)
         {
             try
             {
-                Usuario nuevo = new Usuario(nombre, apellido, dni, mail, contra, bloqueado);
+                Usuario nuevo = new Usuario(nombre, apellido, dni, mail, contra, bloqueado, admin);
                 //userList.Add(nuevo);
                 contexto.usuarios.Add(nuevo);
                 contexto.SaveChanges();

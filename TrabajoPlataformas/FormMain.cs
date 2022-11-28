@@ -82,6 +82,8 @@ namespace TrabajoPlataformas
             comboBoxCbuMov.Items.Clear();
             comboBoxCbuPagar.Items.Clear();
 
+            //Logica para el usuario admin - aca iria un foreach con todas los cajas que hay
+
             foreach (CajaAhorro caja in miBanco.obtenerCajasDelUsuario())
             {
                    dataGridView1.Rows.Add(caja.toArray());
@@ -111,20 +113,24 @@ namespace TrabajoPlataformas
         }
 
         public void refreshMovimientos()
-        {
-            {
-                dataGridView6.Rows.Clear();
-                int cbuSeleccionadoMovimientos = Convert.ToInt32(comboBoxCbuMov.SelectedItem);
-                foreach (Movimiento movimiento in miBanco.obtenerMovimientos(cbuSeleccionadoMovimientos))
+        {           
+            dataGridView6.Rows.Clear();
+            int cbuSeleccionadoMovimientos = Convert.ToInt32(comboBoxCbuMov.SelectedItem);
+
+            //Logica para el usuario admin - aca iria un foreach con todas los movimientos que hay
+
+            foreach (Movimiento movimiento in miBanco.obtenerMovimientos(cbuSeleccionadoMovimientos))
                 {
                     dataGridView6.Rows.Add(movimiento.toArray());
-                }
-            }
+                }       
         }
         public void refreshPlazos()
         {
             dataGridView2.Rows.Clear();
             comboBoxCbuPlazo.Items.Clear();
+
+            //Logica para el usuario admin - aca iria un foreach con todas los plazos que hay
+
             foreach (PlazoFijo plazo in miBanco.obtenerPlazosDelUsuario())
             {
                 if (miBanco.obtenerPlazosDelUsuario().Contains(plazo))
@@ -141,6 +147,9 @@ namespace TrabajoPlataformas
         {
             dataGridView5.Rows.Clear();
             //comboBoxCbuPlazo.Items.Clear();
+
+            ////Logica para el usuario admin - aca iria un foreach con todas las tarjetas que hay
+
             foreach (TarjetaCredito tarjeta in miBanco.obtenerTarjetasDelUsuario())
             {
                 if (miBanco.obtenerTarjetasDelUsuario().Contains(tarjeta))
@@ -168,6 +177,9 @@ namespace TrabajoPlataformas
             comboBoxCbuPagosEliminar.Items.Clear();
             comboBoxPagos.Items.Clear();
 
+            //Logica para el usuario admin - aca iria un foreach con todas los pagos que hay
+
+            
             foreach (Pago pago in miBanco.obtenerPagosDelUsuario())
             {
                 //if (miBanco.obtenerPagosDelUsuario().Contains(pago))
