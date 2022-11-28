@@ -376,8 +376,10 @@ namespace TrabajoPlataformas
                 //CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenInt);
                 float monto = float.Parse(MontoInsertPlazo.Text);
                 DateTime fechaIni = DateTime.Now;
+                // now + 30 days
+                DateTime fechaFin = DateTime.Now.AddDays(30);
                 int tasa = 0;
-                miBanco.altaPlazo(miBanco.usuarioActual, cbuenInt, monto, fechaIni, dateTimePicker1, tasa, false);
+                miBanco.altaPlazo(miBanco.usuarioActual, cbuenInt, monto, fechaIni, fechaFin, tasa, false);
             }
         }
 

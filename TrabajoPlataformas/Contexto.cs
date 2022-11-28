@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
-
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TrabajoPlataformas
 {
@@ -147,7 +147,6 @@ namespace TrabajoPlataformas
                    usr.Property(u => u.fechaIni).HasColumnType("datetime");
                    usr.Property(u => u.FechaFin).HasColumnType("datetime");
                    usr.Property(u => u.pagado).HasColumnType("bit");
-                   usr.Property(u => u.caja).HasColumnType("varchar(50)");
                    usr.Property(u => u.monto).HasColumnType("float");
                });
 
@@ -162,6 +161,8 @@ namespace TrabajoPlataformas
 
             // EXCLUIR
             modelBuilder.Ignore<Banco>();
+
+            
         }
     }
 }

@@ -192,8 +192,10 @@ namespace TrabajoPlataformas
             }
             CajaAhorro cajaNueva = new CajaAhorro(cbu2, usuario);
             cajaNueva.saldo = saldo;
-            this.usuarioActual.agregarCaja(cajaNueva);
-            this.cajasList.Add(cajaNueva);
+            //this.usuarioActual.agregarCaja(cajaNueva);
+            contexto.cajas.Add(cajaNueva);
+            contexto.SaveChanges();
+            //this.cajasList.Add(cajaNueva);
             try
             {
                 Trace.WriteLine(cajaNueva);
@@ -218,9 +220,11 @@ namespace TrabajoPlataformas
             }
             else if (cajaToRemove != null) // si la caja existe
             {
-                this.cajasList.Remove(cajaToRemove);
+                //this.cajasList.Remove(cajaToRemove);
                 
-                usuarioActual.eliminarCaja(cajaToRemove); // 
+                //usuarioActual.eliminarCaja(cajaToRemove); // 
+                contexto.cajas.Remove(cajaToRemove);
+                contexto.SaveChanges();
                 return 2;
              }
               else return 3;
@@ -246,14 +250,17 @@ namespace TrabajoPlataformas
 
         //ABM Plazo Fijo
 
-        public bool altaPlazo(Usuario titular, int cbu , float monto, DateTime fechaIni, DateTimePicker fechaFin, float tasa, bool pagado) // ESTA BIEN ESTO? PROFE
+        public bool altaPlazo(Usuario titular, int cbu , float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado) // ESTA BIEN ESTO? PROFE
         {
             try
             {
                 CajaAhorro caja = this.getCaja(cbu);
                 PlazoFijo nuevo = new PlazoFijo(titular, caja ,monto, fechaIni, fechaFin, tasa, pagado);
-                this.plazosFijos.Add(nuevo);
-                this.usuarioActual.agregarPlazo(nuevo);
+                //this.plazosFijos.Add(nuevo);
+                contexto.plazos.Add(nuevo);
+                contexto.SaveChanges();
+                
+                //this.usuarioActual.agregarPlazo(nuevo);
                 return true;
             }
             catch (Exception)
@@ -269,9 +276,11 @@ namespace TrabajoPlataformas
             try
             {
                 if (plazoToRemove != null)
-                  this.plazosFijos.Remove(plazoToRemove);
-                  this.usuarioActual.eliminarPlazo(plazoToRemove);
-                   
+                    //this.plazosFijos.Remove(plazoToRemove);
+                    //this.usuarioActual.eliminarPlazo(plazoToRemove);
+                    contexto.plazos.Remove(plazoToRemove);
+                    contexto.SaveChanges();
+
                 return true;
             }
             catch
@@ -305,8 +314,11 @@ namespace TrabajoPlataformas
             try
             {
                 Pago nuevo = new Pago(usuario, monto, pagado, detalle);
-                pagos.Add(nuevo);
-                this.usuarioActual.agregarPago(nuevo);
+                //pagos.Add(nuevo);
+                //this.usuarioActual.agregarPago(nuevo);
+                contexto.pagos.Add(nuevo);
+                contexto.SaveChanges();
+                
                 return true;
             }
             catch (Exception)
@@ -322,8 +334,11 @@ namespace TrabajoPlataformas
             try
             {
                 if (pagoToRemove != null)
-                this.pagos.Remove(pagoToRemove);
-                this.usuarioActual.eliminarPago(pagoToRemove);
+                    //this.pagos.Remove(pagoToRemove);
+                    //this.usuarioActual.eliminarPago(pagoToRemove);
+                    contexto.pagos.Remove(pagoToRemove);
+                contexto.SaveChanges();
+                
                 return true;
             }
             catch (Exception)
@@ -355,8 +370,12 @@ namespace TrabajoPlataformas
             try
             {
                 Movimiento nuevo = new Movimiento(caja, detalle, monto, fecha);
-                this.movimientos.Add(nuevo);
-                caja.movimientos.Add(nuevo);
+                //this.movimientos.Add(nuevo);
+                //caja.movimientos.Add(nuevo);
+
+                contexto.movimientos.Add(nuevo);
+                contexto.SaveChanges();
+                
                 return true;
             }
             catch (Exception)
@@ -380,21 +399,21 @@ namespace TrabajoPlataformas
             }
         }*/
 
-        public bool modificarMovimiento(int id, CajaAhorro caja, string detalle, float monto, DateTime fecha)
-        {
-            Movimiento aModificar = movimientos[id];
-            try
-            {
-                Movimiento nuevo = new Movimiento(caja, detalle, monto, fecha);
-                movimientos[id] = nuevo;
-                return true;
-            }
-            catch (Exception)
-            {
-                movimientos[id] = aModificar;
-                return false;
-            }
-        }
+        //public bool modificarMovimiento(int id, CajaAhorro caja, string detalle, float monto, DateTime fecha)
+        //{
+        //    Movimiento aModificar = movimientos[id];
+        //    try
+        //    {
+        //        Movimiento nuevo = new Movimiento(caja, detalle, monto, fecha);
+        //        movimientos[id] = nuevo;
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        movimientos[id] = aModificar;
+        //        return false;
+        //    }
+        //}
 
         //ABM Tarjetas
 
@@ -403,8 +422,10 @@ namespace TrabajoPlataformas
             try
             {
                 TarjetaCredito nuevo = new TarjetaCredito(titular, numero, codigoSeguridad, limite, consumos);
-                tarjetas.Add(nuevo);
-                this.usuarioActual.agregarTarjeta(nuevo);
+                //tarjetas.Add(nuevo);
+                //this.usuarioActual.agregarTarjeta(nuevo);
+                contexto.tarjetas.Add(nuevo);
+                contexto.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -419,10 +440,13 @@ namespace TrabajoPlataformas
             try
             {
                 if (tarjetaToRemove != null)
-                    tarjetas.Remove(tarjetaToRemove);
-                usuarioActual.tarjetas.Remove(tarjetaToRemove);
+                    //    tarjetas.Remove(tarjetaToRemove);
+                    //usuarioActual.tarjetas.Remove(tarjetaToRemove);
+                    contexto.tarjetas.Remove(tarjetaToRemove);
+                contexto.SaveChanges();
                 
-                    
+
+
                 return true;
             }
             catch
@@ -438,6 +462,7 @@ namespace TrabajoPlataformas
             {
                 TarjetaCredito nuevo = new TarjetaCredito(titular, numero, codigoSeguridad, limite, consumos);
                 tarjetas[id] = nuevo;
+                
                 return true;
             }
             catch (Exception)
@@ -497,7 +522,8 @@ namespace TrabajoPlataformas
             }
             caja.saldo += monto;
             this.altaMovimiento(caja, "Deposito", monto, DateTime.Now);
-            
+            contexto.SaveChanges();
+
             return true;
         }
         
@@ -510,6 +536,7 @@ namespace TrabajoPlataformas
             }
             caja.saldo -= monto;
             this.altaMovimiento(caja, "Retiro", monto, DateTime.Now);
+            contexto.SaveChanges();
 
             return true; //Retiro exitoso 
             // Mensaje de respuesta con datos del objeto
@@ -531,6 +558,8 @@ namespace TrabajoPlataformas
             this.altaMovimiento(origen, "Transferencia enviada ", monto, DateTime.Now);
             destino.saldo += monto;
             this.altaMovimiento(destino, "Transferencia recibida", monto, DateTime.Now);
+            contexto.SaveChanges();
+            
             return 2; // Transferencia exitosa
         }
 
@@ -547,6 +576,8 @@ namespace TrabajoPlataformas
             }
             caja.agregarTitular(nuevoTitular);
             nuevoTitular.agregarCaja(caja);
+            contexto.SaveChanges();
+            
             return 2; // Titular agregado exitosamente
         }
         
@@ -570,6 +601,7 @@ namespace TrabajoPlataformas
             }
             caja.eliminarTitular(usuario);
             usuario.eliminarCaja(caja);
+            contexto.SaveChanges();
             return 3;
         }
 
@@ -583,6 +615,7 @@ namespace TrabajoPlataformas
             {
                 caja.saldo -= tarjeta.consumos;
                 this.altaMovimiento(caja, "Pago de tarjeta", tarjeta.consumos, DateTime.Now);
+                contexto.SaveChanges();
                 return true;
             }
             
@@ -599,6 +632,7 @@ namespace TrabajoPlataformas
             {
                 pago.pagado = true;
                 this.retirar(cbuCaja, pago.monto);
+                contexto.SaveChanges();
                 return true;
             }
         }
@@ -615,6 +649,7 @@ namespace TrabajoPlataformas
             {
                 pago.pagado = true;
                 tarjeta.consumos += pago.monto;
+                contexto.SaveChanges();
                 return true;
             }
         }
