@@ -193,7 +193,8 @@ namespace TrabajoPlataformas
             CajaAhorro cajaNueva = new CajaAhorro(cbu2, usuario);
             cajaNueva.saldo = saldo;
             //this.usuarioActual.agregarCaja(cajaNueva);
-            //cajaNueva.usuario.agregarTitular(cajaNueva);
+            cajaNueva.usuario.agregarCaja(cajaNueva);
+            contexto.Update(cajaNueva.usuario);
             contexto.cajas.Add(cajaNueva);
             contexto.SaveChanges();
             //this.cajasList.Add(cajaNueva);
