@@ -118,6 +118,7 @@ namespace TrabajoPlataformas
                 {
                     usr.Property(u => u.cbu).HasColumnType("int(11)");
                     usr.Property(u => u.saldo).HasColumnType("float");
+                    usr.Property(u => u.usuario.id).HasColumnType("int(11)");
                 });
 
             modelBuilder.Entity<TarjetaCredito>(
@@ -134,7 +135,7 @@ namespace TrabajoPlataformas
                 usr =>
                 {
                     usr.Property(u => u.detalle).HasColumnType("varchar(50)");
-                    usr.Property(u => u.usuario).HasColumnType("varchar(50)");
+                    usr.Property(u => u.usuario.id).HasColumnType("int(11)");
                     usr.Property(u => u.monto).HasColumnType("float");
                     usr.Property(u => u.pagado).HasColumnType("bit");
                 });
@@ -142,19 +143,19 @@ namespace TrabajoPlataformas
             modelBuilder.Entity<PlazoFijo>(
                usr =>
                {
-                   usr.Property(u => u.titular).HasColumnType("varchar(50)");
+                   usr.Property(u => u.titular.id).HasColumnType("int(11)");
                    usr.Property(u => u.tasa).HasColumnType("int(11)");
                    usr.Property(u => u.fechaIni).HasColumnType("datetime");
                    usr.Property(u => u.FechaFin).HasColumnType("datetime");
                    usr.Property(u => u.pagado).HasColumnType("bit");
-                   usr.Property(u => u.caja).HasColumnType("varchar(50)");
+                   usr.Property(u => u.caja.id).HasColumnType("int(11)");
                    usr.Property(u => u.monto).HasColumnType("float");
                });
 
             modelBuilder.Entity<Movimiento>(
                usr =>
                {
-                   usr.Property(u => u.caja).HasColumnType("varchar(50)");
+                   usr.Property(u => u.caja.id).HasColumnType("int(11)");
                    usr.Property(u => u.detalle).HasColumnType("varchar(50)");
                    usr.Property(u => u.monto).HasColumnType("float");
                    usr.Property(u => u.fecha).HasColumnType("datetime");
