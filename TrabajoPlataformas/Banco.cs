@@ -193,6 +193,7 @@ namespace TrabajoPlataformas
             CajaAhorro cajaNueva = new CajaAhorro(cbu2, usuario);
             cajaNueva.saldo = saldo;
             //this.usuarioActual.agregarCaja(cajaNueva);
+            //cajaNueva.usuario.agregarTitular(cajaNueva);
             contexto.cajas.Add(cajaNueva);
             contexto.SaveChanges();
             //this.cajasList.Add(cajaNueva);
@@ -222,7 +223,7 @@ namespace TrabajoPlataformas
             {
                 //this.cajasList.Remove(cajaToRemove);
                 
-                //usuarioActual.eliminarCaja(cajaToRemove); // 
+                //usuarioActual.eliminarCaja(cajaToRemove);
                 contexto.cajas.Remove(cajaToRemove);
                 contexto.SaveChanges();
                 return 2;
@@ -257,6 +258,8 @@ namespace TrabajoPlataformas
                 CajaAhorro caja = this.getCaja(cbu);
                 PlazoFijo nuevo = new PlazoFijo(titular, caja ,monto, fechaIni, fechaFin, tasa, pagado);
                 //this.plazosFijos.Add(nuevo);
+                nuevo.titular.agregarPlazo(nuevo);
+                contexto.Update(nuevo.titular);
                 contexto.plazos.Add(nuevo);
                 contexto.SaveChanges();
                 
@@ -278,6 +281,8 @@ namespace TrabajoPlataformas
                 if (plazoToRemove != null)
                     //this.plazosFijos.Remove(plazoToRemove);
                     //this.usuarioActual.eliminarPlazo(plazoToRemove);
+                    plazoToRemove.titular.eliminarPlazo(plazoToRemove);
+                    contexto.Update(plazoToRemove.titular);
                     contexto.plazos.Remove(plazoToRemove);
                     contexto.SaveChanges();
 
@@ -316,6 +321,8 @@ namespace TrabajoPlataformas
                 Pago nuevo = new Pago(usuario, monto, pagado, detalle);
                 //pagos.Add(nuevo);
                 //this.usuarioActual.agregarPago(nuevo);
+                nuevo.usuario.agregarPago(nuevo);
+                contexto.Update(nuevo.usuario);
                 contexto.pagos.Add(nuevo);
                 contexto.SaveChanges();
                 
@@ -334,9 +341,9 @@ namespace TrabajoPlataformas
             try
             {
                 if (pagoToRemove != null)
-                    //this.pagos.Remove(pagoToRemove);
-                    //this.usuarioActual.eliminarPago(pagoToRemove);
-                    contexto.pagos.Remove(pagoToRemove);
+                pagoToRemove.usuario.eliminarPago(pagoToRemove);
+                contexto.Update(pagoToRemove.usuario);
+                contexto.pagos.Remove(pagoToRemove);
                 contexto.SaveChanges();
                 
                 return true;
@@ -372,7 +379,6 @@ namespace TrabajoPlataformas
                 Movimiento nuevo = new Movimiento(caja, detalle, monto, fecha);
                 //this.movimientos.Add(nuevo);
                 //caja.movimientos.Add(nuevo);
-
                 contexto.movimientos.Add(nuevo);
                 contexto.SaveChanges();
                 
@@ -424,6 +430,8 @@ namespace TrabajoPlataformas
                 TarjetaCredito nuevo = new TarjetaCredito(titular, numero, codigoSeguridad, limite, consumos);
                 //tarjetas.Add(nuevo);
                 //this.usuarioActual.agregarTarjeta(nuevo);
+                nuevo.titular.agregarTarjeta(nuevo);
+                contexto.Update(nuevo.titular);
                 contexto.tarjetas.Add(nuevo);
                 contexto.SaveChanges();
                 return true;
@@ -442,7 +450,9 @@ namespace TrabajoPlataformas
                 if (tarjetaToRemove != null)
                     //    tarjetas.Remove(tarjetaToRemove);
                     //usuarioActual.tarjetas.Remove(tarjetaToRemove);
-                    contexto.tarjetas.Remove(tarjetaToRemove);
+                    tarjetaToRemove.titular.eliminarTarjeta(tarjetaToRemove);
+                contexto.Update(tarjetaToRemove.titular);
+                contexto.tarjetas.Remove(tarjetaToRemove);
                 contexto.SaveChanges();
                 
 
