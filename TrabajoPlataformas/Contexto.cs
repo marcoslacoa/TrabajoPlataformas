@@ -123,7 +123,7 @@ namespace TrabajoPlataformas
             modelBuilder.Entity<TarjetaCredito>(
                 usr =>
                 {
-                    usr.Property(u => u.titular).HasColumnType("varchar(50)");
+                    //usr.Property(u => u.titular).HasColumnType("int(11)");
                     usr.Property(u => u.numero).HasColumnType("int(11)");
                     usr.Property(u => u.consumos).HasColumnType("float");
                     usr.Property(u => u.limite).HasColumnType("int(11)");
@@ -134,7 +134,7 @@ namespace TrabajoPlataformas
                 usr =>
                 {
                     usr.Property(u => u.detalle).HasColumnType("varchar(50)");
-                    usr.Property(u => u.usuario).HasColumnType("varchar(50)");
+                    //usr.Property(u => u.usuario).HasColumnType("varchar(50)");
                     usr.Property(u => u.monto).HasColumnType("float");
                     usr.Property(u => u.pagado).HasColumnType("bit");
                 });
@@ -142,7 +142,7 @@ namespace TrabajoPlataformas
             modelBuilder.Entity<PlazoFijo>(
                usr =>
                {
-                   usr.Property(u => u.titular).HasColumnType("varchar(50)");
+                   //usr.Property(u => u.titular).HasColumnType("varchar(50)");
                    usr.Property(u => u.tasa).HasColumnType("int(11)");
                    usr.Property(u => u.fechaIni).HasColumnType("datetime");
                    usr.Property(u => u.FechaFin).HasColumnType("datetime");
@@ -154,7 +154,7 @@ namespace TrabajoPlataformas
             modelBuilder.Entity<Movimiento>(
                usr =>
                {
-                   usr.Property(u => u.caja).HasColumnType("varchar(50)");
+                   //usr.Property(u => u.caja).HasColumnType("varchar(50)");
                    usr.Property(u => u.detalle).HasColumnType("varchar(50)");
                    usr.Property(u => u.monto).HasColumnType("float");
                    usr.Property(u => u.fecha).HasColumnType("datetime");

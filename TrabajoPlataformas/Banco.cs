@@ -112,21 +112,21 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool modificarUsuario(int id, int dni, string nombre, string mail, string apellido, string contra, bool bloqueado)
-        {
-            Usuario aModificar = this.userList.Find(x => x.dni == id);
-            try
-            {
-                Usuario nuevo = new Usuario(nombre, apellido, dni, mail, contra, bloqueado);             
-                userList[id] = nuevo;
-                return true;
-            }
-            catch (Exception)
-            {
-                userList[id] = aModificar;
-                return false;
-            }
-        }
+        //public bool modificarUsuario(int id, int dni, string nombre, string mail, string apellido, string contra, bool bloqueado)
+        //{
+        //    Usuario aModificar = this.userList.Find(x => x.dni == id);
+        //    try
+        //    {
+        //        Usuario nuevo = new Usuario(nombre, apellido, dni, mail, contra, bloqueado);             
+        //        userList[id] = nuevo;
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        userList[id] = aModificar;
+        //        return false;
+        //    }
+        //}
         //public bool modificarUsuario(Usuario u)
         //{
         //    Usuario aModificar = this.userList.Find(x => x.dni == u.dni);
