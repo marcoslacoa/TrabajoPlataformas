@@ -123,7 +123,7 @@ namespace TrabajoPlataformas
             modelBuilder.Entity<TarjetaCredito>(
                 usr =>
                 {
-                    usr.Property(u => u.titular).HasColumnType("varchar(50)");
+                    usr.Property(u => u.titular.id).HasColumnType("int(11)");
                     usr.Property(u => u.numero).HasColumnType("int(11)");
                     usr.Property(u => u.consumos).HasColumnType("float");
                     usr.Property(u => u.limite).HasColumnType("int(11)");
