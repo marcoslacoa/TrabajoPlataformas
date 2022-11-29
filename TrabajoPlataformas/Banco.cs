@@ -429,8 +429,7 @@ namespace TrabajoPlataformas
             try
             {
                 TarjetaCredito nuevo = new TarjetaCredito(titular, numero, codigoSeguridad, limite, consumos);
-                //tarjetas.Add(nuevo);
-                //this.usuarioActual.agregarTarjeta(nuevo);
+
                 nuevo.titular.agregarTarjeta(nuevo);
                 contexto.Update(nuevo.titular);
                 contexto.tarjetas.Add(nuevo);
@@ -449,16 +448,14 @@ namespace TrabajoPlataformas
             try
             {
                 if (tarjetaToRemove != null)
-                    //    tarjetas.Remove(tarjetaToRemove);
-                    //usuarioActual.tarjetas.Remove(tarjetaToRemove);
+                { 
                     tarjetaToRemove.titular.eliminarTarjeta(tarjetaToRemove);
-                contexto.Update(tarjetaToRemove.titular);
-                contexto.tarjetas.Remove(tarjetaToRemove);
-                contexto.SaveChanges();
-                
-
-
-                return true;
+                    contexto.Update(tarjetaToRemove.titular);
+                    contexto.tarjetas.Remove(tarjetaToRemove);
+                    contexto.SaveChanges();
+                    return true;
+                }
+                return false;
             }
             catch
             {
