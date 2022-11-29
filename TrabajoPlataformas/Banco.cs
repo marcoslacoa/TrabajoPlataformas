@@ -161,27 +161,27 @@ namespace TrabajoPlataformas
         //ABM Caja de Ahorro
         public CajaAhorro getCaja(int cbu)
         {
-            return cajasList.FirstOrDefault(x => x.cbu == cbu);
+            return contexto.cajas.Where(caja => caja.cbu == cbu).FirstOrDefault();
         }
 
         public Usuario getUsuario(int dni)
         {
-            return userList.FirstOrDefault(x => x.dni == dni);
+            return contexto.usuarios.Where(usuario => usuario.dni == dni).FirstOrDefault();
         }
 
         public PlazoFijo getPlazo(int id)
         {
-            return plazosFijos.FirstOrDefault(x => x.id == id);
+            return contexto.plazos.Where(plazo => plazo.id == id).FirstOrDefault();
         }
 
         public Pago getPago(string detalle)// int id
         {
-            return pagos.FirstOrDefault(x => x.detalle == detalle);
+            return contexto.pagos.Where(pago => pago.detalle == detalle).FirstOrDefault();
         }
 
         public TarjetaCredito getTarjeta(int numero)// int id
         {
-            return tarjetas.FirstOrDefault(x => x.numero == numero);
+            return contexto.tarjetas.Where(tarjeta => tarjeta.numero == numero).FirstOrDefault();
         }
 
         public int crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
