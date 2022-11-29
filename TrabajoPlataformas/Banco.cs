@@ -487,32 +487,38 @@ namespace TrabajoPlataformas
 
         public bool iniciarSesion(string usuario, string pass)
         {
-            bool encontrar = false;
-                    foreach (Usuario user in userList)
+            // define a query with contexto filtering with usuario
+            Usuario user = contexto.usuarios.Where(x => x.nombre == usuario).FirstOrDefault();
+            if (user != null)
+            {
+                if (user.contraseña == contraseña)
+                {
+                    this.usuarioActual = user;
+                    return true;
+                }
+                else if (user.contraseña != contraseña)
+                {
+                    user.intentosFallidos++;
+                    contexto.Update(user);
+                    contexto.SaveChanges();
+                    return false
+                    if (user.intentosFallidos >= 3)
                     {
-                     //MessageBox.Show(user.getNombre());
-                                if (user.nombre.Equals(usuario) && user.contra.Equals(pass) && !user.bloqueado) { 
-                                this.usuarioActual = user;
-                                //usuarioActual.listaCajas = new List<CajaAhorro>(cajasList) ; 
-                                return true;
-                                }
-                                else if (user.nombre.Equals(usuario) && !user.contra.Equals(pass))
-                                {
-                                    encontrar = false;
-                                    user.intentosFallidos++;
-                                    if (user.intentosFallidos > 3)
-                                    {
-                                        user.bloqueado = true;
-
-                                    }
-                                } else
-                                {
-                                    encontrar = false;
-                                }
-                                
+                        user.bloqueado = true;
+                        contexto.Update(user);
+                        contexto.SaveChanges();
+                        return false;
                     }
-            return encontrar;
+                }
+            } else
+            {
+                return false;
+            }
         }
+            
+
+
+        
 
         public bool cerrarSesion()
         {
