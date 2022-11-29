@@ -194,8 +194,9 @@ namespace TrabajoPlataformas
         {
             try
             {
-                PlazoFijo nuevoPlazoFijo = new PlazoFijo(titular, caja, monto, fechaIni, fechaFin, tasa, pagado);
+                PlazoFijo nuevoPlazoFijo = new PlazoFijo(titular, cbu, monto, fechaIni, fechaFin, tasa, pagado);
                 CajaAhorro? caja = getCaja(cbu);
+
                 if (monto < 1000)
                 {
                     return false; //Monto insuficiente
