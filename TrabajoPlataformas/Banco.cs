@@ -484,21 +484,20 @@ namespace TrabajoPlataformas
 
         public bool iniciarSesion(string usuario, string pass)
         {
-            // define a query with contexto filtering with usuario
             Usuario user = contexto.usuarios.Where(x => x.nombre == usuario).FirstOrDefault();
             if (user != null)
             {
-                if (user.contraseña == contraseña)
+                if (user.contra == pass)
                 {
                     this.usuarioActual = user;
                     return true;
                 }
-                else if (user.contraseña != contraseña)
+                else if (user.contra != pass)
                 {
                     user.intentosFallidos++;
                     contexto.Update(user);
                     contexto.SaveChanges();
-                    return false
+                    return false;
                     if (user.intentosFallidos >= 3)
                     {
                         user.bloqueado = true;
@@ -507,7 +506,9 @@ namespace TrabajoPlataformas
                         return false;
                     }
                 }
-            } else
+                return false;
+            } 
+            else
             {
                 return false;
             }
