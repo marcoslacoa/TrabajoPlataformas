@@ -85,7 +85,6 @@ namespace TrabajoPlataformas
             contexto.Dispose();
         }
 
-        //CORREGIR LOS PARAMETROS DE LOS ABM, VER EN LA CONSIGA CUALES SON
 
         //ABM Usuario
         public bool altaUsuario(int dni, string nombre, string apellido, string mail, string contra, bool bloqueado, bool admin)
@@ -461,20 +460,14 @@ namespace TrabajoPlataformas
             try
             {
                 if (tarjetaToRemove != null)
-                {
-                    
-                
-                    //    tarjetas.Remove(tarjetaToRemove);
-                    //usuarioActual.tarjetas.Remove(tarjetaToRemove);
+                {                    
                     tarjetaToRemove.titular.eliminarTarjeta(tarjetaToRemove);
-                contexto.Update(tarjetaToRemove.titular);
-                contexto.tarjetas.Remove(tarjetaToRemove);
-                contexto.SaveChanges();
-                
-
-
-                return true;
+                    contexto.Update(tarjetaToRemove.titular);
+                    contexto.tarjetas.Remove(tarjetaToRemove);
+                    contexto.SaveChanges();
+                    return true;
                 }
+                return false;
             }
             catch
             {
@@ -507,17 +500,17 @@ namespace TrabajoPlataformas
             Usuario user = contexto.usuarios.Where(x => x.nombre == usuario).FirstOrDefault();
             if (user != null)
             {
-                if (user.contraseña == contraseña)
+                if (user.contra == pass)
                 {
                     this.usuarioActual = user;
                     return true;
                 }
-                else if (user.contraseña != contraseña)
+                else if (user.contra != pass)
                 {
                     user.intentosFallidos++;
                     contexto.Update(user);
                     contexto.SaveChanges();
-                    return false
+                    return false;
                     if (user.intentosFallidos >= 3)
                     {
                         user.bloqueado = true;
@@ -526,6 +519,7 @@ namespace TrabajoPlataformas
                         return false;
                     }
                 }
+                return false;
             } else
             {
                 return false;
