@@ -449,6 +449,9 @@ namespace TrabajoPlataformas
             try
             {
                 if (tarjetaToRemove != null)
+                {
+                    
+                
                     //    tarjetas.Remove(tarjetaToRemove);
                     //usuarioActual.tarjetas.Remove(tarjetaToRemove);
                     tarjetaToRemove.titular.eliminarTarjeta(tarjetaToRemove);
@@ -459,6 +462,7 @@ namespace TrabajoPlataformas
 
 
                 return true;
+                }
             }
             catch
             {
