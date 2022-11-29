@@ -26,7 +26,7 @@ namespace TrabajoPlataformas
         private List<TarjetaCredito> tarjetas;
 
         public Usuario usuarioActual;
-        //private CajaAhorro caja;
+
         private Contexto contexto;
         
         public List <CajaAhorro> obtenerCajasDelUsuario()
@@ -60,8 +60,16 @@ namespace TrabajoPlataformas
             try
             {
                 contexto = new Contexto();
-                contexto.usuarios.Include(u => u.listaCajas).Load();
-                contexto.cajas.Include(p => p.titulares).Load();
+                contexto.usuarios
+                    .Include(u => u.listaCajas)
+                    .Include(u => u.tarjetas)
+                    .Include(u => u.plazoFijo)
+                    .Include(u => u.pagos)
+                    .Load();
+                contexto.cajas
+                    .Include(p => p.titulares)
+                    .Include(p => p.movimientos)
+                    .Load();
                 contexto.plazos.Load();
                 contexto.pagos.Load();
                 contexto.movimientos.Load();
@@ -71,6 +79,10 @@ namespace TrabajoPlataformas
             {
                 Console.WriteLine(e.Message);
             }
+        }
+        public void cerrar()
+        {
+            contexto.Dispose();
         }
 
         //CORREGIR LOS PARAMETROS DE LOS ABM, VER EN LA CONSIGA CUALES SON
