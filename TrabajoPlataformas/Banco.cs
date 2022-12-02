@@ -17,7 +17,7 @@ namespace TrabajoPlataformas
     public class Banco
     {
         //private List<Usuario> userList;
-        private List<CajaAhorro> cajasList;
+        //private List<CajaAhorro> cajasList;
         //private List<PlazoFijo> plazosFijos;
         //private List<Pago> pagos;
         //private List<Pago> pagosPendientes;
@@ -135,38 +135,33 @@ namespace TrabajoPlataformas
 
         public int crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
         {
-            //if (this.cajasList.Any(caja => caja.cbu == cbu2))
-            if (contexto.cajas.Any(caja => caja.cbu == cbu2))
-            {
-                return -1;
-            }
-            else
-            {
-                CajaAhorro nueva = new CajaAhorro(cbu2, usuario);
-                nueva.saldo;
-                contexto.cajas.Add(nueva);
-                contexto.SaveChanges();
-                return nueva.cbu;
-            }
-            {
-                return 1; // CBU ya existe
-            }
-            CajaAhorro cajaNueva = new CajaAhorro(cbu2, usuario);
-            cajaNueva.saldo = saldo;
-
-            cajaNueva.usuario.agregarCaja(cajaNueva);
-            contexto.Update(cajaNueva.usuario);
-            contexto.cajas.Add(cajaNueva);
-            contexto.SaveChanges();
-
+            // return 1 si ya existe, 2 si se crea bien, 3 si tiene saldo negativo
             try
             {
-                return 2;
+                CajaAhorro caja = new CajaAhorro(cbu2, usuario);
+                if (caja.saldo < 0)
+                {
+                    return 3;
+                }
+                if (contexto.cajas.Any(c => c.cbu == caja.cbu))
+                {
+                    return 1;
+                }
+                else
+                {
+                    contexto.cajas.Add(caja);
+                    // update saldo
+                    caja.saldo = saldo;
+                    contexto.Update(caja);
+                    contexto.SaveChanges();
+                    return 2;
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return 3;
+                return 0;
             }
+
 
         }
 

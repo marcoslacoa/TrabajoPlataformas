@@ -16,7 +16,11 @@ namespace TrabajoPlataformas
         public float saldo;
         public Usuario usuario;
         public List<UsuarioCaja> UserCaja { get; set; }
-        public CajaAhorro() { }
+        public CajaAhorro() 
+        {
+            movimientos = new List<Movimiento>();
+            titulares = new List<Usuario>();
+        }
         public CajaAhorro(int cbu2, Usuario usuario)
         {
             this.usuario = usuario;
