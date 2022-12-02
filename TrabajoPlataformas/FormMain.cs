@@ -380,7 +380,7 @@ namespace TrabajoPlataformas
                 DateTime fechaFin = DateTime.Now.AddDays(30);
                 int tasa = 0;
                
-                miBanco.altaPlazo(miBanco.usuarioActual.id, cbuenInt, monto, fechaIni, fechaFin, tasa, false);
+                miBanco.altaPlazo(cbuenInt, monto, fechaIni, fechaFin, tasa, false);
             }
         }
 
@@ -411,7 +411,7 @@ namespace TrabajoPlataformas
               int cvc = int.Parse(textBoxCVCTarjeta.Text);
               int limite = int.Parse(textBoxLimiteTarjeta.Text);
               float consumos = 0; 
-              miBanco.altaTarjeta(miBanco.usuarioActual, numero, cvc, limite, consumos);
+              miBanco.altaTarjeta( numero, cvc, limite, consumos);
         }
 
         private void buttonPagarTarjeta_Click(object sender, EventArgs e)
@@ -468,7 +468,7 @@ namespace TrabajoPlataformas
             {
                 float monto = float.Parse(textBoxMontoPago.Text);
                 string detalle = textBoxDetalle.Text;
-                if (miBanco.altaPago(miBanco.usuarioActual,monto, false, detalle))
+                if (miBanco.altaPago(monto, false, detalle))
                 {
                     MessageBox.Show("Pago creado");
                 }

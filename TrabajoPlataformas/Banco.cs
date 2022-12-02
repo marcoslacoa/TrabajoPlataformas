@@ -133,11 +133,12 @@ namespace TrabajoPlataformas
 
         //Ver como hacer el crear caja
 
-        public int crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
+        public int crearCajaAhorro(int cbu2, float saldo)
         {
             // return 1 si ya existe, 2 si se crea bien, 3 si tiene saldo negativo
             try
             {
+                Usuario usuario = getUsuario(usuarioActual.id);
                 CajaAhorro caja = new CajaAhorro(cbu2, usuario);
                 if (caja.saldo < 0)
                 {
@@ -197,11 +198,11 @@ namespace TrabajoPlataformas
 
         //ABM Plazo Fijo
 
-        public bool altaPlazo(int idUser, int cbu, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado) // ESTA BIEN ESTO? PROFE
+        public bool altaPlazo( int cbu, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado) // ESTA BIEN ESTO? PROFE
         {
             try
             {
-                Usuario user = getUsuario(idUser);
+                Usuario user = usuarioActual;
                 PlazoFijo nuevoPlazoFijo = new PlazoFijo(user, cbu, monto, fechaIni, fechaFin, tasa, pagado);
                 CajaAhorro? caja = getCaja(cbu);
 
@@ -259,10 +260,11 @@ namespace TrabajoPlataformas
 
         //ABM Pagos
 
-        public bool altaPago(Usuario usuario, float monto, bool pagado, string detalle)
+        public bool altaPago( float monto, bool pagado, string detalle)
         {
             try
             {
+                Usuario usuario = usuarioActual;
                 Pago nuevo = new Pago(usuario, monto, pagado, detalle);
 
                 contexto.pagos.Add(nuevo);
@@ -347,10 +349,11 @@ namespace TrabajoPlataformas
 
         //ABM Tarjetas
 
-        public bool altaTarjeta(Usuario titular, int numero, int codigoSeguridad, float limite, float consumos)
+        public bool altaTarjeta( int numero, int codigoSeguridad, float limite, float consumos)
         {
             try
             {
+                Usuario titular = usuarioActual;
                 TarjetaCredito nuevo = new TarjetaCredito(titular, numero, codigoSeguridad, limite, consumos);
 
                 nuevo.titular = usuarioActual;

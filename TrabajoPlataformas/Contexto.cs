@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Net;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.VisualBasic.ApplicationServices;
-using TrabajoPlataformas.Migrations;
 
 namespace TrabajoPlataformas
 {
