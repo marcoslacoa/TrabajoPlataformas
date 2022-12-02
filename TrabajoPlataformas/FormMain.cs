@@ -420,9 +420,9 @@ namespace TrabajoPlataformas
             {
                 int cbuenIntTarjeta = Convert.ToInt32(comboBoxTarjetaPagar.SelectedItem);
                 int cbuenIntCaja = Convert.ToInt32(comboBoxCbuPagar.SelectedItem);
-                TarjetaCredito tarjeta = miBanco.obtenerTarjetasDelUsuario().First(x => x.numero == cbuenIntTarjeta);
-                CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenIntCaja);
-                if (miBanco.pagarTarjeta(tarjeta, caja))
+                //TarjetaCredito tarjeta = miBanco.obtenerTarjetasDelUsuario().First(x => x.numero == cbuenIntTarjeta);
+                //CajaAhorro caja = miBanco.obtenerCajasDelUsuario().First(x => x.cbu == cbuenIntCaja);
+                if (miBanco.pagarTarjeta(cbuenIntTarjeta, cbuenIntCaja))
                 {
                     MessageBox.Show("Pago realizado");
                 }
@@ -442,8 +442,8 @@ namespace TrabajoPlataformas
             if (comboBoxTarjetaBorrar.SelectedItem != null)
             {
                 int cbuenInt = Convert.ToInt32(comboBoxTarjetaBorrar.SelectedItem);
-                TarjetaCredito tarjeta = miBanco.obtenerTarjetasDelUsuario().First(x => x.numero == cbuenInt);
-                miBanco.bajaTarjeta(tarjeta);
+                //TarjetaCredito tarjeta = miBanco.obtenerTarjetasDelUsuario().First(x => x.numero == cbuenInt);
+                miBanco.bajaTarjeta(cbuenInt);
             }
             else
             {
@@ -485,8 +485,8 @@ namespace TrabajoPlataformas
 
         private void buttonBorrarPago_Click(object sender, EventArgs e)
         {
-            string detalle = comboBoxCbuPagosEliminar.SelectedItem.ToString();
-            if (miBanco.bajaPago(detalle))
+            int pago = Convert.ToInt32(comboBoxTarjetaBorrar.SelectedItem);
+            if (miBanco.bajaPago(pago))
             {
                 MessageBox.Show("Pago eliminado");
                 refreshPagos();
@@ -499,15 +499,15 @@ namespace TrabajoPlataformas
 
         private void buttonRealizarPago_Click(object sender, EventArgs e)
         {
-            string cbuenStringPago = Convert.ToString(comboBoxPagos.SelectedItem);
-            Pago pago = miBanco.obtenerPagosDelUsuario().FirstOrDefault(x => x.detalle == cbuenStringPago);
+            int cbuenIntPago = Convert.ToInt32(comboBoxPagos.SelectedItem);
+            //Pago pago = miBanco.obtenerPagosDelUsuario().FirstOrDefault(x => x.detalle == cbuenStringPago);
 
             switch (numeroDeClickPagar)
             {
                 case 1:
                     int cbuenIntTarjetaPago = Convert.ToInt32(comboBoxTarjetaPagos.SelectedItem);
                    
-                    if (!miBanco.realizarPagoTarjeta(cbuenIntTarjetaPago, cbuenStringPago))
+                    if (!miBanco.realizarPagoTarjeta(cbuenIntTarjetaPago, cbuenIntPago))
                     {
                         MessageBox.Show("El monto del pago excede el limite de la tarjeta");
                     }
@@ -522,7 +522,7 @@ namespace TrabajoPlataformas
 
                     int cbuenIntCajaPago = Convert.ToInt32(comboBoxCbuPagos.SelectedItem);
 
-                    if (!miBanco.realizarPagoCaja(cbuenIntCajaPago, cbuenStringPago))
+                    if (!miBanco.realizarPagoCaja(cbuenIntCajaPago, cbuenIntPago))
                     {
                         MessageBox.Show("Usted no tiene saldo para realizar el pago");
                     }

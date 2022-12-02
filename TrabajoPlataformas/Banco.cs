@@ -411,19 +411,19 @@ namespace TrabajoPlataformas
                     this.usuarioActual = user;
                     return true;
                 }
-                else if (user.contra != pass)
+                if (user.contra != pass)
                 {
                     user.intentosFallidos++;
                     contexto.Update(user);
                     contexto.SaveChanges();
                     return false;
-                    if (user.intentosFallidos >= 3)
-                    {
-                        user.bloqueado = true;
-                        contexto.Update(user);
-                        contexto.SaveChanges();
-                        return false;
-                    }
+                }
+                else if (user.intentosFallidos >= 3)
+                {
+                    user.bloqueado = true;
+                    contexto.Update(user);
+                    contexto.SaveChanges();
+                    return false;
                 }
                 return false;
             } else
