@@ -380,7 +380,7 @@ namespace TrabajoPlataformas
                 DateTime fechaFin = DateTime.Now.AddDays(30);
                 int tasa = 0;
                
-                miBanco.altaPlazo(miBanco.usuarioActual, cbuenInt, monto, fechaIni, fechaFin, tasa, false);
+                miBanco.altaPlazo(miBanco.usuarioActual.id, cbuenInt, monto, fechaIni, fechaFin, tasa, false);
             }
         }
 

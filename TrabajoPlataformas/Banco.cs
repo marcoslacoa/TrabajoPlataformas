@@ -143,7 +143,7 @@ namespace TrabajoPlataformas
             else
             {
                 CajaAhorro nueva = new CajaAhorro(cbu2, usuario);
-                nueva.saldo
+                nueva.saldo;
                 contexto.cajas.Add(nueva);
                 contexto.SaveChanges();
                 return nueva.cbu;
