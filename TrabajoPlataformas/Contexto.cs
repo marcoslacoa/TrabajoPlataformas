@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.VisualBasic.ApplicationServices;
+using TrabajoPlataformas.Migrations;
 
 namespace TrabajoPlataformas
 {
@@ -35,8 +36,9 @@ namespace TrabajoPlataformas
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
         {
+            
 
-            optionsBuilder.UseSqlServer(Properties.Resources.String1);
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-E6O1CH0;Initial Catalog=24112022;Integrated Security=True;Encrypt=False");
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

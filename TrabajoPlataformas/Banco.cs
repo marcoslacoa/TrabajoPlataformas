@@ -16,14 +16,14 @@ namespace TrabajoPlataformas
 {
     public class Banco
     {
-        private List<Usuario> userList;
+        //private List<Usuario> userList;
         private List<CajaAhorro> cajasList;
-        private List<PlazoFijo> plazosFijos;
-        private List<Pago> pagos;
-        private List<Pago> pagosPendientes;
-        private List<Pago> pagosRealizados;
-        private List<Movimiento> movimientos;
-        private List<TarjetaCredito> tarjetas;
+        //private List<PlazoFijo> plazosFijos;
+        //private List<Pago> pagos;
+        //private List<Pago> pagosPendientes;
+        //private List<Pago> pagosRealizados;
+        //private List<Movimiento> movimientos;
+        //private List<TarjetaCredito> tarjetas;
 
         public Usuario usuarioActual;
 
@@ -32,12 +32,12 @@ namespace TrabajoPlataformas
         public Banco()
         {
             inicializarAtributos();
-            userList = new List<Usuario>();
-            cajasList = new List<CajaAhorro>();
-            plazosFijos = new List<PlazoFijo>();
-            pagos = new List<Pago>();
-            movimientos = new List<Movimiento>();
-            tarjetas = new List<TarjetaCredito>();
+            //userList = new List<Usuario>();
+            //cajasList = new List<CajaAhorro>();
+            //plazosFijos = new List<PlazoFijo>();
+            //pagos = new List<Pago>();
+            //movimientos = new List<Movimiento>();
+            //tarjetas = new List<TarjetaCredito>();
         }
         private void inicializarAtributos()
         {
@@ -135,7 +135,19 @@ namespace TrabajoPlataformas
 
         public int crearCajaAhorro(int cbu2, float saldo, Usuario usuario)
         {
-            if (this.cajasList.Any(caja => caja.cbu == cbu2))
+            //if (this.cajasList.Any(caja => caja.cbu == cbu2))
+            if (contexto.cajas.Any(caja => caja.cbu == cbu2))
+            {
+                return -1;
+            }
+            else
+            {
+                CajaAhorro nueva = new CajaAhorro(cbu2, usuario);
+                nueva.saldo
+                contexto.cajas.Add(nueva);
+                contexto.SaveChanges();
+                return nueva.cbu;
+            }
             {
                 return 1; // CBU ya existe
             }
@@ -190,11 +202,12 @@ namespace TrabajoPlataformas
 
         //ABM Plazo Fijo
 
-        public bool altaPlazo(Usuario titular, int cbu, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado) // ESTA BIEN ESTO? PROFE
+        public bool altaPlazo(int idUser, int cbu, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado) // ESTA BIEN ESTO? PROFE
         {
             try
             {
-                PlazoFijo nuevoPlazoFijo = new PlazoFijo(titular, cbu, monto, fechaIni, fechaFin, tasa, pagado);
+                Usuario user = getUsuario(idUser);
+                PlazoFijo nuevoPlazoFijo = new PlazoFijo(user, cbu, monto, fechaIni, fechaFin, tasa, pagado);
                 CajaAhorro? caja = getCaja(cbu);
 
                 if (monto < 1000)
@@ -494,6 +507,8 @@ namespace TrabajoPlataformas
             }
             caja.agregarTitular(nuevoTitular);
             nuevoTitular.agregarCaja(caja);
+            contexto.Update(caja);
+            contexto.Update(nuevoTitular);
             contexto.SaveChanges();
 
             return 2; // Titular agregado exitosamente
@@ -519,6 +534,8 @@ namespace TrabajoPlataformas
             }
             caja.eliminarTitular(usuario);
             usuario.eliminarCaja(caja);
+            contexto.Update(caja);
+            contexto.Update(usuario);
             contexto.SaveChanges();
             return 3;
         }
@@ -587,24 +604,31 @@ namespace TrabajoPlataformas
 
         //Mostrar datos
 
+        // Memory
+        //public List<Usuario> obtenerUsuarios()
+        //{
+        //    return userList.ToList();
+        //}
+        // Entity
         public List<Usuario> obtenerUsuarios()
         {
-            return userList.ToList();
+            return contexto.usuarios.ToList();
         }
 
         public List<CajaAhorro> obtenerCajas()
         {
-            return cajasList.ToList();
+            return contexto.cajas.ToList();
         }
+        
 
         public List<PlazoFijo> obtenerPlazoFijo()
         {
-            return plazosFijos.ToList();
+            return contexto.plazos.ToList();
         }
 
         public List<Pago> obtenerPago()
         {
-            return pagos.ToList();
+            return contexto.pagos.ToList();
         }
 
         public List<Movimiento> obtenerMovimientos(int Cbu)
@@ -615,7 +639,7 @@ namespace TrabajoPlataformas
 
         public List<TarjetaCredito> obtenerTarjeta()
         {
-            return tarjetas.ToList();
+            return contexto.tarjetas.ToList();
         }
 
         public List<CajaAhorro> obtenerCajasDelUsuario()
