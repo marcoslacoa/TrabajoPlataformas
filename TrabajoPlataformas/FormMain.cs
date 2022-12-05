@@ -19,7 +19,7 @@ namespace TrabajoPlataformas
     public partial class FormMain : Form
     {
         List<List<string>> datos;
-        public string usuario;
+        public int dni;
         public Banco miBanco;
         CrearCaja hijoCrearCaja;        
         public cerrarsesion cerrarsesionEvento;
@@ -27,11 +27,11 @@ namespace TrabajoPlataformas
         int numeroDeClick = 0;
         int numeroDeClickPagar = 0;
         EditarUsuario hijoEditarUsuario;
-        public FormMain(string usuario, Banco b)
+        public FormMain(int dni, Banco b)
         {
             InitializeComponent();
             this.miBanco = b;
-            this.usuario = usuario;
+            this.dni = dni;
             label2.Text = miBanco.usuarioActual.nombre;
             cbuDesitinoLabel.Visible = false;
             cbuLabel.Visible = false;
@@ -582,6 +582,23 @@ namespace TrabajoPlataformas
             this.hijoEditarUsuario = new EditarUsuario(miBanco, miBanco.usuarioActual);
 
             hijoEditarUsuario.Show();
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            if (miBanco.darmeDeBaja() == 1)
+            {
+                MessageBox.Show("Usuario dado de baja");
+                this.Close();
+            }
+            else if (miBanco.darmeDeBaja() == 2)
+            {
+                MessageBox.Show("No se pudo dar de baja el usuario porque tiene cajas de ahorro");
+            }
+            else 
+            {
+                MessageBox.Show("No se pudo dar de baja el usuario");
+            }
         }
     }
 

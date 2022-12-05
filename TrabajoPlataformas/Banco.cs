@@ -86,6 +86,30 @@ namespace TrabajoPlataformas
                 return false;
             }
         }
+        
+        public int darmeDeBaja() //checkea si no le queda dinero en alguna caja y se elimina al usuario si es distinto de null. Remove, save changes y cerrarsesion().
+        {
+            Usuario usuario = usuarioActual;
+
+            if (usuario != null)
+            {
+                if (usuario.listaCajas.Count == 0)
+                {
+                    contexto.usuarios.Remove(usuario);
+                    contexto.SaveChanges();
+                    cerrarSesion();
+                    return 1;
+                }
+                else
+                {
+                    return 2; //no se puede eliminar porque tiene cajas
+                }
+            }
+            else
+            {
+                return 0; //no hay usuario logueado
+            }
+        }
 
         public bool bajaUsuario(int id)
         {
@@ -95,6 +119,7 @@ namespace TrabajoPlataformas
                 {
                     contexto.usuarios.Remove(usuarioToRemove);
                     contexto.SaveChanges();
+                    cerrarSesion();
                     return true;
                 }
                 else
@@ -390,10 +415,10 @@ namespace TrabajoPlataformas
 
         //Metodos
 
-        public bool iniciarSesion(string usuario, string pass)
+        public bool iniciarSesion(int dni, string pass)
         {
             // define a query with contexto filtering with usuario
-            Usuario user = contexto.usuarios.Where(x => x.nombre == usuario).FirstOrDefault();
+            Usuario user = contexto.usuarios.Where(x => x.dni == dni).FirstOrDefault();
             if (user != null)
             {
                 if (user.contra == pass)

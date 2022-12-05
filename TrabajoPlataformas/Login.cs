@@ -14,7 +14,7 @@ namespace TrabajoPlataformas
     public partial class Login : Form
     {
         public bool logued;
-        public string usuario;
+        public int dni;
         public string pass;
         public Banco banco;
         public loginDelegado loginEvento;
@@ -36,20 +36,30 @@ namespace TrabajoPlataformas
         {
             this.regEvento();
         }
-
-        public delegate void loginDelegado(string usuario, string pass);
+        
+        public delegate void loginDelegado(int dni, string pass);
         public delegate void registerDelegado();
 
         private void buttonlogin_Click(object sender, EventArgs e)
         {
-            usuario = txtUsuario.Text;
+            dni = Int32.Parse(txtDni.Text);
             pass = txtContra.Text;
-            if (usuario != null && usuario != "")
+            if (dni != 0 && pass != "")
             {
-                this.loginEvento(usuario, pass);
+                if (banco.iniciarSesion(dni, pass))
+                {
+                    MessageBox.Show("Login exitoso", "Login");
+                    this.loginEvento(dni, txtContra.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Login fallido", "Login");
+                }
             }
             else
-                MessageBox.Show("Debe ingresar un usuario!");
+            {
+                MessageBox.Show("No se pudo loguear");
+            }
         }
         
 

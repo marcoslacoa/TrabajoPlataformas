@@ -11,7 +11,7 @@ namespace TrabajoPlataformas
         
 
         internal string texto;
-        string usuario;
+        int dni;
         string pass;
         bool logued;
         public bool touched;
@@ -35,17 +35,17 @@ namespace TrabajoPlataformas
             this.hijoLogin.Show();
             touched = false;
         }
-        private void loginDelegado(string usuario, string pass) // DELEGADO PARA INICIAR SESION 
+        private void loginDelegado(int dni, string pass) // DELEGADO PARA INICIAR SESION 
         {
-            this.usuario = usuario;
+            this.dni = dni;
             this.pass = pass;
            
-            if (banco.iniciarSesion(usuario, pass))
+            if (banco.iniciarSesion(dni, pass))
             {
-                MessageBox.Show("Inicio de sesión correcto, Usuario: " + usuario, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                hijoMain = new FormMain(this.usuario, banco);
+                MessageBox.Show("Inicio de sesión correcto, Usuario: " + dni, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                hijoMain = new FormMain(this.dni, banco);
                 this.hijoMain.cerrarsesionEvento += cerrarsesion;
-                hijoMain.usuario = this.usuario;
+                hijoMain.dni = this.dni;
                 hijoMain.MdiParent = this;
                 // Transfevento para cerrar y volver al padre.
                 hijoLogin.Hide();

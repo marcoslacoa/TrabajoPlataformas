@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.txtDni = new System.Windows.Forms.TextBox();
             this.txtContra = new System.Windows.Forms.TextBox();
             this.buttonlogin = new System.Windows.Forms.Button();
             this.buttonregister = new System.Windows.Forms.Button();
@@ -55,12 +55,12 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Contraseña";
             // 
-            // txtUsuario
+            // txtDni
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(425, 108);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(100, 23);
-            this.txtUsuario.TabIndex = 2;
+            this.txtDni.Location = new System.Drawing.Point(425, 108);
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(100, 23);
+            this.txtDni.TabIndex = 2;
             // 
             // txtContra
             // 
@@ -108,7 +108,7 @@
             this.Controls.Add(this.buttonregister);
             this.Controls.Add(this.buttonlogin);
             this.Controls.Add(this.txtContra);
-            this.Controls.Add(this.txtUsuario);
+            this.Controls.Add(this.txtDni);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -125,7 +125,7 @@
 
         private Label label1;
         private Label label2;
-        private TextBox txtUsuario;
+        private TextBox txtDni;
         private TextBox txtContra;
         private Button buttonlogin;
         private Button buttonregister;

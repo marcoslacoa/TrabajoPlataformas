@@ -49,6 +49,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPagePlazo = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.MontoInsertPlazo = new System.Windows.Forms.TextBox();
@@ -108,7 +109,7 @@
             this.comboBoxCbuMov = new System.Windows.Forms.ComboBox();
             this.mostrar2 = new System.Windows.Forms.Button();
             this.verdatos = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.baja = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageCaja.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -347,6 +348,15 @@
             this.tabPagePlazo.Text = "Plazo Fijo";
             this.tabPagePlazo.UseVisualStyleBackColor = true;
             this.tabPagePlazo.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(77, 299);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(158, 15);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Plazo Fijo a cobrar en 30 dias";
             // 
             // button3
             // 
@@ -882,7 +892,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(553, 26);
+            this.button4.Location = new System.Drawing.Point(553, 12);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 9;
@@ -969,14 +979,15 @@
             this.verdatos.UseVisualStyleBackColor = true;
             this.verdatos.Click += new System.EventHandler(this.button6_Click);
             // 
-            // label6
+            // baja
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(77, 299);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(158, 15);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Plazo Fijo a cobrar en 30 dias";
+            this.baja.Location = new System.Drawing.Point(553, 41);
+            this.baja.Name = "baja";
+            this.baja.Size = new System.Drawing.Size(75, 53);
+            this.baja.TabIndex = 0;
+            this.baja.Text = "Darme de baja";
+            this.baja.UseVisualStyleBackColor = true;
+            this.baja.Click += new System.EventHandler(this.button6_Click_1);
             // 
             // FormMain
             // 
@@ -984,6 +995,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1181, 671);
+            this.Controls.Add(this.baja);
             this.Controls.Add(this.verdatos);
             this.Controls.Add(this.mostrar2);
             this.Controls.Add(this.comboBoxCbuMov);
@@ -1103,5 +1115,6 @@
         private Button buttonPagarConTarjeta;
         private Button verdatos;
         private Label label6;
+        private Button baja;
     }
 }
