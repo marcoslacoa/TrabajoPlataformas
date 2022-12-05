@@ -604,17 +604,19 @@ namespace TrabajoPlataformas
             }
         }
 
-        public int pagarPlazoVencido(int cbu, int idPlazo)
+        public void pagarPlazoVencido(int cbu, int idPlazo)
         {
             CajaAhorro caja = getCaja(cbu);
             PlazoFijo plazo = getPlazo(idPlazo);
             if (caja.saldo < plazo.monto)
             {
-                return 0; // No hay saldo suficiente
+                // imprimir por pantalla que No hay saldo suficiente
+                MessageBox.Show("No hay saldo suficiente");
+
             }
             if (plazo.FechaFin > DateTime.Now)
             {
-                return 1; // El plazo no vencio
+                MessageBox.Show("El plazo no ha vencido");
             }
             if (plazo.FechaFin >= DateTime.Now && plazo.pagado == false)
             {
@@ -624,15 +626,15 @@ namespace TrabajoPlataformas
                 contexto.Update(caja);
                 contexto.Update(plazo);
                 contexto.SaveChanges();
-                return 2; // Pago exitoso
+                MessageBox.Show("Pago realizado con exito");
             }
             else if (plazo.FechaFin >= DateTime.Now && plazo.pagado == true)
             {
-                return 3; // El plazo ya fue pagado
+                MessageBox.Show("El plazo ya fue pagado");
             }
             else
             {
-                return 4; // Error
+                MessageBox.Show("Error");
             }
         }
 
