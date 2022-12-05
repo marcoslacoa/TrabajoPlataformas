@@ -378,9 +378,8 @@ namespace TrabajoPlataformas
                 DateTime fechaIni = DateTime.Now;
                 // now + 30 days
                 DateTime fechaFin = DateTime.Now.AddDays(30);
-                int tasa = 0;
                
-                miBanco.altaPlazo(cbuenInt, monto, fechaIni, fechaFin, tasa, false);
+                miBanco.altaPlazo(cbuenInt, monto, fechaIni, fechaFin, false);
             }
         }
 

@@ -198,10 +198,11 @@ namespace TrabajoPlataformas
 
         //ABM Plazo Fijo
 
-        public bool altaPlazo( int cbu, float monto, DateTime fechaIni, DateTime fechaFin, float tasa, bool pagado) // ESTA BIEN ESTO? PROFE
+        public bool altaPlazo( int cbu, float monto, DateTime fechaIni, DateTime fechaFin, bool pagado) // ESTA BIEN ESTO? PROFE
         {
             try
             {
+                float tasa = 0.1f;
                 Usuario user = usuarioActual;
                 PlazoFijo nuevoPlazoFijo = new PlazoFijo(user, cbu, monto, fechaIni, fechaFin, tasa, pagado);
                 CajaAhorro? caja = getCaja(cbu);
@@ -485,8 +486,10 @@ namespace TrabajoPlataformas
                 return 1; // No hay saldo suficiente
             }
             origen.saldo -= monto;
+            contexto.Update(origen);
             this.altaMovimiento(origen, "Transferencia enviada ", monto, DateTime.Now);
             destino.saldo += monto;
+            contexto.Update(destino);
             this.altaMovimiento(destino, "Transferencia recibida", monto, DateTime.Now);
             contexto.SaveChanges();
 
