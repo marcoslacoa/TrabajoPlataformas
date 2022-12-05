@@ -43,19 +43,16 @@ namespace TrabajoPlataformas
             {
                 case 1:
                    float saldoCaja = float.Parse(saldo.Text);
-                    if(banco.crearCajaAhorro(cbuCaja, saldoCaja) == 2)
+                    if(banco.crearCajaAhorro() == 2)
                     {
                             MessageBox.Show("Caja de ahorro creada con exito");
                             this.Close();
                         }
-                    else if (banco.crearCajaAhorro(cbuCaja, saldoCaja) == 1)
+                    else 
                     {
                             MessageBox.Show("No se pudo crear la caja de ahorro. El CBU ya existe");
                     }
-                    else
-                    {
-                        MessageBox.Show("No se pudo crear la caja de ahorro. El saldo es negativo");
-                    }
+                    
                     
                     
                    

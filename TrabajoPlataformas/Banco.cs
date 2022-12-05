@@ -133,45 +133,27 @@ namespace TrabajoPlataformas
 
         //Ver como hacer el crear caja
 
-        public int crearCajaAhorro(int cbu2, float saldo)
+        public int crearCajaAhorro()
         {
             // return 1 si ya existe, 2 si se crea bien, 3 si tiene saldo negativo
-            try
-            {
+            int min = 100000;
+            int max = 999999;
+            Random random = new Random();
+            int numero = random.Next(min, max);
+            
 
-            }
-            catch (Exception)
+            if (contexto.cajas.Any(c => c.cbu == numero))
             {
-
-                throw;
+                return 1; // ya existe
             }
+            else
             {
-                Usuario usuario = getUsuario(usuarioActual.id);
-                CajaAhorro caja = new CajaAhorro(cbu2, usuario);
-                if (caja.saldo < 0)
-                {
-                    return 3;
-                }
-                if (contexto.cajas.Any(c => c.cbu == caja.cbu))
-                {
-                    return 1;
-                }
-                else
-                {
-                    contexto.cajas.Add(caja);
-                    // update saldo
-                    caja.saldo = saldo;
-                    contexto.Update(caja);
-                    contexto.SaveChanges();
-                    return 2;
-                }
+                CajaAhorro nueva = new CajaAhorro(numero, usuarioActual);
+                contexto.cajas.Add(nueva);
+                contexto.Update(usuarioActual);
+                contexto.SaveChanges();
+                return 2;
             }
-            catch (Exception ex)
-            {
-                return 0;
-            }
-
-
         }
 
         public int bajaCaja(int cbuCaja)
