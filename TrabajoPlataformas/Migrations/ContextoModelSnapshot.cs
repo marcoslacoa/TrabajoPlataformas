@@ -38,7 +38,7 @@ namespace TrabajoPlataformas.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Cajas", (string)null);
+                    b.ToTable("Caja", (string)null);
                 });
 
             modelBuilder.Entity("TrabajoPlataformas.Movimiento", b =>
@@ -66,7 +66,7 @@ namespace TrabajoPlataformas.Migrations
 
                     b.HasIndex("idCaja");
 
-                    b.ToTable("Movimientos", (string)null);
+                    b.ToTable("Movimiento", (string)null);
                 });
 
             modelBuilder.Entity("TrabajoPlataformas.Pago", b =>
@@ -94,7 +94,7 @@ namespace TrabajoPlataformas.Migrations
 
                     b.HasIndex("idUsuario");
 
-                    b.ToTable("Pagos", (string)null);
+                    b.ToTable("Pago", (string)null);
                 });
 
             modelBuilder.Entity("TrabajoPlataformas.PlazoFijo", b =>
@@ -130,7 +130,7 @@ namespace TrabajoPlataformas.Migrations
 
                     b.HasIndex("idUsuario");
 
-                    b.ToTable("Plazos", (string)null);
+                    b.ToTable("Plazo", (string)null);
                 });
 
             modelBuilder.Entity("TrabajoPlataformas.TarjetaCredito", b =>
@@ -160,7 +160,7 @@ namespace TrabajoPlataformas.Migrations
 
                     b.HasIndex("idUsuario");
 
-                    b.ToTable("Tarjetas", (string)null);
+                    b.ToTable("Tarjeta", (string)null);
                 });
 
             modelBuilder.Entity("TrabajoPlataformas.Usuario", b =>
@@ -201,7 +201,7 @@ namespace TrabajoPlataformas.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Usuarios", (string)null);
+                    b.ToTable("Usuario", (string)null);
                 });
 
             modelBuilder.Entity("TrabajoPlataformas.UsuarioCaja", b =>

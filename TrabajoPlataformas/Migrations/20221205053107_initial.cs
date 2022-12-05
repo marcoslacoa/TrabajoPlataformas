@@ -12,7 +12,7 @@ namespace TrabajoPlataformas.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Cajas",
+                name: "Caja",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -22,11 +22,11 @@ namespace TrabajoPlataformas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cajas", x => x.id);
+                    table.PrimaryKey("PK_Caja", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuarios",
+                name: "Usuario",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -42,11 +42,11 @@ namespace TrabajoPlataformas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuarios", x => x.id);
+                    table.PrimaryKey("PK_Usuario", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Movimientos",
+                name: "Movimiento",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -58,17 +58,17 @@ namespace TrabajoPlataformas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movimientos", x => x.id);
+                    table.PrimaryKey("PK_Movimiento", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Movimientos_Cajas_idCaja",
+                        name: "FK_Movimiento_Caja_idCaja",
                         column: x => x.idCaja,
-                        principalTable: "Cajas",
+                        principalTable: "Caja",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pagos",
+                name: "Pago",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -80,17 +80,17 @@ namespace TrabajoPlataformas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pagos", x => x.id);
+                    table.PrimaryKey("PK_Pago", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Pagos_Usuarios_idUsuario",
+                        name: "FK_Pago_Usuario_idUsuario",
                         column: x => x.idUsuario,
-                        principalTable: "Usuarios",
+                        principalTable: "Usuario",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Plazos",
+                name: "Plazo",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -105,17 +105,17 @@ namespace TrabajoPlataformas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Plazos", x => x.id);
+                    table.PrimaryKey("PK_Plazo", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Plazos_Usuarios_idUsuario",
+                        name: "FK_Plazo_Usuario_idUsuario",
                         column: x => x.idUsuario,
-                        principalTable: "Usuarios",
+                        principalTable: "Usuario",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tarjetas",
+                name: "Tarjeta",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -128,11 +128,11 @@ namespace TrabajoPlataformas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tarjetas", x => x.id);
+                    table.PrimaryKey("PK_Tarjeta", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Tarjetas_Usuarios_idUsuario",
+                        name: "FK_Tarjeta_Usuario_idUsuario",
                         column: x => x.idUsuario,
-                        principalTable: "Usuarios",
+                        principalTable: "Usuario",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -149,37 +149,37 @@ namespace TrabajoPlataformas.Migrations
                 {
                     table.PrimaryKey("PK_UsuarioCaja", x => new { x.numusr, x.idCaja });
                     table.ForeignKey(
-                        name: "FK_UsuarioCaja_Cajas_idCaja",
+                        name: "FK_UsuarioCaja_Caja_idCaja",
                         column: x => x.idCaja,
-                        principalTable: "Cajas",
+                        principalTable: "Caja",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UsuarioCaja_Usuarios_num_usr",
+                        name: "FK_UsuarioCaja_Usuario_num_usr",
                         column: x => x.numusr,
-                        principalTable: "Usuarios",
+                        principalTable: "Usuario",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movimientos_idCaja",
-                table: "Movimientos",
+                name: "IX_Movimiento_idCaja",
+                table: "Movimiento",
                 column: "idCaja");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pagos_idUsuario",
-                table: "Pagos",
+                name: "IX_Pago_idUsuario",
+                table: "Pago",
                 column: "idUsuario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Plazos_idUsuario",
-                table: "Plazos",
+                name: "IX_Plazo_idUsuario",
+                table: "Plazo",
                 column: "idUsuario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tarjetas_idUsuario",
-                table: "Tarjetas",
+                name: "IX_Tarjeta_idUsuario",
+                table: "Tarjeta",
                 column: "idUsuario");
 
             migrationBuilder.CreateIndex(
@@ -192,25 +192,25 @@ namespace TrabajoPlataformas.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Movimientos");
+                name: "Movimiento");
 
             migrationBuilder.DropTable(
-                name: "Pagos");
+                name: "Pago");
 
             migrationBuilder.DropTable(
-                name: "Plazos");
+                name: "Plazo");
 
             migrationBuilder.DropTable(
-                name: "Tarjetas");
+                name: "Tarjeta");
 
             migrationBuilder.DropTable(
                 name: "UsuarioCaja");
 
             migrationBuilder.DropTable(
-                name: "Cajas");
+                name: "Caja");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Usuario");
         }
     }
 }

@@ -45,22 +45,22 @@ namespace TrabajoPlataformas
             // CREACIONES DE CLASES 
 
             modelBuilder.Entity<Usuario>()
-               .ToTable("Usuarios")
+               .ToTable("Usuario")
                .HasKey(u => u.id);
             modelBuilder.Entity<CajaAhorro>()
-                .ToTable("Cajas")
+                .ToTable("Caja")
                 .HasKey(d => d.id);
             modelBuilder.Entity<PlazoFijo>()
-                .ToTable("Plazos")
+                .ToTable("Plazo")
                 .HasKey(d => d.id);
             modelBuilder.Entity<Pago>()
-                .ToTable("Pagos")
+                .ToTable("Pago")
                 .HasKey(d => d.id);
             modelBuilder.Entity<Movimiento>()
-                .ToTable("Movimientos")
+                .ToTable("Movimiento")
                 .HasKey(d => d.id);
             modelBuilder.Entity<TarjetaCredito>()
-                .ToTable("Tarjetas")
+                .ToTable("Tarjeta")
                 .HasKey(d => d.id);
 
             // RELACIONES ONE TO MANY // CHECKEAR
