@@ -604,6 +604,39 @@ namespace TrabajoPlataformas
             }
         }
 
+        public int pagarPlazoVencido(int cbu, int idPlazo)
+        {
+            CajaAhorro caja = getCaja(cbu);
+            PlazoFijo plazo = getPlazo(idPlazo);
+            if (caja.saldo < plazo.monto)
+            {
+                return 0; // No hay saldo suficiente
+            }
+            if (plazo.FechaFin > DateTime.Now)
+            {
+                return 1; // El plazo no vencio
+            }
+            if (plazo.FechaFin >= DateTime.Now && plazo.pagado == false)
+            {
+                caja.saldo -= plazo.monto;
+                this.altaMovimiento(caja, "Pago de plazo fijo", plazo.monto, DateTime.Now);
+                plazo.pagado = true;
+                contexto.Update(caja);
+                contexto.Update(plazo);
+                contexto.SaveChanges();
+                return 2; // Pago exitoso
+            }
+            else if (plazo.FechaFin >= DateTime.Now && plazo.pagado == true)
+            {
+                return 3; // El plazo ya fue pagado
+            }
+            else
+            {
+                return 4; // Error
+            }
+        }
+
+
         //Mostrar datos
 
         // Memory
