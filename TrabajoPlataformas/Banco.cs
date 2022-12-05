@@ -138,6 +138,14 @@ namespace TrabajoPlataformas
             // return 1 si ya existe, 2 si se crea bien, 3 si tiene saldo negativo
             try
             {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            {
                 Usuario usuario = getUsuario(usuarioActual.id);
                 CajaAhorro caja = new CajaAhorro(cbu2, usuario);
                 if (caja.saldo < 0)
@@ -198,7 +206,7 @@ namespace TrabajoPlataformas
 
         //ABM Plazo Fijo
 
-        public bool altaPlazo( int cbu, float monto, DateTime fechaIni, DateTime fechaFin, bool pagado) // ESTA BIEN ESTO? PROFE
+        public bool altaPlazo(int cbu, float monto, DateTime fechaIni, DateTime fechaFin, bool pagado) // ESTA BIEN ESTO? PROFE
         {
             try
             {
@@ -261,7 +269,7 @@ namespace TrabajoPlataformas
 
         //ABM Pagos
 
-        public bool altaPago( float monto, bool pagado, string detalle)
+        public bool altaPago(float monto, bool pagado, string detalle)
         {
             try
             {
@@ -350,7 +358,7 @@ namespace TrabajoPlataformas
 
         //ABM Tarjetas
 
-        public bool altaTarjeta( int numero, int codigoSeguridad, float limite, float consumos)
+        public bool altaTarjeta(int numero, int codigoSeguridad, float limite, float consumos)
         {
             try
             {
@@ -409,18 +417,18 @@ namespace TrabajoPlataformas
                 if (user.contra == pass)
                 {
                     this.usuarioActual = user;
+                    user.intentosFallidos = 0;
+                    contexto.Update(user);
+                    contexto.SaveChanges();
                     return true;
                 }
                 if (user.contra != pass)
                 {
                     user.intentosFallidos++;
-                    contexto.Update(user);
-                    contexto.SaveChanges();
-                    return false;
-                }
-                else if (user.intentosFallidos >= 3)
-                {
-                    user.bloqueado = true;
+                    if (user.intentosFallidos >= 3)
+                    {
+                        user.bloqueado = true;
+                    }
                     contexto.Update(user);
                     contexto.SaveChanges();
                     return false;
@@ -572,7 +580,7 @@ namespace TrabajoPlataformas
             {
                 return false;
             }
-            
+
             else
             {
                 caja.saldo -= pago.monto;
@@ -585,11 +593,11 @@ namespace TrabajoPlataformas
             }
         }
 
-        public bool realizarPagoTarjeta(int numeroTarjeta , int IdPago) //ID 
+        public bool realizarPagoTarjeta(int numeroTarjeta, int IdPago) //ID 
         {
             TarjetaCredito? tarjeta = getTarjeta(numeroTarjeta);
             Pago pago = getPago(IdPago);
-            if (tarjeta.limite < pago.monto)
+            if ((tarjeta.consumos < pago.monto)&&(tarjeta.limite < pago.monto))
             {
                 return false;
             }
