@@ -44,7 +44,10 @@ namespace TrabajoPlataformas.Migrations
             modelBuilder.Entity("TrabajoPlataformas.Movimiento", b =>
                 {
                     b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("detalle")
                         .IsRequired()
@@ -53,10 +56,15 @@ namespace TrabajoPlataformas.Migrations
                     b.Property<DateTime>("fecha")
                         .HasColumnType("datetime");
 
+                    b.Property<int>("idCaja")
+                        .HasColumnType("int");
+
                     b.Property<double>("monto")
                         .HasColumnType("float");
 
                     b.HasKey("id");
+
+                    b.HasIndex("idCaja");
 
                     b.ToTable("Movimientos", (string)null);
                 });
@@ -64,11 +72,17 @@ namespace TrabajoPlataformas.Migrations
             modelBuilder.Entity("TrabajoPlataformas.Pago", b =>
                 {
                     b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("detalle")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
+
+                    b.Property<int>("idUsuario")
+                        .HasColumnType("int");
 
                     b.Property<double>("monto")
                         .HasColumnType("float");
@@ -78,13 +92,18 @@ namespace TrabajoPlataformas.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("idUsuario");
+
                     b.ToTable("Pagos", (string)null);
                 });
 
             modelBuilder.Entity("TrabajoPlataformas.PlazoFijo", b =>
                 {
                     b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<DateTime>("FechaFin")
                         .HasColumnType("datetime");
@@ -94,6 +113,9 @@ namespace TrabajoPlataformas.Migrations
 
                     b.Property<DateTime>("fechaIni")
                         .HasColumnType("datetime");
+
+                    b.Property<int>("idUsuario")
+                        .HasColumnType("int");
 
                     b.Property<double>("monto")
                         .HasColumnType("float");
@@ -106,19 +128,27 @@ namespace TrabajoPlataformas.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("idUsuario");
+
                     b.ToTable("Plazos", (string)null);
                 });
 
             modelBuilder.Entity("TrabajoPlataformas.TarjetaCredito", b =>
                 {
                     b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<int>("codigoSeguridad")
                         .HasColumnType("int");
 
                     b.Property<double>("consumos")
                         .HasColumnType("float");
+
+                    b.Property<int>("idUsuario")
+                        .HasColumnType("int");
 
                     b.Property<int>("limite")
                         .HasColumnType("int");
@@ -127,6 +157,8 @@ namespace TrabajoPlataformas.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("id");
+
+                    b.HasIndex("idUsuario");
 
                     b.ToTable("Tarjetas", (string)null);
                 });
@@ -177,15 +209,15 @@ namespace TrabajoPlataformas.Migrations
                     b.Property<int>("num_usr")
                         .HasColumnType("int");
 
-                    b.Property<int>("id")
+                    b.Property<int>("idCaja")
                         .HasColumnType("int");
 
                     b.Property<int>("cantidad")
                         .HasColumnType("int");
 
-                    b.HasKey("num_usr", "id");
+                    b.HasKey("num_usr", "idCaja");
 
-                    b.HasIndex("id");
+                    b.HasIndex("idCaja");
 
                     b.ToTable("UsuarioCaja");
                 });
@@ -194,8 +226,9 @@ namespace TrabajoPlataformas.Migrations
                 {
                     b.HasOne("TrabajoPlataformas.CajaAhorro", "caja")
                         .WithMany("movimientos")
-                        .HasForeignKey("id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("idCaja")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("caja");
                 });
@@ -204,8 +237,9 @@ namespace TrabajoPlataformas.Migrations
                 {
                     b.HasOne("TrabajoPlataformas.Usuario", "usuario")
                         .WithMany("pagos")
-                        .HasForeignKey("id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("idUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("usuario");
                 });
@@ -214,8 +248,9 @@ namespace TrabajoPlataformas.Migrations
                 {
                     b.HasOne("TrabajoPlataformas.Usuario", "titular")
                         .WithMany("plazoFijo")
-                        .HasForeignKey("id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("idUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("titular");
                 });
@@ -224,8 +259,9 @@ namespace TrabajoPlataformas.Migrations
                 {
                     b.HasOne("TrabajoPlataformas.Usuario", "titular")
                         .WithMany("tarjetas")
-                        .HasForeignKey("id")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("idUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("titular");
                 });
@@ -234,7 +270,7 @@ namespace TrabajoPlataformas.Migrations
                 {
                     b.HasOne("TrabajoPlataformas.CajaAhorro", "caja")
                         .WithMany("UserCaja")
-                        .HasForeignKey("id")
+                        .HasForeignKey("idCaja")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

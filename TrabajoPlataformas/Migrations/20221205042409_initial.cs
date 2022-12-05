@@ -49,7 +49,9 @@ namespace TrabajoPlataformas.Migrations
                 name: "Movimientos",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idCaja = table.Column<int>(type: "int", nullable: false),
                     detalle = table.Column<string>(type: "varchar(50)", nullable: false),
                     monto = table.Column<double>(type: "float", nullable: false),
                     fecha = table.Column<DateTime>(type: "datetime", nullable: false)
@@ -58,8 +60,8 @@ namespace TrabajoPlataformas.Migrations
                 {
                     table.PrimaryKey("PK_Movimientos", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Movimientos_Cajas_id",
-                        column: x => x.id,
+                        name: "FK_Movimientos_Cajas_idCaja",
+                        column: x => x.idCaja,
                         principalTable: "Cajas",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -69,7 +71,9 @@ namespace TrabajoPlataformas.Migrations
                 name: "Pagos",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idUsuario = table.Column<int>(type: "int", nullable: false),
                     monto = table.Column<double>(type: "float", nullable: false),
                     pagado = table.Column<bool>(type: "bit", nullable: false),
                     detalle = table.Column<string>(type: "varchar(50)", nullable: false)
@@ -78,8 +82,8 @@ namespace TrabajoPlataformas.Migrations
                 {
                     table.PrimaryKey("PK_Pagos", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Pagos_Usuarios_id",
-                        column: x => x.id,
+                        name: "FK_Pagos_Usuarios_idUsuario",
+                        column: x => x.idUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -89,7 +93,9 @@ namespace TrabajoPlataformas.Migrations
                 name: "Plazos",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idUsuario = table.Column<int>(type: "int", nullable: false),
                     monto = table.Column<double>(type: "float", nullable: false),
                     fechaIni = table.Column<DateTime>(type: "datetime", nullable: false),
                     FechaFin = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -101,8 +107,8 @@ namespace TrabajoPlataformas.Migrations
                 {
                     table.PrimaryKey("PK_Plazos", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Plazos_Usuarios_id",
-                        column: x => x.id,
+                        name: "FK_Plazos_Usuarios_idUsuario",
+                        column: x => x.idUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -112,7 +118,9 @@ namespace TrabajoPlataformas.Migrations
                 name: "Tarjetas",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idUsuario = table.Column<int>(type: "int", nullable: false),
                     numero = table.Column<int>(type: "int", nullable: false),
                     codigoSeguridad = table.Column<int>(type: "int", nullable: false),
                     limite = table.Column<int>(type: "int", nullable: false),
@@ -122,8 +130,8 @@ namespace TrabajoPlataformas.Migrations
                 {
                     table.PrimaryKey("PK_Tarjetas", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Tarjetas_Usuarios_id",
-                        column: x => x.id,
+                        name: "FK_Tarjetas_Usuarios_idUsuario",
+                        column: x => x.idUsuario,
                         principalTable: "Usuarios",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -133,16 +141,16 @@ namespace TrabajoPlataformas.Migrations
                 name: "UsuarioCaja",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    idCaja = table.Column<int>(type: "int", nullable: false),
                     numusr = table.Column<int>(name: "num_usr", type: "int", nullable: false),
                     cantidad = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UsuarioCaja", x => new { x.numusr, x.id });
+                    table.PrimaryKey("PK_UsuarioCaja", x => new { x.numusr, x.idCaja });
                     table.ForeignKey(
-                        name: "FK_UsuarioCaja_Cajas_id",
-                        column: x => x.id,
+                        name: "FK_UsuarioCaja_Cajas_idCaja",
+                        column: x => x.idCaja,
                         principalTable: "Cajas",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -155,9 +163,29 @@ namespace TrabajoPlataformas.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UsuarioCaja_id",
+                name: "IX_Movimientos_idCaja",
+                table: "Movimientos",
+                column: "idCaja");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pagos_idUsuario",
+                table: "Pagos",
+                column: "idUsuario");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Plazos_idUsuario",
+                table: "Plazos",
+                column: "idUsuario");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tarjetas_idUsuario",
+                table: "Tarjetas",
+                column: "idUsuario");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsuarioCaja_idCaja",
                 table: "UsuarioCaja",
-                column: "id");
+                column: "idCaja");
         }
 
         /// <inheritdoc />

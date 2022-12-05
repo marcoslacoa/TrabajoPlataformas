@@ -18,11 +18,11 @@ namespace TrabajoPlataformas
 
         public bool bloqueado = false;
 
-        public List<PlazoFijo> plazoFijo { get; } = new List<PlazoFijo>();
-        public List<Pago> pagos { get; } = new List<Pago>();
-        public List<TarjetaCredito> tarjetas { get; } = new List<TarjetaCredito>();
+        public List<PlazoFijo> plazoFijo { get; set; } = new List<PlazoFijo>();
+        public List<Pago> pagos { get; set; } = new List<Pago>();
+        public List<TarjetaCredito> tarjetas { get; set; } = new List<TarjetaCredito>();
         //public List<CajaAhorro> cajasLista { get => listaCajas.ToList(); }
-        public ICollection<CajaAhorro> listaCajas { get; set; } = new List<CajaAhorro>();
+        public ICollection<CajaAhorro> listaCajas { get; } = new List<CajaAhorro>();
         public List<UsuarioCaja> UserCaja { get; set; }  
 
         public bool esADM;
@@ -72,49 +72,7 @@ namespace TrabajoPlataformas
             //
         }
         // agregar caja a lista de cajas
-        public void agregarCaja(CajaAhorro caja)
-        {
-            listaCajas.Add(caja);
-        }
-        public void eliminarCaja(CajaAhorro caja)
-        {
-            listaCajas.Remove(caja);
-        }
 
-        public void agregarPlazo(PlazoFijo plazo)
-        {
-            plazoFijo.Add(plazo);
-        }
-        public void eliminarPlazo(PlazoFijo plazo)
-        {
-            plazoFijo.Remove(plazo);
-        }
-
-        public void agregarPago(Pago pago)
-        {
-            pagos.Add(pago);
-        }
-        public void eliminarPago(Pago pago)
-        {
-            pagos.Remove(pago);
-        }
-        public void agregarTarjeta(TarjetaCredito tarjeta)
-        {
-            tarjetas.Add(tarjeta);
-        }
-        public void eliminarTarjeta(TarjetaCredito tarjeta)
-        {
-            tarjetas.Remove(tarjeta);
-        }
-
-        //public bool bloqueado()
-        //{
-        //    if (intentosFallidos > 3)
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
         public string getNombre()
         {
             return this.nombre;

@@ -295,7 +295,7 @@ namespace TrabajoPlataformas
                 }
 
                 contexto.pagos.Remove(pagoToRemove);
-                pagoToRemove.usuario.eliminarPago(pagoToRemove);
+                pagoToRemove.usuario.pagos.Remove(pagoToRemove);
                 contexto.Update(pagoToRemove.usuario);
                 contexto.SaveChanges();
 
@@ -384,7 +384,7 @@ namespace TrabajoPlataformas
                     return false;
                 }
 
-                tarjetaToRemove.titular.eliminarTarjeta(tarjetaToRemove);
+                tarjetaToRemove.titular.tarjetas.Remove(tarjetaToRemove);
                 contexto.Update(tarjetaToRemove.titular);
                 contexto.tarjetas.Remove(tarjetaToRemove);
                 contexto.SaveChanges();
@@ -508,7 +508,7 @@ namespace TrabajoPlataformas
                 return 1; // El usuario ya es titular
             }
             caja.titulares.Add(nuevoTitular);
-            nuevoTitular.agregarCaja(caja);
+            nuevoTitular.listaCajas.Add(caja);
             contexto.Update(caja);
             contexto.Update(nuevoTitular);
             contexto.SaveChanges();
@@ -535,7 +535,7 @@ namespace TrabajoPlataformas
                 return 2; // No se puede eliminar el unico titular
             }
             caja.titulares.Remove(usuario);
-            usuario.eliminarCaja(caja);
+            usuario.listaCajas.Remove(caja);
             contexto.Update(caja);
             contexto.Update(usuario);
             contexto.SaveChanges();
