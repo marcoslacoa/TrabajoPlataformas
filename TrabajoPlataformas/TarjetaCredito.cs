@@ -10,6 +10,7 @@ namespace TrabajoPlataformas
     {
         public int id { get; set; }
         public Usuario titular { get; set; }
+        public int idUsuario { get; set; }
         public int numero { get; set; }
         public int codigoSeguridad { get; set; }
         public float limite { get; set; }
@@ -22,6 +23,7 @@ namespace TrabajoPlataformas
             this.codigoSeguridad = CodigoSeguridad;
             this.limite = Limite;
             this.consumos = Consumos;
+            this.idUsuario = Titular.id;
         }
         public string[] toArray()
         {

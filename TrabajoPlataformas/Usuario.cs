@@ -17,19 +17,23 @@ namespace TrabajoPlataformas
         public int intentosFallidos { get; set; }
 
         public bool bloqueado = false;
-      
-        public List<PlazoFijo> plazoFijo { get; }
-        public List<Pago> pagos { get; }
-        public List<TarjetaCredito> tarjetas { get; }
+
+        public List<PlazoFijo> plazoFijo { get; } = new List<PlazoFijo>();
+        public List<Pago> pagos { get; } = new List<Pago>();
+        public List<TarjetaCredito> tarjetas { get; } = new List<TarjetaCredito>();
         //public List<CajaAhorro> cajasLista { get => listaCajas.ToList(); }
-        public ICollection<CajaAhorro> listaCajas { get; set; } 
-        public List<UsuarioCaja> UserCaja { get; set; }
+        public ICollection<CajaAhorro> listaCajas { get; set; } = new List<CajaAhorro>();
+        public List<UsuarioCaja> UserCaja { get; set; }  
 
         public bool esADM;
 
         public Usuario()
         {
-            
+            listaCajas = new List<CajaAhorro>(); 
+            UserCaja = new List<UsuarioCaja>();
+            plazoFijo = new List<PlazoFijo>();
+            pagos = new List<Pago>();
+            tarjetas = new List<TarjetaCredito>();
         }
         public Usuario(string Nombre, string Apellido, int Dni, string Mail, string Contra, bool EsADM, int IntentosFallidos, bool Bloqueado,
             List<CajaAhorro> CajasList, List<PlazoFijo> PlazoFijo, List<Pago>Pagos, List<TarjetaCredito> Tarjetas)
@@ -55,7 +59,7 @@ namespace TrabajoPlataformas
             contra = Contra;
             this.bloqueado = Bloqueado;
             this.esADM = EsADM;
-            listaCajas = new List<CajaAhorro>();
+            listaCajas = new List<CajaAhorro>(); // Estas van aca o van arriba en la definicion?
             plazoFijo = new List<PlazoFijo>();
             pagos = new List<Pago>();
             tarjetas = new List<TarjetaCredito>();

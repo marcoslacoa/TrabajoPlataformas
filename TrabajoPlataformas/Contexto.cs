@@ -68,30 +68,27 @@ namespace TrabajoPlataformas
             modelBuilder.Entity<PlazoFijo>()
             .HasOne(D => D.titular)
             .WithMany(U => U.plazoFijo)
-            .HasForeignKey(D => D.id)
-            .OnDelete(DeleteBehavior.Cascade)
-            .IsRequired(false);
+            .HasForeignKey(D => D.idUsuario)
+            .OnDelete(DeleteBehavior.Cascade);
+            
 
             modelBuilder.Entity<Pago>()
             .HasOne(D => D.usuario)
             .WithMany(U => U.pagos)
-            .HasForeignKey(D => D.id)
-            .OnDelete(DeleteBehavior.Cascade)
-            .IsRequired(false);
-       
+            .HasForeignKey(D => D.idUsuario)
+            .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Movimiento>()
             .HasOne(D => D.caja)
             .WithMany(U => U.movimientos)
-            .HasForeignKey(D => D.id)
-            .OnDelete(DeleteBehavior.Cascade)
-            .IsRequired(false);
+            .HasForeignKey(D => D.idCaja)
+            .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<TarjetaCredito>()
             .HasOne(D => D.titular)
             .WithMany(U => U.tarjetas)
-            .HasForeignKey(D => D.id)
-            .OnDelete(DeleteBehavior.Cascade)
-            .IsRequired(false);
+            .HasForeignKey(D => D.idUsuario)
+            .OnDelete(DeleteBehavior.Cascade);
 
 
             //RELACIONES MANY TO MANY
@@ -100,9 +97,9 @@ namespace TrabajoPlataformas
                 .HasMany(U => U.listaCajas)
                 .WithMany(P => P.titulares)
                 .UsingEntity<UsuarioCaja>(
-                    eup => eup.HasOne(up => up.caja).WithMany(p => p.UserCaja).HasForeignKey(u => u.id),
+                    eup => eup.HasOne(up => up.caja).WithMany(p => p.UserCaja).HasForeignKey(u => u.idCaja),
                     eup => eup.HasOne(up => up.usuario).WithMany(u => u.UserCaja).HasForeignKey(u => u.num_usr),
-                    eup => eup.HasKey(k => new { k.num_usr, k.id })
+                    eup => eup.HasKey(k => new { k.num_usr, k.idCaja })
                 );
 
             //propiedades de los datos

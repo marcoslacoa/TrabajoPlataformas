@@ -10,6 +10,7 @@ namespace TrabajoPlataformas
     {
         public int id { get; set; }
         public Usuario usuario { get; set; }
+        public int idUsuario { get; set; }
         public float monto { get; set; }
         public Boolean pagado { get; set; }
 
@@ -24,6 +25,7 @@ namespace TrabajoPlataformas
             this.monto = Monto;
             this.pagado = Pagado;
             this.detalle = detalle;
+            this.idUsuario = Usuario.id;
         }
         public string[] toArray()
         {

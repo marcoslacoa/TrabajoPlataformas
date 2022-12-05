@@ -357,6 +357,7 @@ namespace TrabajoPlataformas
                 TarjetaCredito nuevo = new TarjetaCredito(titular, numero, codigoSeguridad, limite, consumos);
 
                 nuevo.titular = usuarioActual;
+                titular.tarjetas.Add(nuevo);
                 contexto.tarjetas.Add(nuevo);
                 contexto.Update(usuarioActual);
                 contexto.SaveChanges();
@@ -503,7 +504,7 @@ namespace TrabajoPlataformas
             {
                 return 1; // El usuario ya es titular
             }
-            caja.agregarTitular(nuevoTitular);
+            caja.titulares.Add(nuevoTitular);
             nuevoTitular.agregarCaja(caja);
             contexto.Update(caja);
             contexto.Update(nuevoTitular);
@@ -530,7 +531,7 @@ namespace TrabajoPlataformas
 
                 return 2; // No se puede eliminar el unico titular
             }
-            caja.eliminarTitular(usuario);
+            caja.titulares.Remove(usuario);
             usuario.eliminarCaja(caja);
             contexto.Update(caja);
             contexto.Update(usuario);

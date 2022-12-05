@@ -10,6 +10,7 @@ namespace TrabajoPlataformas
     {
         public int id { get; set; }
         public Usuario titular { get; set; }
+        public int idUsuario { get; set; }
         public float monto { get; set; }
         public DateTime fechaIni { get; set; }
         public DateTime FechaFin { get; set; }
@@ -27,6 +28,7 @@ namespace TrabajoPlataformas
             this.tasa = Tasa;
             this.pagado = Pagado;
             this.cbu = cbu;
+            this.idUsuario = Titular.id;
         } 
 
         public string[] toArray()

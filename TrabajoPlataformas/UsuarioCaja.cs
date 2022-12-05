@@ -9,7 +9,7 @@ namespace TrabajoPlataformas
     public class UsuarioCaja
     {
         //Acá podríamos agregar cualquier otra propiedad que necesitemos (por ejemplo el total de una compra no?) ;)
-        public int id { get; set; }
+        public int idCaja { get; set; }
         public CajaAhorro caja { get; set; }
         public int num_usr { get; set; }
         public Usuario usuario { get; set; }

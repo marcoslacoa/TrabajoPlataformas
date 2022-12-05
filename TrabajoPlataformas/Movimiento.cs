@@ -10,6 +10,7 @@ namespace TrabajoPlataformas
     {
         public int id { get; set; }
         public CajaAhorro caja;
+        public int idCaja { get; set; }
         public string detalle { get; set; }
         public float monto { get; set; }
         public DateTime fecha { get; set; }
@@ -20,6 +21,7 @@ namespace TrabajoPlataformas
             this.detalle = Detalle;
             this.monto = Monto;
             this.fecha = Fecha;
+            this.idCaja = Caja.id;
         }
         public void toStringMovimiento() {
             MessageBox.Show("Detalle: " + detalle + " Monto: " + monto + " Fecha: " + fecha);
